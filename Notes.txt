@@ -1,0 +1,33 @@
+CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
+
+armor is not saving correctly
+	datagrid is being sorted with Unequipped(AID:1) at the bottom
+		save statement will always save new armor with AID:2 this way
+	need to find highest AID in database
+
+after you select a weapon/armor, weapon stats need to be applied to character
+	need to augment character base stats by their modifiers before weapon stats
+
+still closes frmCharSheet after error
+
+frmCharSheet save statements can probably look better
+
+format string works fine in console, looks like shit in list box	
+
+need following calculated fields on random roll:
+	Armor Class
+	Initiative
+	Perception
+	Action Points
+
+need to calculate carrying capacity
+	weapon/armor weight
+	1cp=1/50lb	copper piece	  1cp
+	1sp=1/50lb	silver piece	 10cp
+	1gp=1/50lb	gold piece	 10sp
+	1pp=1/50lb	platinum piece	100gp
+
+needs gui
+
+release versions need proper connection string.
+	it is in comments in mdlGlobal
