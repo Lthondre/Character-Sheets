@@ -1,0 +1,8 @@
+E:\VB\DnD\CharNames.dll\bin\Debug\CharNames.dll
+E:\VB\DnD\CharNames.dll\bin\Debug\CharNames.pdb
+E:\VB\DnD\CharNames.dll\bin\Debug\CharNames.xml
+E:\VB\DnD\CharNames.dll\obj\Debug\CharNames.Resources.resources
+E:\VB\DnD\CharNames.dll\obj\Debug\CharNames.dll.vbproj.GenerateResource.Cache
+E:\VB\DnD\CharNames.dll\obj\Debug\CharNames.dll
+E:\VB\DnD\CharNames.dll\obj\Debug\CharNames.xml
+E:\VB\DnD\CharNames.dll\obj\Debug\CharNames.pdb

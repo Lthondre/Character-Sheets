@@ -100,6 +100,8 @@ Partial Class frmCharSheet
         Me.txtChest = New System.Windows.Forms.TextBox()
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
+        Me.txtCarryCap = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
         Me.pnlCharSheet.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -128,6 +130,7 @@ Partial Class frmCharSheet
         Me.txtStr.Name = "txtStr"
         Me.txtStr.Size = New System.Drawing.Size(100, 20)
         Me.txtStr.TabIndex = 2
+        Me.txtStr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtStr, "Roll 4d6. Sum the highest three numbers.")
         '
         'txtDex
@@ -136,6 +139,7 @@ Partial Class frmCharSheet
         Me.txtDex.Name = "txtDex"
         Me.txtDex.Size = New System.Drawing.Size(100, 20)
         Me.txtDex.TabIndex = 3
+        Me.txtDex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtDex, "Roll 4d6. Sum the highest three numbers.")
         '
         'txtCon
@@ -144,6 +148,7 @@ Partial Class frmCharSheet
         Me.txtCon.Name = "txtCon"
         Me.txtCon.Size = New System.Drawing.Size(100, 20)
         Me.txtCon.TabIndex = 4
+        Me.txtCon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtCon, "Roll 4d6. Sum the highest three numbers.")
         '
         'txtInt
@@ -152,6 +157,7 @@ Partial Class frmCharSheet
         Me.txtInt.Name = "txtInt"
         Me.txtInt.Size = New System.Drawing.Size(100, 20)
         Me.txtInt.TabIndex = 5
+        Me.txtInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtInt, "Roll 4d6. Sum the highest three numbers.")
         '
         'txtWis
@@ -160,6 +166,7 @@ Partial Class frmCharSheet
         Me.txtWis.Name = "txtWis"
         Me.txtWis.Size = New System.Drawing.Size(100, 20)
         Me.txtWis.TabIndex = 6
+        Me.txtWis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtWis, "Roll 4d6. Sum the highest three numbers.")
         '
         'Label1
@@ -222,6 +229,7 @@ Partial Class frmCharSheet
         Me.txtCha.Name = "txtCha"
         Me.txtCha.Size = New System.Drawing.Size(100, 20)
         Me.txtCha.TabIndex = 12
+        Me.txtCha.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtCha, "Roll 4d6. Sum the highest three numbers.")
         '
         'Label7
@@ -239,6 +247,7 @@ Partial Class frmCharSheet
         Me.txtHP.Name = "txtHP"
         Me.txtHP.Size = New System.Drawing.Size(100, 20)
         Me.txtHP.TabIndex = 14
+        Me.txtHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ttpHelp.SetToolTip(Me.txtHP, "Cleric, Ranger, Rogue, Warlock, Warlord:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Level 1: 12HP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Gain/level: +5HP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Figh" & _
         "ter, Paladin: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Level 1: 15HP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Gain/level: +6HP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Wizard:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Level 1: 10HP" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Gain/" & _
         "level: +4HP")
@@ -258,6 +267,7 @@ Partial Class frmCharSheet
         Me.txtAC.Name = "txtAC"
         Me.txtAC.Size = New System.Drawing.Size(100, 20)
         Me.txtAC.TabIndex = 16
+        Me.txtAC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label11
         '
@@ -275,6 +285,7 @@ Partial Class frmCharSheet
         Me.txtMoney.Name = "txtMoney"
         Me.txtMoney.Size = New System.Drawing.Size(100, 20)
         Me.txtMoney.TabIndex = 22
+        Me.txtMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label12
         '
@@ -291,6 +302,7 @@ Partial Class frmCharSheet
         Me.txtInitiative.Name = "txtInitiative"
         Me.txtInitiative.Size = New System.Drawing.Size(100, 20)
         Me.txtInitiative.TabIndex = 24
+        Me.txtInitiative.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label13
         '
@@ -307,6 +319,7 @@ Partial Class frmCharSheet
         Me.txtPerception.Name = "txtPerception"
         Me.txtPerception.Size = New System.Drawing.Size(100, 20)
         Me.txtPerception.TabIndex = 26
+        Me.txtPerception.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label14
         '
@@ -323,6 +336,7 @@ Partial Class frmCharSheet
         Me.txtAP.Name = "txtAP"
         Me.txtAP.Size = New System.Drawing.Size(100, 20)
         Me.txtAP.TabIndex = 28
+        Me.txtAP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label15
         '
@@ -339,6 +353,7 @@ Partial Class frmCharSheet
         Me.txtLevel.Name = "txtLevel"
         Me.txtLevel.Size = New System.Drawing.Size(100, 20)
         Me.txtLevel.TabIndex = 38
+        Me.txtLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label16
         '
@@ -355,6 +370,7 @@ Partial Class frmCharSheet
         Me.txtExp.Name = "txtExp"
         Me.txtExp.Size = New System.Drawing.Size(100, 20)
         Me.txtExp.TabIndex = 39
+        Me.txtExp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label17
         '
@@ -487,6 +503,7 @@ Partial Class frmCharSheet
         Me.txtLoc.Name = "txtLoc"
         Me.txtLoc.Size = New System.Drawing.Size(100, 20)
         Me.txtLoc.TabIndex = 37
+        Me.txtLoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label25
         '
@@ -547,6 +564,8 @@ Partial Class frmCharSheet
         '
         'pnlCharSheet
         '
+        Me.pnlCharSheet.Controls.Add(Me.Label31)
+        Me.pnlCharSheet.Controls.Add(Me.txtCarryCap)
         Me.pnlCharSheet.Controls.Add(Me.btnWrists)
         Me.pnlCharSheet.Controls.Add(Me.btnFeet)
         Me.pnlCharSheet.Controls.Add(Me.btnLegs)
@@ -838,6 +857,23 @@ Partial Class frmCharSheet
         Me.txtHelm.Size = New System.Drawing.Size(131, 20)
         Me.txtHelm.TabIndex = 53
         '
+        'txtCarryCap
+        '
+        Me.txtCarryCap.Location = New System.Drawing.Point(84, 315)
+        Me.txtCarryCap.Name = "txtCarryCap"
+        Me.txtCarryCap.Size = New System.Drawing.Size(100, 20)
+        Me.txtCarryCap.TabIndex = 78
+        Me.txtCarryCap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(3, 318)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(60, 13)
+        Me.Label31.TabIndex = 79
+        Me.Label31.Text = "Weight(lbs)"
+        '
         'frmCharSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -938,5 +974,7 @@ Partial Class frmCharSheet
     Friend WithEvents btnNeck As System.Windows.Forms.Button
     Friend WithEvents btnHead As System.Windows.Forms.Button
     Friend WithEvents btnSWeap As System.Windows.Forms.Button
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents txtCarryCap As System.Windows.Forms.TextBox
 
 End Class

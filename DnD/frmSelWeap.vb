@@ -18,8 +18,13 @@
 
     Private Sub dgvWeapons_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvWeapons.CellDoubleClick
         'change the weapon name and tag back in frmCharSheet
-        dtext = dgvWeapons.Item(1, e.RowIndex).Value.ToString
         dtag = dgvWeapons.Item(0, e.RowIndex).Value.ToString
+        dtext = dgvWeapons.Item(1, e.RowIndex).Value.ToString
+        dweight = dgvWeapons.Item(2, e.RowIndex).Value.ToString
+        darmBonus = dgvWeapons.Item(3, e.RowIndex).Value.ToString
+        dcheckMod = dgvWeapons.Item(4, e.RowIndex).Value.ToString
+        dprice = dgvWeapons.Item(5, e.RowIndex).Value.ToString
+
         'close the form
         Me.Close()
     End Sub

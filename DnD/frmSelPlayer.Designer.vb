@@ -32,6 +32,7 @@ Partial Class frmSelPlayer
         '
         'lstPlayers
         '
+        Me.lstPlayers.ColumnWidth = 50
         Me.lstPlayers.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstPlayers.ItemHeight = 16
         Me.lstPlayers.Location = New System.Drawing.Point(13, 13)

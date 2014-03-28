@@ -94,7 +94,7 @@
         'clear out list box
         lstPlayers.Items.Clear()
         'string used for listbox formatting
-        Dim fmtString As String = "{0,-40} {1,10}"
+        Dim fmtString As String = "{0,-40} {1,0}"
         Dim fmtString2 As String = "{0,-40} {1,10} {2,10}"
         'loop through each record, store in structure, display names in list box
         For i As Integer = 0 To PlayerData.ds.Tables(0).Rows.Count - 1
@@ -178,6 +178,8 @@
     Private Sub frmContacts_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'load all players into list box on startup
         Call LoadPlayerStats()
+        'select the listbox on loadup of form
+        lstPlayers.Select()
         'Add a handler for doubleclicking the a person on the list box and clicking edit on form load
         AddHandler lstPlayers.DoubleClick, AddressOf btnEdit_Click
         AddHandler btnEdit.Click, AddressOf btnEdit_Click
@@ -257,6 +259,7 @@
                 For j As Integer = 0 To (Weapon.Length - 1)
                     If Weapon(j).WID = .txtWepName.Tag Then
                         .txtWepName.Text = Weapon(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Weapon(j).wgt
                     End If
                 Next
                 .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
@@ -275,27 +278,35 @@
                 For j As Integer = 0 To (Armor.Length - 1)
                     If Armor(j).AID = .txtHelm.Tag Then
                         .txtHelm.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtChest.Tag Then
                         .txtChest.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtLegs.Tag Then
                         .txtLegs.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtArms.Tag Then
                         .txtArms.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtHands.Tag Then
                         .txtHands.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtFeet.Tag Then
                         .txtFeet.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtNeck.Tag Then
                         .txtNeck.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                     If Armor(j).AID = .txtWrists.tag Then
-                        .txtWrists.text = Armor(j).name
+                        .txtWrists.Text = Armor(j).name
+                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
                     End If
                 Next
 
@@ -328,10 +339,13 @@
                 .txtPerception.ReadOnly = True
                 .txtAP.ReadOnly = True
                 .txtColor.ReadOnly = True
+                .txtCarryCap.ReadOnly = True
                 .txtWepName.ReadOnly = True
                 .txtLevel.ReadOnly = True
                 .txtExp.ReadOnly = True
                 .txtLoc.ReadOnly = True
+                .btnCalc.Enabled = False
+                .btnRoll.Enabled = False
                 'armor
                 .txtHelm.ReadOnly = True
                 .txtChest.ReadOnly = True

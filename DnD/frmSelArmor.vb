@@ -5,15 +5,16 @@
     Public dcheckMod As Integer
     Public dweight As Integer
     Public dprice As Double
+    Public dClass As String
     Public dtype As String
     Public tagVal As Integer = mdlGlobal.theTag
 
     Private Sub frmSelArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'I've tried just about every fucking thing to get this to work. tagVal MUST be taken from a module
         'form must also be disposed every time it's called or tagVal will not update to newest value from module
-        Console.WriteLine("Tag Val: " & tagVal)
+        Console.WriteLine("frmSelArmor armor tag: " & tagVal)
         If tagVal < 1 Or tagVal > 9 Then
-            MessageBox.Show("Warning! Selected button is not attributed. Default to showing all.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Warning! Selected armor button is not attributed. Default to showing all.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
 
         'select the default tab based on which button the user clicked in the CharSheet form
@@ -55,14 +56,27 @@
     Private Sub dgvWeapons_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvArmor.CellDoubleClick, dgvHead.CellDoubleClick, _
                                                                                                     dgvChest.CellDoubleClick, dgvArms.CellDoubleClick, _
                                                                                                     dgvWrists.CellDoubleClick, dgvHands.CellDoubleClick, _
-                                                                                                    dgvLegs.CellDoubleClick, dgvFeet.CellDoubleClick
+                                                                                                    dgvLegs.CellDoubleClick, dgvFeet.CellDoubleClick, _
+                                                                                                    dgvNeck.CellDoubleClick
 
         'change the weapon name and tag back in frmCharSheet
-        dtext = sender.Item(1, e.RowIndex).Value.ToString
         dtag = sender.Item(0, e.RowIndex).Value.ToString
+        dtext = sender.Item(1, e.RowIndex).Value.ToString
+        dweight = sender.item(2, e.RowIndex).value.ToString
+        darmBonus = sender.item(3, e.RowIndex).value.ToString
+        dcheckMod = sender.item(4, e.RowIndex).value.ToString
+        dprice = sender.item(5, e.RowIndex).value.ToString
+        dClass = sender.item(6, e.RowIndex).value.ToString
         dtype = sender.Item(7, e.RowIndex).Value.ToString
-        Console.WriteLine(dtext)
+
+        'show me the complete stats of the selected armor
         Console.WriteLine(dtag)
+        Console.WriteLine(dtext)
+        Console.WriteLine(dweight)
+        Console.WriteLine(darmBonus)
+        Console.WriteLine(dcheckMod)
+        Console.WriteLine(dprice)
+        Console.WriteLine(dClass)
         Console.WriteLine(dtype)
         'close the form
         Me.Close()
