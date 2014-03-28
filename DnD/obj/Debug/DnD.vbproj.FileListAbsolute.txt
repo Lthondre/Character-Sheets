@@ -1,0 +1,30 @@
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\bin\Debug\DnD.exe.config
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\bin\Debug\DnD.exe
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\bin\Debug\DnD.pdb
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\bin\Debug\DnD.xml
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.DnD.resources
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.Resources.resources
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.vbproj.GenerateResource.Cache
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.exe
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.xml
+C:\Users\Curtis\AppData\Local\Temporary Projects\DnD\obj\Debug\DnD.pdb
+E:\VB\DnD\DnD\bin\Debug\DnD.exe.config
+E:\VB\DnD\DnD\obj\Debug\DnD.exe
+E:\VB\DnD\DnD\obj\Debug\DnD.xml
+E:\VB\DnD\DnD\obj\Debug\DnD.pdb
+E:\VB\DnD\DnD\bin\Debug\DnD.exe
+E:\VB\DnD\DnD\bin\Debug\DnD.pdb
+E:\VB\DnD\DnD\bin\Debug\DnD.xml
+E:\VB\DnD\DnD\obj\Debug\DnD.Resources.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.vbproj.GenerateResource.Cache
+E:\VB\DnD\DnD\obj\Debug\DnD.frmSelPlayer.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmCharSheet.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmDiceRoll.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmSelWeap.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmAddWeap.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmAddArmor.resources
+E:\VB\DnD\DnD\obj\Debug\DnD.frmSelArmor.resources
+E:\VB\DnD\DnD\bin\Debug\CharNames.dll
+E:\VB\DnD\DnD\bin\Debug\CharNames.pdb
+E:\VB\DnD\DnD\bin\Debug\CharNames.xml
+E:\VB\DnD\DnD\obj\Debug\DnD.vbprojResolveAssemblyReference.cache
