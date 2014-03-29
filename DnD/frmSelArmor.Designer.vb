@@ -993,7 +993,6 @@ Partial Class frmSelArmor
         Me.Controls.Add(Me.btnAdd)
         Me.Name = "frmSelArmor"
         Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.Text = "Select Armor"
         CType(Me.dgvHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabArmor.ResumeLayout(False)

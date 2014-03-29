@@ -85,6 +85,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbilSkillRoll.Designer.vb">
+      <DependentUpon>frmAbilSkillRoll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbilSkillRoll.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAddArmor.Designer.vb">
       <DependentUpon>frmAddArmor.vb</DependentUpon>
     </Compile>
@@ -147,6 +153,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAbilSkillRoll.resx">
+      <DependentUpon>frmAbilSkillRoll.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddArmor.resx">
       <DependentUpon>frmAddArmor.vb</DependentUpon>
     </EmbeddedResource>

@@ -27,14 +27,14 @@ Partial Class frmSelWeap
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvWeapons = New System.Windows.Forms.DataGridView()
-        Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
         Me.wID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wWeight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wArmorBonus = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wCheck = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         CType(Me.dgvWeapons, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -54,24 +54,6 @@ Partial Class frmSelWeap
         Me.dgvWeapons.Size = New System.Drawing.Size(718, 306)
         Me.dgvWeapons.TabIndex = 0
         '
-        'btnClose
-        '
-        Me.btnClose.Location = New System.Drawing.Point(631, 312)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 23)
-        Me.btnClose.TabIndex = 2
-        Me.btnClose.Text = "&Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.Location = New System.Drawing.Point(12, 312)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.btnAdd.TabIndex = 3
-        Me.btnAdd.Text = "&Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
-        '
         'wID
         '
         Me.wID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -79,7 +61,6 @@ Partial Class frmSelWeap
         Me.wID.Name = "wID"
         Me.wID.ReadOnly = True
         Me.wID.Visible = False
-        Me.wID.Width = 84
         '
         'wName
         '
@@ -128,6 +109,24 @@ Partial Class frmSelWeap
         Me.wPrice.ReadOnly = True
         Me.wPrice.Width = 80
         '
+        'btnClose
+        '
+        Me.btnClose.Location = New System.Drawing.Point(631, 312)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnClose.TabIndex = 2
+        Me.btnClose.Text = "&Close"
+        Me.btnClose.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(12, 312)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnAdd.TabIndex = 3
+        Me.btnAdd.Text = "&Add"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
         'frmSelWeap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -140,7 +139,6 @@ Partial Class frmSelWeap
         Me.MinimizeBox = False
         Me.Name = "frmSelWeap"
         Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.Text = "Select a Weapon"
         CType(Me.dgvWeapons, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

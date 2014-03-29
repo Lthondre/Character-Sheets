@@ -59,15 +59,9 @@ Public Class frmCharSheet
         ElseIf txtHP.Text = "" Then
             MessageBox.Show("Please enter Health", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtHP.Focus()
-        ElseIf txtAC.Text = "" Then
-            MessageBox.Show("Please enter Armor Class", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtAC.Focus()
         ElseIf txtMoney.Text = "" Then
             MessageBox.Show("Please enter Money", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtMoney.Focus()
-        ElseIf txtInitiative.Text = "" Then
-            MessageBox.Show("Please enter Initiative", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtInitiative.Focus()
         ElseIf txtPerception.Text = "" Then
             MessageBox.Show("Please enter Perception", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtPerception.Focus()
@@ -146,9 +140,7 @@ Public Class frmCharSheet
                     .Item("pWIS") = txtWis.Text
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
-                    .Item("pAC") = txtAC.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pInitiative") = txtInitiative.Text
                     .Item("pPerception") = txtPerception.Text
                     .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
@@ -197,9 +189,7 @@ Public Class frmCharSheet
                     .Item("pWIS") = txtWis.Text
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
-                    .Item("pAC") = txtAC.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pInitiative") = txtInitiative.Text
                     .Item("pPerception") = txtPerception.Text
                     .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
@@ -236,7 +226,7 @@ Public Class frmCharSheet
         End If
     End Sub
 
-    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles btnRoll.Click
+    Private Sub btnRandomize_Click(sender As Object, e As EventArgs) Handles btnRandomize.Click
         'only roll new stats if your character doens't exist
         'else leave him the fuck alone
         If Val(txtCName.Tag).ToString = "" Then
@@ -294,8 +284,8 @@ Public Class frmCharSheet
             cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
 
             'testing Information
-            txtAC.Text = "12"
-            txtInitiative.Text = "11"
+            txtAC.Text = IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
+            'txtInitiative.Text = "11"
             txtPerception.Text = "10"
             txtAP.Text = "9"
             Dim newName As New CharNames.names
@@ -359,7 +349,7 @@ Public Class frmCharSheet
         txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
         txtAC.ReadOnly = IIf(txtAC.ReadOnly = False, True, False)
         txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
-        txtInitiative.ReadOnly = IIf(txtInitiative.ReadOnly = False, True, False)
+        'txtInitiative.ReadOnly = IIf(txtInitiative.ReadOnly = False, True, False)
         txtPerception.ReadOnly = IIf(txtPerception.ReadOnly = False, True, False)
         txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
         txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
@@ -369,7 +359,7 @@ Public Class frmCharSheet
         txtExp.ReadOnly = IIf(txtExp.ReadOnly = False, True, False)
         txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
         btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
-        btnRoll.Enabled = IIf(btnRoll.Enabled = False, True, False)
+        btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
         'armor
         txtHelm.ReadOnly = IIf(txtHelm.ReadOnly = False, True, False)
         txtChest.ReadOnly = IIf(txtChest.ReadOnly = False, True, False)
@@ -397,7 +387,9 @@ Public Class frmCharSheet
     Private Sub btnSelWeap_Click(sender As Object, e As EventArgs) Handles btnSelWeap.Click
         'open frmSelWeap for weapon selection
         With frmSelWeap
+            Me.Hide()
             .ShowDialog()
+            Me.Show()
             'Only change if the values have changed
             If .dtext <> "" Then
                 Console.WriteLine("Prev Wep Wgt: " & .dgvWeapons.Item(2, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
@@ -439,7 +431,9 @@ Public Class frmCharSheet
         With frmSelArmor
             'open frmSelArmor for armor selection
             'weight is handled when you select a new armor piece
+            Me.Hide()
             .ShowDialog()
+            Me.Show()
             If .dtext <> "" Then
                 Dim prevWgt As Long = 0
                 Select Case LCase(.dtype)
@@ -591,7 +585,10 @@ Public Class frmCharSheet
             Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Maximum dragging load" & vbCrLf & "Speed severely hampered")
         ElseIf Val(txtCarryCap.Text) > MAXIMUM * Val(txtStr.Text) Then
             'over capacity
-            MsgBox("Your character is over encumbered.")
+            If Me.Visible = True Then
+                'this messagebox can be triggered several times while loading a character into the character sheet
+                MsgBox("Your character is over encumbered.")
+            End If
             txtCarryCap.BackColor = Color.Black
             txtCarryCap.ForeColor = Color.Yellow
             Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Over encumbered")
@@ -606,5 +603,19 @@ Public Class frmCharSheet
         moneyWeight = Val(txtMoney.Text) * GPWEIGHT
         Console.WriteLine("Money Wgt: " & moneyWeight)
         txtCarryCap.Text = Val(txtCarryCap.Text) + moneyWeight
+    End Sub
+
+    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles btnRoll.Click
+        'show the form that handles ability/skill checks
+        Dim roll As New frmAbilSkillRoll
+        With roll
+            Console.WriteLine("Level: " & Val(txtLevel.Text))
+            .ShowDialog()
+
+            'only change if the user actually rolled for initiative
+            If .initRoll <> -1 Then
+                Me.txtInitiative.Text = .initRoll
+            End If
+        End With
     End Sub
 End Class

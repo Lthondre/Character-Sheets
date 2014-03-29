@@ -11,7 +11,6 @@ frmCharSheet save statements can probably look better
 format string works fine in console, looks like shit in list box	
 
 need following calculated fields on random roll:
-	Armor Class
 	Initiative
 	Perception
 	Action Points

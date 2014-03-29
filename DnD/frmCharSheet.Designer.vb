@@ -70,11 +70,13 @@ Partial Class frmCharSheet
         Me.ttpHelp = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label25 = New System.Windows.Forms.Label()
         Me.txtColor = New System.Windows.Forms.TextBox()
-        Me.btnRoll = New System.Windows.Forms.Button()
+        Me.btnRandomize = New System.Windows.Forms.Button()
         Me.btnSelWeap = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnSelArmor = New System.Windows.Forms.Button()
         Me.pnlCharSheet = New System.Windows.Forms.Panel()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.txtCarryCap = New System.Windows.Forms.TextBox()
         Me.btnWrists = New System.Windows.Forms.Button()
         Me.btnFeet = New System.Windows.Forms.Button()
         Me.btnLegs = New System.Windows.Forms.Button()
@@ -100,8 +102,7 @@ Partial Class frmCharSheet
         Me.txtChest = New System.Windows.Forms.TextBox()
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
-        Me.txtCarryCap = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
+        Me.btnRoll = New System.Windows.Forms.Button()
         Me.pnlCharSheet.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -290,7 +291,7 @@ Partial Class frmCharSheet
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(3, 240)
+        Me.Label12.Location = New System.Drawing.Point(3, 318)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(46, 13)
         Me.Label12.TabIndex = 25
@@ -298,7 +299,8 @@ Partial Class frmCharSheet
         '
         'txtInitiative
         '
-        Me.txtInitiative.Location = New System.Drawing.Point(84, 237)
+        Me.txtInitiative.Enabled = False
+        Me.txtInitiative.Location = New System.Drawing.Point(84, 315)
         Me.txtInitiative.Name = "txtInitiative"
         Me.txtInitiative.Size = New System.Drawing.Size(100, 20)
         Me.txtInitiative.TabIndex = 24
@@ -307,7 +309,7 @@ Partial Class frmCharSheet
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(3, 266)
+        Me.Label13.Location = New System.Drawing.Point(3, 240)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(58, 13)
         Me.Label13.TabIndex = 27
@@ -315,7 +317,7 @@ Partial Class frmCharSheet
         '
         'txtPerception
         '
-        Me.txtPerception.Location = New System.Drawing.Point(84, 263)
+        Me.txtPerception.Location = New System.Drawing.Point(84, 237)
         Me.txtPerception.Name = "txtPerception"
         Me.txtPerception.Size = New System.Drawing.Size(100, 20)
         Me.txtPerception.TabIndex = 26
@@ -324,7 +326,7 @@ Partial Class frmCharSheet
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(3, 292)
+        Me.Label14.Location = New System.Drawing.Point(3, 266)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(69, 13)
         Me.Label14.TabIndex = 29
@@ -332,7 +334,7 @@ Partial Class frmCharSheet
         '
         'txtAP
         '
-        Me.txtAP.Location = New System.Drawing.Point(84, 289)
+        Me.txtAP.Location = New System.Drawing.Point(84, 263)
         Me.txtAP.Name = "txtAP"
         Me.txtAP.Size = New System.Drawing.Size(100, 20)
         Me.txtAP.TabIndex = 28
@@ -524,15 +526,15 @@ Partial Class frmCharSheet
         Me.txtColor.TabIndex = 35
         Me.ttpHelp.SetToolTip(Me.txtColor, "WUBRG (White, blUe, Black, Red, Green)")
         '
-        'btnRoll
+        'btnRandomize
         '
-        Me.btnRoll.Location = New System.Drawing.Point(311, 567)
-        Me.btnRoll.Name = "btnRoll"
-        Me.btnRoll.Size = New System.Drawing.Size(75, 23)
-        Me.btnRoll.TabIndex = 42
-        Me.btnRoll.Text = "&Roll"
-        Me.ttpHelp.SetToolTip(Me.btnRoll, "Roll random numbers for your six ability scores")
-        Me.btnRoll.UseVisualStyleBackColor = True
+        Me.btnRandomize.Location = New System.Drawing.Point(311, 567)
+        Me.btnRandomize.Name = "btnRandomize"
+        Me.btnRandomize.Size = New System.Drawing.Size(75, 23)
+        Me.btnRandomize.TabIndex = 42
+        Me.btnRandomize.Text = "&Randomize"
+        Me.ttpHelp.SetToolTip(Me.btnRandomize, "Roll random numbers for your six ability scores")
+        Me.btnRandomize.UseVisualStyleBackColor = True
         '
         'btnSelWeap
         '
@@ -639,6 +641,23 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Name = "pnlCharSheet"
         Me.pnlCharSheet.Size = New System.Drawing.Size(552, 520)
         Me.pnlCharSheet.TabIndex = 55
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(3, 292)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(60, 13)
+        Me.Label31.TabIndex = 79
+        Me.Label31.Text = "Weight(lbs)"
+        '
+        'txtCarryCap
+        '
+        Me.txtCarryCap.Location = New System.Drawing.Point(84, 289)
+        Me.txtCarryCap.Name = "txtCarryCap"
+        Me.txtCarryCap.Size = New System.Drawing.Size(100, 20)
+        Me.txtCarryCap.TabIndex = 78
+        Me.txtCarryCap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btnWrists
         '
@@ -857,40 +876,31 @@ Partial Class frmCharSheet
         Me.txtHelm.Size = New System.Drawing.Size(131, 20)
         Me.txtHelm.TabIndex = 53
         '
-        'txtCarryCap
+        'btnRoll
         '
-        Me.txtCarryCap.Location = New System.Drawing.Point(84, 315)
-        Me.txtCarryCap.Name = "txtCarryCap"
-        Me.txtCarryCap.Size = New System.Drawing.Size(100, 20)
-        Me.txtCarryCap.TabIndex = 78
-        Me.txtCarryCap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(3, 318)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(60, 13)
-        Me.Label31.TabIndex = 79
-        Me.Label31.Text = "Weight(lbs)"
+        Me.btnRoll.Location = New System.Drawing.Point(15, 538)
+        Me.btnRoll.Name = "btnRoll"
+        Me.btnRoll.Size = New System.Drawing.Size(75, 23)
+        Me.btnRoll.TabIndex = 80
+        Me.btnRoll.Text = "R&oll"
+        Me.btnRoll.UseVisualStyleBackColor = True
         '
         'frmCharSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(580, 602)
+        Me.Controls.Add(Me.btnRoll)
         Me.Controls.Add(Me.pnlCharSheet)
         Me.Controls.Add(Me.btnSelArmor)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.btnSelWeap)
-        Me.Controls.Add(Me.btnRoll)
+        Me.Controls.Add(Me.btnRandomize)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnCalc)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmCharSheet"
-        Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.Text = "Character Sheet"
         Me.pnlCharSheet.ResumeLayout(False)
         Me.pnlCharSheet.PerformLayout()
@@ -899,82 +909,83 @@ Partial Class frmCharSheet
     End Sub
     Friend WithEvents btnCalc As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
-    Friend WithEvents txtDex As System.Windows.Forms.TextBox
-    Friend WithEvents txtCon As System.Windows.Forms.TextBox
-    Friend WithEvents txtInt As System.Windows.Forms.TextBox
-    Friend WithEvents txtWis As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents txtCha As System.Windows.Forms.TextBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents txtHP As System.Windows.Forms.TextBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents txtAC As System.Windows.Forms.TextBox
-    Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents txtMoney As System.Windows.Forms.TextBox
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents txtInitiative As System.Windows.Forms.TextBox
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents txtPerception As System.Windows.Forms.TextBox
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents txtAP As System.Windows.Forms.TextBox
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents txtLevel As System.Windows.Forms.TextBox
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents txtExp As System.Windows.Forms.TextBox
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents cboClass As System.Windows.Forms.ComboBox
-    Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents cboRace As System.Windows.Forms.ComboBox
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents cboGender As System.Windows.Forms.ComboBox
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents cboAlignment As System.Windows.Forms.ComboBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents txtCName As System.Windows.Forms.TextBox
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents txtLoc As System.Windows.Forms.TextBox
     Friend WithEvents ttpHelp As System.Windows.Forms.ToolTip
-    Friend WithEvents Label25 As System.Windows.Forms.Label
-    Friend WithEvents txtColor As System.Windows.Forms.TextBox
-    Friend WithEvents btnRoll As System.Windows.Forms.Button
+    Friend WithEvents btnRandomize As System.Windows.Forms.Button
     Friend WithEvents btnSelWeap As System.Windows.Forms.Button
-    Friend WithEvents txtWepName As System.Windows.Forms.TextBox
-    Friend WithEvents txtStr As System.Windows.Forms.TextBox
     Friend WithEvents btnEdit As System.Windows.Forms.Button
     Friend WithEvents btnSelArmor As System.Windows.Forms.Button
     Friend WithEvents pnlCharSheet As System.Windows.Forms.Panel
-    Friend WithEvents Label29 As System.Windows.Forms.Label
-    Friend WithEvents Label28 As System.Windows.Forms.Label
-    Friend WithEvents Label27 As System.Windows.Forms.Label
-    Friend WithEvents Label26 As System.Windows.Forms.Label
-    Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents txtFeet As System.Windows.Forms.TextBox
-    Friend WithEvents txtLegs As System.Windows.Forms.TextBox
-    Friend WithEvents txtHands As System.Windows.Forms.TextBox
-    Friend WithEvents txtArms As System.Windows.Forms.TextBox
-    Friend WithEvents txtChest As System.Windows.Forms.TextBox
-    Friend WithEvents txtNeck As System.Windows.Forms.TextBox
-    Friend WithEvents txtHelm As System.Windows.Forms.TextBox
-    Friend WithEvents Label30 As System.Windows.Forms.Label
-    Friend WithEvents txtWrists As System.Windows.Forms.TextBox
-    Friend WithEvents btnWrists As System.Windows.Forms.Button
-    Friend WithEvents btnFeet As System.Windows.Forms.Button
-    Friend WithEvents btnLegs As System.Windows.Forms.Button
-    Friend WithEvents btnHands As System.Windows.Forms.Button
-    Friend WithEvents btnArms As System.Windows.Forms.Button
-    Friend WithEvents btnChest As System.Windows.Forms.Button
-    Friend WithEvents btnNeck As System.Windows.Forms.Button
-    Friend WithEvents btnHead As System.Windows.Forms.Button
-    Friend WithEvents btnSWeap As System.Windows.Forms.Button
-    Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents txtCarryCap As System.Windows.Forms.TextBox
+    Friend WithEvents btnRoll As System.Windows.Forms.Button
+    Public WithEvents txtDex As System.Windows.Forms.TextBox
+    Public WithEvents txtCon As System.Windows.Forms.TextBox
+    Public WithEvents txtInt As System.Windows.Forms.TextBox
+    Public WithEvents txtWis As System.Windows.Forms.TextBox
+    Public WithEvents Label1 As System.Windows.Forms.Label
+    Public WithEvents Label2 As System.Windows.Forms.Label
+    Public WithEvents Label3 As System.Windows.Forms.Label
+    Public WithEvents Label4 As System.Windows.Forms.Label
+    Public WithEvents Label5 As System.Windows.Forms.Label
+    Public WithEvents Label6 As System.Windows.Forms.Label
+    Public WithEvents txtCha As System.Windows.Forms.TextBox
+    Public WithEvents Label7 As System.Windows.Forms.Label
+    Public WithEvents txtHP As System.Windows.Forms.TextBox
+    Public WithEvents Label8 As System.Windows.Forms.Label
+    Public WithEvents txtAC As System.Windows.Forms.TextBox
+    Public WithEvents Label11 As System.Windows.Forms.Label
+    Public WithEvents txtMoney As System.Windows.Forms.TextBox
+    Public WithEvents Label12 As System.Windows.Forms.Label
+    Public WithEvents txtInitiative As System.Windows.Forms.TextBox
+    Public WithEvents Label13 As System.Windows.Forms.Label
+    Public WithEvents txtPerception As System.Windows.Forms.TextBox
+    Public WithEvents Label14 As System.Windows.Forms.Label
+    Public WithEvents txtAP As System.Windows.Forms.TextBox
+    Public WithEvents Label15 As System.Windows.Forms.Label
+    Public WithEvents txtLevel As System.Windows.Forms.TextBox
+    Public WithEvents Label16 As System.Windows.Forms.Label
+    Public WithEvents txtExp As System.Windows.Forms.TextBox
+    Public WithEvents Label17 As System.Windows.Forms.Label
+    Public WithEvents cboClass As System.Windows.Forms.ComboBox
+    Public WithEvents Label18 As System.Windows.Forms.Label
+    Public WithEvents cboRace As System.Windows.Forms.ComboBox
+    Public WithEvents Label19 As System.Windows.Forms.Label
+    Public WithEvents cboGender As System.Windows.Forms.ComboBox
+    Public WithEvents Label20 As System.Windows.Forms.Label
+    Public WithEvents cboAlignment As System.Windows.Forms.ComboBox
+    Public WithEvents Label21 As System.Windows.Forms.Label
+    Public WithEvents txtCName As System.Windows.Forms.TextBox
+    Public WithEvents Label22 As System.Windows.Forms.Label
+    Public WithEvents Label24 As System.Windows.Forms.Label
+    Public WithEvents txtLoc As System.Windows.Forms.TextBox
+    Public WithEvents Label25 As System.Windows.Forms.Label
+    Public WithEvents txtColor As System.Windows.Forms.TextBox
+    Public WithEvents txtWepName As System.Windows.Forms.TextBox
+    Public WithEvents txtStr As System.Windows.Forms.TextBox
+    Public WithEvents Label29 As System.Windows.Forms.Label
+    Public WithEvents Label28 As System.Windows.Forms.Label
+    Public WithEvents Label27 As System.Windows.Forms.Label
+    Public WithEvents Label26 As System.Windows.Forms.Label
+    Public WithEvents Label23 As System.Windows.Forms.Label
+    Public WithEvents Label10 As System.Windows.Forms.Label
+    Public WithEvents Label9 As System.Windows.Forms.Label
+    Public WithEvents txtFeet As System.Windows.Forms.TextBox
+    Public WithEvents txtLegs As System.Windows.Forms.TextBox
+    Public WithEvents txtHands As System.Windows.Forms.TextBox
+    Public WithEvents txtArms As System.Windows.Forms.TextBox
+    Public WithEvents txtChest As System.Windows.Forms.TextBox
+    Public WithEvents txtNeck As System.Windows.Forms.TextBox
+    Public WithEvents txtHelm As System.Windows.Forms.TextBox
+    Public WithEvents Label30 As System.Windows.Forms.Label
+    Public WithEvents txtWrists As System.Windows.Forms.TextBox
+    Public WithEvents btnWrists As System.Windows.Forms.Button
+    Public WithEvents btnFeet As System.Windows.Forms.Button
+    Public WithEvents btnLegs As System.Windows.Forms.Button
+    Public WithEvents btnHands As System.Windows.Forms.Button
+    Public WithEvents btnArms As System.Windows.Forms.Button
+    Public WithEvents btnChest As System.Windows.Forms.Button
+    Public WithEvents btnNeck As System.Windows.Forms.Button
+    Public WithEvents btnHead As System.Windows.Forms.Button
+    Public WithEvents btnSWeap As System.Windows.Forms.Button
+    Public WithEvents Label31 As System.Windows.Forms.Label
+    Public WithEvents txtCarryCap As System.Windows.Forms.TextBox
 
 End Class

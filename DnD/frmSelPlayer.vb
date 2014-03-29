@@ -19,9 +19,7 @@
         Public WIS As String
         Public CHA As String
         Public Health As String
-        Public AC As String
         Public Money As String
-        Public Init As String
         Public Perc As String
         Public AP As String
         Public pClass As String
@@ -108,9 +106,7 @@
                 .WIS = PlayerData.ds.Tables(0).Rows(i).Item("pWIS").ToString
                 .CHA = PlayerData.ds.Tables(0).Rows(i).Item("pCHA").ToString
                 .Health = PlayerData.ds.Tables(0).Rows(i).Item("pHealth").ToString
-                .AC = PlayerData.ds.Tables(0).Rows(i).Item("pAC").ToString
                 .Money = PlayerData.ds.Tables(0).Rows(i).Item("pMoney").ToString
-                .Init = PlayerData.ds.Tables(0).Rows(i).Item("pInitiative").ToString
                 .Perc = PlayerData.ds.Tables(0).Rows(i).Item("pPerception").ToString
                 .AP = PlayerData.ds.Tables(0).Rows(i).Item("pActionPoints").ToString
                 .pClass = PlayerData.ds.Tables(0).Rows(i).Item("pClass").ToString
@@ -234,9 +230,7 @@
                 .txtWis.Text = Player(lstPlayers.SelectedIndex).WIS
                 .txtCha.Text = Player(lstPlayers.SelectedIndex).CHA
                 .txtHP.Text = Player(lstPlayers.SelectedIndex).Health
-                .txtAC.Text = Player(lstPlayers.SelectedIndex).AC
                 .txtMoney.Text = Player(lstPlayers.SelectedIndex).Money
-                .txtInitiative.Text = Player(lstPlayers.SelectedIndex).Init
                 .txtPerception.Text = Player(lstPlayers.SelectedIndex).Perc
                 .txtAP.Text = Player(lstPlayers.SelectedIndex).AP
                 .cboClass.Text = Player(lstPlayers.SelectedIndex).pClass
@@ -253,15 +247,18 @@
                 .txtHands.Tag = Player(lstPlayers.SelectedIndex).hands
                 .txtFeet.Tag = Player(lstPlayers.SelectedIndex).feet
                 .txtNeck.Tag = Player(lstPlayers.SelectedIndex).necklace
-                .txtWrists.tag = Player(lstPlayers.SelectedIndex).wrists
+                .txtWrists.Tag = Player(lstPlayers.SelectedIndex).wrists
+                .txtAC.Text = 10 + Math.Floor(0.5 * Player(lstPlayers.SelectedIndex).Level)
 
                 'find weapon name based on weapon ID
                 For j As Integer = 0 To (Weapon.Length - 1)
                     If Weapon(j).WID = .txtWepName.Tag Then
                         .txtWepName.Text = Weapon(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Weapon(j).wgt
+                        loadStat(Val(Weapon(j).wgt), "weight", PlayerRecord)
+                        loadStat(Val(Weapon(j).armor), "ac", PlayerRecord)
                     End If
                 Next
+
                 .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
                 .txtExp.Text = Player(lstPlayers.SelectedIndex).Exp
                 .txtLoc.Text = Player(lstPlayers.SelectedIndex).Loc
@@ -274,51 +271,59 @@
                 .txtWis.Tag = Player(lstPlayers.SelectedIndex).moWIS
                 .txtCha.Tag = Player(lstPlayers.SelectedIndex).moCHA
 
-                'find armor based on armor IDs
+                'load armor based on armor IDs
                 For j As Integer = 0 To (Armor.Length - 1)
                     If Armor(j).AID = .txtHelm.Tag Then
                         .txtHelm.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtChest.Tag Then
                         .txtChest.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtLegs.Tag Then
                         .txtLegs.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtArms.Tag Then
                         .txtArms.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtHands.Tag Then
                         .txtHands.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtFeet.Tag Then
                         .txtFeet.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                     If Armor(j).AID = .txtNeck.Tag Then
                         .txtNeck.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
-                    If Armor(j).AID = .txtWrists.tag Then
+                    If Armor(j).AID = .txtWrists.Tag Then
                         .txtWrists.Text = Armor(j).name
-                        .txtCarryCap.Text = Val(.txtCarryCap.Text) + Armor(j).wgt
+                        loadStat(Armor(j).wgt, "weight", PlayerRecord)
+                        loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                     End If
                 Next
 
                 'show me the player's armor
-                Console.WriteLine("Helm:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).helm)
-                Console.WriteLine("Chest:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).chest)
-                Console.WriteLine("Legs:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).legs)
-                Console.WriteLine("Arms:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).arms)
-                Console.WriteLine("Hands:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).hands)
-                Console.WriteLine("Feet:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).feet)
-                Console.WriteLine("Neck:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).necklace)
-                Console.WriteLine("Wrists: " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).wrists)
+                'Console.WriteLine("Helm:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).helm)
+                'Console.WriteLine("Chest:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).chest)
+                'Console.WriteLine("Legs:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).legs)
+                'Console.WriteLine("Arms:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).arms)
+                'Console.WriteLine("Hands:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).hands)
+                'Console.WriteLine("Feet:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).feet)
+                'Console.WriteLine("Neck:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).necklace)
+                'Console.WriteLine("Wrists: " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).wrists)
 
                 'lock the Character sheet until explicitly stated to edit it
                 .cboAlignment.Enabled = False
@@ -345,7 +350,7 @@
                 .txtExp.ReadOnly = True
                 .txtLoc.ReadOnly = True
                 .btnCalc.Enabled = False
-                .btnRoll.Enabled = False
+                .btnRandomize.Enabled = False
                 'armor
                 .txtHelm.ReadOnly = True
                 .txtChest.ReadOnly = True
@@ -368,7 +373,9 @@
                 .btnWrists.Enabled = False
                 .btnSelArmor.Enabled = False
             End With
+            Me.Hide()
             PlayerRecord.ShowDialog()
+            Me.Show()
             Call LoadPlayerStats()
         End If
     End Sub
@@ -382,7 +389,9 @@
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
         Dim PlayerRecord As New frmCharSheet
         PlayerRecord.txtCName.Tag = ""
+        Me.Hide()
         PlayerRecord.ShowDialog()
+        Me.Show()
         Call LoadPlayerStats()
     End Sub
 
@@ -405,6 +414,35 @@
     ''' <remarks></remarks>
     Private Sub btnRollDice_Click(sender As Object, e As EventArgs) Handles btnRollDice.Click
         'open a form for rolling a bunch of dice
+        Me.Hide()
         frmDiceRoll.ShowDialog()
+        Me.Show()
+    End Sub
+
+    ''' <summary>
+    ''' sub that makes adding armor/weapon stats easier
+    ''' </summary>
+    ''' <param name="arr">a player stat property of an array</param>
+    ''' <param name="stat">the type of stat arr refers to</param>
+    ''' <remarks></remarks>
+    Private Sub loadStat(ByVal arr, ByVal stat, ByVal pRec, Optional ByVal type = "")
+        With pRec
+            Select Case stat
+                Case "weight"
+                    .txtCarryCap.Text = Val(.txtCarryCap.Text) + arr
+                    Console.WriteLine("Weight: " & vbTab & Val(.txtCarryCap.Text))
+                Case "ac"
+                    'AC is 10+ 1/2level + weapon/armor AC bonuses
+                    '(10+ 1/2level) is taken care of outside of this subprocedure as it should only be called once
+                    .txtAC.Text = Val(.txtAC.Text) + arr
+                    Console.WriteLine("AC: " & vbTab & vbTab & Val(.txtAC.Text))
+                    If LCase(type) = "light" Or LCase(type) = "none" Then
+                        If Val(.txtDex.tag) > 0 Or Val(.txtint.tag) Then
+                            .txtAC.Text += IIf(Val(.txtDex.Tag) > Val(.txtInt.Tag), Val(.txtDex.Tag), Val(.txtInt.Tag))
+                            Console.WriteLine("AC After Mod: " & Val(.txtAC.Text))
+                        End If
+                    End If
+            End Select
+        End With
     End Sub
 End Class

@@ -61,7 +61,7 @@
             sum = 0
             For i As Integer = 1 To numXd6.Value
                 Randomize()
-                Dim r As Integer = CInt(Int((4 * Rnd()) + 1))
+                Dim r As Integer = CInt(Int((6 * Rnd()) + 1))
                 rtxtOutCome.Text += i & "d6  " & vbTab & vbTab & r & vbCrLf
                 sum += r
                 total += r
@@ -74,7 +74,7 @@
             sum = 0
             For i As Integer = 1 To numXd8.Value
                 Randomize()
-                Dim r As Integer = CInt(Int((4 * Rnd()) + 1))
+                Dim r As Integer = CInt(Int((8 * Rnd()) + 1))
                 rtxtOutCome.Text += i & "d8  " & vbTab & vbTab & r & vbCrLf
                 sum += r
                 total += r
@@ -87,7 +87,7 @@
             sum = 0
             For i As Integer = 1 To numXd10.Value
                 Randomize()
-                Dim r As Integer = CInt(Int((4 * Rnd()) + 1))
+                Dim r As Integer = CInt(Int((10 * Rnd()) + 1))
                 rtxtOutCome.Text += i & "d10  " & vbTab & vbTab & r & vbCrLf
                 sum += r
                 total += r
@@ -100,7 +100,7 @@
             sum = 0
             For i As Integer = 1 To numXd12.Value
                 Randomize()
-                Dim r As Integer = CInt(Int((4 * Rnd()) + 1))
+                Dim r As Integer = CInt(Int((12 * Rnd()) + 1))
                 rtxtOutCome.Text += i & "d12  " & vbTab & vbTab & r & vbCrLf
                 sum += r
                 total += r
@@ -113,7 +113,7 @@
             sum = 0
             For i As Integer = 1 To numXd20.Value
                 Randomize()
-                Dim r As Integer = CInt(Int((4 * Rnd()) + 1))
+                Dim r As Integer = CInt(Int((20 * Rnd()) + 1))
                 rtxtOutCome.Text += i & "d20  " & vbTab & vbTab & r & vbCrLf
                 sum += r
                 total += r
