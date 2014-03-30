@@ -1,4 +1,4 @@
-﻿Imports CharNames.names
+﻿Imports CharOptions.rndOpts
 
 Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
@@ -226,111 +226,129 @@ Public Class frmCharSheet
         End If
     End Sub
 
+    ''' <summary>
+    ''' Rolls new stats for a new character
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnRandomize_Click(sender As Object, e As EventArgs) Handles btnRandomize.Click
         'only roll new stats if your character doens't exist
         'else leave him the fuck alone
-        If Val(txtCName.Tag).ToString = "" Then
-            'generate ability scores (STR, DEX, INT, WIS, CON, CHA)
-            'using the third method as described in the DnD 4e player handbook #1
-            Dim abilArray(5) As Integer 'roll 6*(4d6). Add highest three values. Assign to base ability
-            Dim num(3) As Integer       'random numbers, easier to find lowest number if in array
-            For i As Integer = 0 To 5 'one per ability
-                'four rolls, assign highest three to ability score
-                Randomize() 'generate new random seed
-                num(0) = CInt(Int((6 * Rnd()) + 1))
-                Randomize()
-                num(1) = CInt(Int((6 * Rnd()) + 1))
-                Randomize()
-                num(2) = CInt(Int((6 * Rnd()) + 1))
-                Randomize()
-                num(3) = CInt(Int((6 * Rnd()) + 1))
-                'determine lowest random number
-                Dim lowest = num(0)
-                For z As Integer = 0 To 3
-                    If num(z) < lowest Then
-                        lowest = num(z)
-                    End If
-                Next
-                'assign value less lowest to ability array
-                abilArray(i) = num(0) + num(1) + num(2) + num(3) - lowest
-            Next
-            'assign six ability scores
-            txtStr.Text = abilArray(0)
-            txtDex.Text = abilArray(1)
-            txtCon.Text = abilArray(2)
-            txtInt.Text = abilArray(3)
-            txtWis.Text = abilArray(4)
-            txtCha.Text = abilArray(5)
-
-            'new characters are always level 1, with 0 experience
-            txtLevel.Text = 1
-            txtExp.Text = 0
-
-            'starting money in units of gold
-            txtMoney.Text = "100.00"
-            '1silver is .1g
-            '1copper is .01g
-            '1platinum is 100g
-            '1astral diamond is 100,000g
-
-            'random class, race, alignment, and gender
-            Randomize()
-            cboClass.SelectedIndex = CInt(Int((8 * Rnd()) + 1)) - 1
-            Randomize()
-            cboRace.SelectedIndex = CInt(Int((7 * Rnd()) + 1)) - 1
-            Randomize()
-            cboAlignment.SelectedIndex = CInt(Int((9 * Rnd()) + 1)) - 1
-            Randomize()
-            cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
-
-            'testing Information
-            txtAC.Text = IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
-            'txtInitiative.Text = "11"
-            txtPerception.Text = "10"
-            txtAP.Text = "9"
-            Dim newName As New CharNames.names
-            txtCName.Text = newName.selName
-            txtColor.Text = "R"
-            txtLoc.Text = "0,0"
-            txtWepName.Text = "None/Unarmed"
-            txtWepName.Tag = "1"
-            txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gold is 1/50lbs
-
-            'New Armor
-            Dim newArmor As String = "Not Yet Changed"
-            txtHelm.Text = newArmor
-            txtHelm.Tag = "1"
-            txtChest.Text = newArmor
-            txtChest.Tag = "1"
-            txtLegs.Text = newArmor
-            txtLegs.Tag = "1"
-            txtArms.Text = newArmor
-            txtArms.Tag = "1"
-            txtHands.Text = newArmor
-            txtHands.Tag = "1"
-            txtFeet.Text = newArmor
-            txtFeet.Tag = "1"
-            txtNeck.Text = newArmor
-            txtNeck.Tag = "1"
-            txtWrists.Text = newArmor
-            txtWrists.Tag = "1"
-
-            'Health points
-            If LCase(cboClass.Text) = "cleric" Or LCase(cboClass.Text) = "ranger" Or LCase(cboClass.Text) = "rogue" Or LCase(cboClass.Text) = "warlock" Or LCase(cboClass.Text) = "warlord" Then
-                txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-            ElseIf LCase(cboClass.Text) = "fighter" Or LCase(cboClass.Text) = "paladin" Then
-                txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
-            ElseIf LCase(cboClass.Text) = "wizard" Then
-                txtHP.Text = Val(txtLevel.Text) * 4 - 4 + 10 + Val(txtCon.Text)
+        If Val(txtCName.Tag).ToString <> "" Then
+            'Question saved characters
+            Dim result As Integer = MessageBox.Show("I can't let you do that, Dave..." & vbCrLf & "Are you sure you want to randomize your existing character?", "error", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error)
+            If result = DialogResult.Yes Then
+                'randomize saved characters only if they give consent
+                MessageBox.Show("Very well...", "Randomize", MessageBoxButtons.OK, MessageBoxIcon.None)
+                Call rStats(txtCName.Text)
             End If
-
-            'make easier to continue filling out sheets
-            txtAC.Focus()
         Else
-            'Don't randomize saved characters
-            MessageBox.Show("I can't let you do that, Dave...", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'randomize stats for new characters
+            Call rStats()
+        End If
+    End Sub
+
+    Private Sub rStats(Optional ByRef name = "")
+        'generate ability scores (STR, DEX, INT, WIS, CON, CHA)
+        'using the third method as described in the DnD 4e player handbook #1
+        Dim abilArray(5) As Integer 'roll 6*(4d6). Add highest three values. Assign to base ability
+        Dim num(3) As Integer       'random numbers, easier to find lowest number if in array
+        For i As Integer = 0 To 5 'one per ability
+            'four rolls, assign highest three to ability score
+            Randomize() 'generate new random seed
+            num(0) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(1) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(2) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(3) = CInt(Int((6 * Rnd()) + 1))
+            'determine lowest random number
+            Dim lowest = num(0)
+            For z As Integer = 0 To 3
+                If num(z) < lowest Then
+                    lowest = num(z)
+                End If
+            Next
+            'assign value less lowest to ability array
+            abilArray(i) = num(0) + num(1) + num(2) + num(3) - lowest
+        Next
+        'assign six ability scores
+        txtStr.Text = abilArray(0)
+        txtDex.Text = abilArray(1)
+        txtCon.Text = abilArray(2)
+        txtInt.Text = abilArray(3)
+        txtWis.Text = abilArray(4)
+        txtCha.Text = abilArray(5)
+
+        'new characters are always level 1, with 0 experience
+        txtLevel.Text = 1
+        txtExp.Text = 0
+
+        'starting money in units of gold
+        txtMoney.Text = "100.00"
+        '1silver is .1g
+        '1copper is .01g
+        '1platinum is 100g
+        '1astral diamond is 100,000g
+
+        'random class, race, alignment, and gender
+        Randomize()
+        cboClass.SelectedIndex = CInt(Int((8 * Rnd()) + 1)) - 1
+        Randomize()
+        cboRace.SelectedIndex = CInt(Int((7 * Rnd()) + 1)) - 1
+        Randomize()
+        cboAlignment.SelectedIndex = CInt(Int((9 * Rnd()) + 1)) - 1
+        Randomize()
+        cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
+
+        'testing Information
+        txtAC.Text = IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
+        txtPerception.Text = "10"
+        txtAP.Text = "9"
+
+        'new random name if it's a brand new character
+        If name <> "" Then
+            Dim newName As New CharOptions.rndOpts
+            txtCName.Text = newName.selName
+        End If
+        txtColor.Text = "R"
+        txtLoc.Text = "0,0"
+        txtWepName.Text = "None/Unarmed"
+        txtWepName.Tag = "1"
+        txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gp is 1/50lbs
+
+        'New Armor
+        Dim newArmor As String = "Not Yet Changed"
+        txtHelm.Text = newArmor
+        txtHelm.Tag = "1"
+        txtChest.Text = newArmor
+        txtChest.Tag = "1"
+        txtLegs.Text = newArmor
+        txtLegs.Tag = "1"
+        txtArms.Text = newArmor
+        txtArms.Tag = "1"
+        txtHands.Text = newArmor
+        txtHands.Tag = "1"
+        txtFeet.Text = newArmor
+        txtFeet.Tag = "1"
+        txtNeck.Text = newArmor
+        txtNeck.Tag = "1"
+        txtWrists.Text = newArmor
+        txtWrists.Tag = "1"
+
+        'Health points
+        If LCase(cboClass.Text) = "cleric" Or LCase(cboClass.Text) = "ranger" Or LCase(cboClass.Text) = "rogue" Or LCase(cboClass.Text) = "warlock" Or LCase(cboClass.Text) = "warlord" Then
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "fighter" Or LCase(cboClass.Text) = "paladin" Then
+            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "wizard" Then
+            txtHP.Text = Val(txtLevel.Text) * 4 - 4 + 10 + Val(txtCon.Text)
         End If
 
+        'make easier to continue filling out sheets
+        txtAC.Focus()
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
@@ -349,11 +367,9 @@ Public Class frmCharSheet
         txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
         txtAC.ReadOnly = IIf(txtAC.ReadOnly = False, True, False)
         txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
-        'txtInitiative.ReadOnly = IIf(txtInitiative.ReadOnly = False, True, False)
         txtPerception.ReadOnly = IIf(txtPerception.ReadOnly = False, True, False)
         txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
         txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
-        'txtCarryCap.ReadOnly=IIf(txtCarryCap.ReadOnly=False,True,False)
         txtWepName.ReadOnly = IIf(txtWepName.ReadOnly = False, True, False)
         txtLevel.ReadOnly = IIf(txtLevel.ReadOnly = False, True, False)
         txtExp.ReadOnly = IIf(txtExp.ReadOnly = False, True, False)

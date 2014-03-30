@@ -28,6 +28,8 @@ Partial Class frmAbilSkillRoll
         Me.btnInit = New System.Windows.Forms.Button()
         Me.txtInit = New System.Windows.Forms.TextBox()
         Me.btnOkay = New System.Windows.Forms.Button()
+        Me.btnPerception = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'rbtnAbility
@@ -72,7 +74,7 @@ Partial Class frmAbilSkillRoll
         '
         'txtInit
         '
-        Me.txtInit.Location = New System.Drawing.Point(95, 50)
+        Me.txtInit.Location = New System.Drawing.Point(94, 52)
         Me.txtInit.Name = "txtInit"
         Me.txtInit.Size = New System.Drawing.Size(100, 20)
         Me.txtInit.TabIndex = 4
@@ -86,11 +88,29 @@ Partial Class frmAbilSkillRoll
         Me.btnOkay.Text = "&Okay"
         Me.btnOkay.UseVisualStyleBackColor = True
         '
+        'btnPerception
+        '
+        Me.btnPerception.Location = New System.Drawing.Point(12, 80)
+        Me.btnPerception.Name = "btnPerception"
+        Me.btnPerception.Size = New System.Drawing.Size(75, 23)
+        Me.btnPerception.TabIndex = 6
+        Me.btnPerception.Text = "&Perception"
+        Me.btnPerception.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(94, 84)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 7
+        '
         'frmAbilSkillRoll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(488, 418)
+        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.btnPerception)
         Me.Controls.Add(Me.btnOkay)
         Me.Controls.Add(Me.txtInit)
         Me.Controls.Add(Me.btnInit)
@@ -109,4 +129,6 @@ Partial Class frmAbilSkillRoll
     Friend WithEvents btnInit As System.Windows.Forms.Button
     Friend WithEvents txtInit As System.Windows.Forms.TextBox
     Friend WithEvents btnOkay As System.Windows.Forms.Button
+    Friend WithEvents btnPerception As System.Windows.Forms.Button
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class
