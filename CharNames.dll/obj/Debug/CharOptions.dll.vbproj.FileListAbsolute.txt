@@ -1,0 +1,8 @@
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\bin\Debug\CharOptions.dll
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\bin\Debug\CharOptions.pdb
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\bin\Debug\CharOptions.xml
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.Resources.resources
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.dll.vbproj.GenerateResource.Cache
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.dll
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.xml
+C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.pdb

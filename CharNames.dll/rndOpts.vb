@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports System.IO
-Public Class names
+Public Class rndOpts
     Public Function selName() As String
         Dim randInt As Integer
         Dim nameList(-1) As String
@@ -18,5 +18,21 @@ Public Class names
         Randomize()
         randInt = CInt(Int((nameList.Length - 1) * Rnd()))
         Return nameList(randInt)
+    End Function
+
+    Public Function selColor() As String
+        Dim randR As Integer
+        Dim randG As Integer
+        Dim randB As Integer
+        Dim randCol As String
+
+        Randomize()
+        randR = CInt(Int(Rnd() * 255) + 1)
+        Randomize()
+        randG = CInt(Int(Rnd() * 255) + 1)
+        Randomize()
+        randB = CInt(Int(Rnd() * 255) + 1)
+        'randCol = randomcolor (randr,randg,randg) Red,Green,Blue
+        Return randCol
     End Function
 End Class

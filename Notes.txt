@@ -3,6 +3,8 @@ CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
 after you select a weapon/armor, weapon stats need to be applied to character
 	need to augment character base stats by their modifiers before weapon stats
 
+need to add race/class mods
+
 still closes frmCharSheet after error
 	do-while loop does not counter this
 

@@ -215,9 +215,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CharNames.dll\CharNames.dll.vbproj">
+    <ProjectReference Include="..\CharNames.dll\CharOptions.dll.vbproj">
       <Project>{8a33aadb-7d8b-4006-8033-8c9225a75faa}</Project>
-      <Name>CharNames.dll</Name>
+      <Name>CharOptions.dll</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
