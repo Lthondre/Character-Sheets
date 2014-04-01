@@ -5,6 +5,13 @@ after you select a weapon/armor, weapon stats need to be applied to character
 
 need to add race/class mods
 
+need to add class powers. try to do in access
+	see phone for DnD 4e wiki on each classes powers
+	change text to that classes power title e.g. Wizards and the like have spells, 				Clerics have prayers, etc.
+	click button, see all powers at or below current level
+	keep small files per user on how many non-cantrip spells they've used
+		check every day
+	
 still closes frmCharSheet after error
 	do-while loop does not counter this
 
@@ -13,8 +20,10 @@ frmCharSheet save statements can probably look better
 format string works fine in console, looks like shit in list box	
 
 need following calculated fields on random roll:
-	Initiative
-	Perception
+	*Initiative
+	*Perception
+	Color
+	Skill rolls
 	Action Points
 
 needs gui

@@ -24,9 +24,6 @@ E:\VB\DnD\DnD\obj\Debug\DnD.frmSelWeap.resources
 E:\VB\DnD\DnD\obj\Debug\DnD.frmAddWeap.resources
 E:\VB\DnD\DnD\obj\Debug\DnD.frmAddArmor.resources
 E:\VB\DnD\DnD\obj\Debug\DnD.frmSelArmor.resources
-E:\VB\DnD\DnD\bin\Debug\CharNames.dll
-E:\VB\DnD\DnD\bin\Debug\CharNames.pdb
-E:\VB\DnD\DnD\bin\Debug\CharNames.xml
 E:\VB\DnD\DnD\obj\Debug\DnD.vbprojResolveAssemblyReference.cache
 E:\VB\DnD\DnD\obj\Debug\DnD.frmAbilSkillRoll.resources
 C:\Users\Curtis\Desktop\DnD\DnD\bin\Debug\DnD.exe.config
@@ -50,3 +47,6 @@ C:\Users\Curtis\Desktop\DnD\DnD\obj\Debug\DnD.vbproj.GenerateResource.Cache
 C:\Users\Curtis\Desktop\DnD\DnD\bin\Debug\CharOptions.dll
 C:\Users\Curtis\Desktop\DnD\DnD\bin\Debug\CharOptions.pdb
 C:\Users\Curtis\Desktop\DnD\DnD\bin\Debug\CharOptions.xml
+E:\VB\DnD\DnD\bin\Debug\CharOptions.dll
+E:\VB\DnD\DnD\bin\Debug\CharOptions.pdb
+E:\VB\DnD\DnD\bin\Debug\CharOptions.xml

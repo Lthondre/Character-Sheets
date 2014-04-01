@@ -8,13 +8,18 @@
     ''' <remarks></remarks>
     ''' 
     Public strConnection As String = "Provider=Microsoft.ACE.OLEDB.12.0;" & source & "Persist Security Info=False;"
-    Public theTag As Integer
+
+    'for some reason I couldn't seem to get these variables to be passed from parent to/from child forms
+    'this is the only real workaround I could think of doing
+    Public theTag As Integer    '
+    Public check As Integer     'public variable holding value of check modifier
 
     ''' <summary>
     ''' an extension for finding the row of a datagrid given the armor/weapon ID
     ''' </summary>
     ''' <param name="dgv">datagrid view object</param>
     ''' <param name="key">the unique armor/weapon ID</param>
+    ''' <param name="column">name of the column to look for key, in dgv</param>
     ''' <returns>returns the row that the key was found on</returns>
     ''' <remarks></remarks>
     <System.Runtime.CompilerServices.Extension()> _

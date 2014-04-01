@@ -17,6 +17,8 @@ Public Class frmCharSheet
         AddHandler btnFeet.Click, AddressOf btnSelArmor_Click
         AddHandler btnNeck.Click, AddressOf btnSelArmor_Click
         AddHandler btnSelArmor.Click, AddressOf btnSelArmor_Click
+        'prime the variable
+        mdlGlobal.check = Val(txtCheck.Text)
     End Sub
 
     ''' <summary>
@@ -62,9 +64,6 @@ Public Class frmCharSheet
         ElseIf txtMoney.Text = "" Then
             MessageBox.Show("Please enter Money", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtMoney.Focus()
-        ElseIf txtPerception.Text = "" Then
-            MessageBox.Show("Please enter Perception", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtPerception.Focus()
         ElseIf txtAP.Text = "" Then
             MessageBox.Show("Please enter Action Points", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtAP.Focus()
@@ -96,7 +95,7 @@ Public Class frmCharSheet
             MessageBox.Show("Please enter Experience", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtExp.Focus()
         ElseIf txtLoc.Text = "" Then
-            MessageBox.Show("Please enter a location", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please enter a Location", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtLoc.Focus()
         ElseIf txtHelm.Text = "" Then
             MessageBox.Show("Please enter a Helmet", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -141,7 +140,6 @@ Public Class frmCharSheet
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pPerception") = txtPerception.Text
                     .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
                     .Item("wID") = txtWepName.Tag
@@ -190,7 +188,6 @@ Public Class frmCharSheet
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pPerception") = txtPerception.Text
                     .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
                     .Item("wID") = txtWepName.Tag
@@ -304,8 +301,8 @@ Public Class frmCharSheet
         cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
 
         'testing Information
-        txtAC.Text = IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
-        txtPerception.Text = "10"
+        txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
+        txtCheck.Text = "0"
         txtAP.Text = "9"
 
         'new random name if it's a brand new character
@@ -317,7 +314,7 @@ Public Class frmCharSheet
         txtLoc.Text = "0,0"
         txtWepName.Text = "None/Unarmed"
         txtWepName.Tag = "1"
-        txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gp is 1/50lbs
+        txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gp is 1/50lbs. new characters start naked
 
         'New Armor
         Dim newArmor As String = "Not Yet Changed"
@@ -365,26 +362,27 @@ Public Class frmCharSheet
         txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
         txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
         txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
-        txtAC.ReadOnly = IIf(txtAC.ReadOnly = False, True, False)
+        'txtAC.ReadOnly = IIf(txtAC.ReadOnly = False, True, False)
         txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
-        txtPerception.ReadOnly = IIf(txtPerception.ReadOnly = False, True, False)
+        'txtCheck.ReadOnly = IIf(txtCheck.ReadOnly = False, True, False)
         txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
         txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
-        txtWepName.ReadOnly = IIf(txtWepName.ReadOnly = False, True, False)
+        'txtWepName.ReadOnly = IIf(txtWepName.ReadOnly = False, True, False)
         txtLevel.ReadOnly = IIf(txtLevel.ReadOnly = False, True, False)
         txtExp.ReadOnly = IIf(txtExp.ReadOnly = False, True, False)
         txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
         btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
         btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
         'armor
-        txtHelm.ReadOnly = IIf(txtHelm.ReadOnly = False, True, False)
-        txtChest.ReadOnly = IIf(txtChest.ReadOnly = False, True, False)
-        txtLegs.ReadOnly = IIf(txtLegs.ReadOnly = False, True, False)
-        txtArms.ReadOnly = IIf(txtArms.ReadOnly = False, True, False)
-        txtHands.ReadOnly = IIf(txtHands.ReadOnly = False, True, False)
-        txtFeet.ReadOnly = IIf(txtFeet.ReadOnly = False, True, False)
-        txtNeck.ReadOnly = IIf(txtNeck.ReadOnly = False, True, False)
-        txtWrists.ReadOnly = IIf(txtWrists.ReadOnly = False, True, False)
+        'txtHelm.ReadOnly = IIf(txtHelm.ReadOnly = False, True, False)
+        'txtChest.ReadOnly = IIf(txtChest.ReadOnly = False, True, False)
+        'txtLegs.ReadOnly = IIf(txtLegs.ReadOnly = False, True, False)
+        'txtArms.ReadOnly = IIf(txtArms.ReadOnly = False, True, False)
+        'txtHands.ReadOnly = IIf(txtHands.ReadOnly = False, True, False)
+        'txtFeet.ReadOnly = IIf(txtFeet.ReadOnly = False, True, False)
+        'txtNeck.ReadOnly = IIf(txtNeck.ReadOnly = False, True, False)
+        'txtWrists.ReadOnly = IIf(txtWrists.ReadOnly = False, True, False)
+
         'equipment buttons
         btnSelWeap.Enabled = IIf(btnSelWeap.Enabled = False, True, False)
         btnSWeap.Enabled = IIf(btnSWeap.Enabled = False, True, False)
@@ -408,12 +406,11 @@ Public Class frmCharSheet
             Me.Show()
             'Only change if the values have changed
             If .dtext <> "" Then
-                Console.WriteLine("Prev Wep Wgt: " & .dgvWeapons.Item(2, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
-                Console.WriteLine("New Wep Wgt: " & .dweight)
-                Console.WriteLine("Prev Wep AC: " & .dgvWeapons.Item(3, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
-                Console.WriteLine("New Wep AC: " & .darmBonus)
+                Console.WriteLine("Prev Chk: " & .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
+                Console.WriteLine("New Chk: " & .dcheckMod)
                 txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvWeapons.Item(2, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dweight
                 txtAC.Text = Val(txtAC.Text) - .dgvWeapons.Item(3, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .darmBonus
+                txtCheck.Text = Val(txtCheck.Text) - .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dcheckMod
                 txtWepName.Text = .dtext
                 txtWepName.Tag = .dtag
             End If
@@ -446,137 +443,79 @@ Public Class frmCharSheet
         End Select
         With frmSelArmor
             'open frmSelArmor for armor selection
-            'weight is handled when you select a new armor piece
             Me.Hide()
             .ShowDialog()
             Me.Show()
             If .dtext <> "" Then
-                Dim prevWgt As Long = 0
+                'makes this update MUCH easier. ONLY works because you're only updating one armor at a time
+                Dim box As New TextBox
                 Select Case LCase(.dtype)
                     Case "helm"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtHelm.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtHelm.Tag), "allID").Index).Value + .darmBonus
-                        txtHelm.Text = .dtext
-                        txtHelm.Tag = .dtag
+                        box = txtHelm
                     Case "chest"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtChest.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtChest.Tag), "allID").Index).Value + .darmBonus
-                        txtChest.Text = .dtext
-                        txtChest.Tag = .dtag
+                        box = txtChest
                     Case "legs"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtLegs.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtLegs.Tag), "allID").Index).Value + .darmBonus
-                        txtLegs.Text = .dtext
-                        txtLegs.Tag = .dtag
+                        box = txtLegs
                     Case "arms"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtArms.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtArms.Tag), "allID").Index).Value + .darmBonus
-                        txtArms.Text = .dtext
-                        txtArms.Tag = .dtag
+                        box = txtArms
                     Case "hands"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtHands.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtHands.Tag), "allID").Index).Value + .darmBonus
-                        txtHands.Text = .dtext
-                        txtHands.Tag = .dtag
+                        box = txtHands
                     Case "neck"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtNeck.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtNeck.Tag), "allID").Index).Value + .darmBonus
-                        txtNeck.Text = .dtext
-                        txtNeck.Tag = .dtag
+                        box = txtNeck
                     Case "feet"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtFeet.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtFeet.Tag), "allID").Index).Value + .darmBonus
-                        txtFeet.Text = .dtext
-                        txtFeet.Tag = .dtag
+                        box = txtFeet
                     Case "wrists"
-                        'update weight in character sheet
-                        txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtWrists.Tag), "allID").Index).Value + .dweight
-                        'update AC
-                        txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtWrists.Tag), "allID").Index).Value + .darmBonus
-                        txtWrists.Text = .dtext
-                        txtWrists.Tag = .dtag
+                        box = txtwrists
                     Case "none"
                         'catch the oddballs
                         Select Case mdlGlobal.theTag
                             Case 1
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtHelm.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtHelm.Tag), "allID").Index).Value + .darmBonus
-                                txtHelm.Text = .dtext
-                                txtHelm.Tag = .dtag
+                                box = txtHelm
                             Case 2
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtNeck.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtNeck.Tag), "allID").Index).Value + .darmBonus
-                                txtNeck.Text = .dtext
-                                txtNeck.Tag = .dtag
+                                box = txtNeck
                             Case 3
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtChest.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtChest.Tag), "allID").Index).Value + .darmBonus
-                                txtChest.Text = .dtext
-                                txtChest.Tag = .dtag
+                                box = txtChest
                             Case 4
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtArms.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtArms.Tag), "allID").Index).Value + .darmBonus
-                                txtArms.Text = .dtext
-                                txtArms.Tag = .dtag
+                                box = txtArms
                             Case 5
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtHands.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtHands.Tag), "allID").Index).Value + .darmBonus
-                                txtHands.Text = .dtext
-                                txtHands.Tag = .dtag
+                                box = txtHands
                             Case 6
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtLegs.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtLegs.Tag), "allID").Index).Value + .darmBonus
-                                txtLegs.Text = .dtext
-                                txtLegs.Tag = .dtag
+                                box = txtLegs
                             Case 7
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtFeet.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtFeet.Tag), "allID").Index).Value + .darmBonus
-                                txtFeet.Text = .dtext
-                                txtFeet.Tag = .dtag
+                                box = txtFeet
                             Case 8
-                                'update weight in character sheet
-                                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(txtWrists.Tag), "allID").Index).Value + .dweight
-                                'update AC
-                                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(txtWrists.Tag), "allID").Index).Value + .darmBonus
-                                txtWrists.Text = .dtext
-                                txtWrists.Tag = .dtag
+                                box = txtWrists
                             Case 9
                                 MessageBox.Show("Error: To unequip an armor piece, click the button next to the armor you would like to unequip.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         End Select
                 End Select
+                'view old armor
+                Console.WriteLine("Prev Box: " & box.Name & vbCrLf & vbTab & vbTab & box.Text & vbTab & box.Tag)
+                Console.WriteLine("Prev wgt: " & .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                Console.WriteLine("Prev AC: " & .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                Console.WriteLine("Prev Chk: " & .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                'update character sheet using new "box" textbox
+                txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dweight
+                txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .darmBonus
+                txtCheck.Text = Val(txtCheck.Text) - .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dcheckMod
+                box.Text = .dtext
+                box.Tag = .dtag
+                'view new armor information
+                Console.WriteLine("New Wgt: " & .dweight)
+                Console.WriteLine("New AC: " & .darmBonus)
+                Console.WriteLine("New Chk: " & .dcheckMod)
+                Console.WriteLine("New Box:" & .dtext & vbTab & vbTab & .dtag)
             End If
             .Dispose()
         End With
     End Sub
 
+    ''' <summary>
+    ''' Updates tooltip and weight for character
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub txtCarryCap_TextChanged(sender As Object, e As EventArgs) Handles txtCarryCap.TextChanged
         Const NORMAL As Integer = 10
         Const HEAVY As Integer = 20
@@ -588,15 +527,15 @@ Public Class frmCharSheet
         If Val(txtCarryCap.Text) <= NORMAL * Val(txtStr.Text) Then
             'normal load
             txtCarryCap.BackColor = Color.LightGreen
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Normal load" & vbCrLf & "Speed not hampered" & vbCrLf & "Can carry up to: " & NORMAL * Val(txtStr.Text) & "lbs")
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Normal load" & vbCrLf & "Speed not hampered" & vbCrLf & "Can carry up to: " & NORMAL * Val(txtStr.Text) & "lbs before Heavy load")
         ElseIf Val(txtCarryCap.Text) <= HEAVY * Val(txtStr.Text) Then
             'heavy load
-            MsgBox("Your character is slowed due to their carrying weight.")
+            MsgBox("Your character is slowed due to their carrying load.")
             txtCarryCap.BackColor = Color.Yellow
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered")
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered" & vbCrLf & "Can carry up to: " & HEAVY *(Val(txtStr.Text) & "lbs before maximum dragging load")
         ElseIf (Val(txtCarryCap.Text) > HEAVY * Val(txtStr.Text)) And (Val(txtCarryCap.Text) <= MAXIMUM * Val(txtStr.Text)) Then
             'maximum dragging load
-            MsgBox("Your character's movement is severely hampered by their carrying weight.")
+            MsgBox("Your character's movement is severely hampered by their carrying load.")
             txtCarryCap.BackColor = Color.Red
             Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Maximum dragging load" & vbCrLf & "Speed severely hampered")
         ElseIf Val(txtCarryCap.Text) > MAXIMUM * Val(txtStr.Text) Then
@@ -611,6 +550,12 @@ Public Class frmCharSheet
         End If
     End Sub
 
+    ''' <summary>
+    ''' Update weight of money when money changes
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub txtMoney_TextChanged(sender As Object, e As EventArgs) Handles txtMoney.TextChanged
         Const GPWEIGHT As Decimal = 0.02
         'remove previous moneyweight first
@@ -621,17 +566,33 @@ Public Class frmCharSheet
         txtCarryCap.Text = Val(txtCarryCap.Text) + moneyWeight
     End Sub
 
+    ''' <summary>
+    ''' Shows form used for rolling ability/skill rolls
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks>does initiative/perception as well</remarks>
     Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles btnRoll.Click
         'show the form that handles ability/skill checks
         Dim roll As New frmAbilSkillRoll
         With roll
             Console.WriteLine("Level: " & Val(txtLevel.Text))
-            .ShowDialog()
-
+            .Show()
             'only change if the user actually rolled for initiative
             If .initRoll <> -1 Then
-                Me.txtInitiative.Text = .initRoll
+                txtInitiative.Text = .initRoll
             End If
         End With
+    End Sub
+
+    ''' <summary>
+    ''' updates public variable for check modifier
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtCheck_TextChanged(sender As Object, e As EventArgs) Handles txtCheck.TextChanged
+        'update variable as soon as the check mod changes
+        mdlGlobal.check = Val(txtCheck.Text)
     End Sub
 End Class

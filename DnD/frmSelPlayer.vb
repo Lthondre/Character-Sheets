@@ -20,7 +20,6 @@
         Public CHA As String
         Public Health As String
         Public Money As String
-        Public Perc As String
         Public AP As String
         Public pClass As String
         Public Race As String
@@ -107,7 +106,6 @@
                 .CHA = PlayerData.ds.Tables(0).Rows(i).Item("pCHA").ToString
                 .Health = PlayerData.ds.Tables(0).Rows(i).Item("pHealth").ToString
                 .Money = PlayerData.ds.Tables(0).Rows(i).Item("pMoney").ToString
-                .Perc = PlayerData.ds.Tables(0).Rows(i).Item("pPerception").ToString
                 .AP = PlayerData.ds.Tables(0).Rows(i).Item("pActionPoints").ToString
                 .pClass = PlayerData.ds.Tables(0).Rows(i).Item("pClass").ToString
                 .Race = PlayerData.ds.Tables(0).Rows(i).Item("pRace").ToString
@@ -231,7 +229,6 @@
                 .txtCha.Text = Player(lstPlayers.SelectedIndex).CHA
                 .txtHP.Text = Player(lstPlayers.SelectedIndex).Health
                 .txtMoney.Text = Player(lstPlayers.SelectedIndex).Money
-                .txtPerception.Text = Player(lstPlayers.SelectedIndex).Perc
                 .txtAP.Text = Player(lstPlayers.SelectedIndex).AP
                 .cboClass.Text = Player(lstPlayers.SelectedIndex).pClass
                 .cboRace.Text = Player(lstPlayers.SelectedIndex).Race
@@ -256,6 +253,7 @@
                         .txtWepName.Text = Weapon(j).name
                         loadStat(Val(Weapon(j).wgt), "weight", PlayerRecord)
                         loadStat(Val(Weapon(j).armor), "ac", PlayerRecord)
+                        loadStat(Val(Weapon(j).check), "chk", PlayerRecord)
                     End If
                 Next
 
@@ -277,53 +275,51 @@
                         .txtHelm.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtChest.Tag Then
                         .txtChest.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtLegs.Tag Then
                         .txtLegs.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtArms.Tag Then
                         .txtArms.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtHands.Tag Then
                         .txtHands.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtFeet.Tag Then
                         .txtFeet.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtNeck.Tag Then
                         .txtNeck.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                     If Armor(j).AID = .txtWrists.Tag Then
                         .txtWrists.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
+                        loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
                     End If
                 Next
-
-                'show me the player's armor
-                'Console.WriteLine("Helm:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).helm)
-                'Console.WriteLine("Chest:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).chest)
-                'Console.WriteLine("Legs:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).legs)
-                'Console.WriteLine("Arms:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).arms)
-                'Console.WriteLine("Hands:  " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).hands)
-                'Console.WriteLine("Feet:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).feet)
-                'Console.WriteLine("Neck:   " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).necklace)
-                'Console.WriteLine("Wrists: " & vbTab & vbTab & Player(lstPlayers.SelectedIndex).wrists)
 
                 'lock the Character sheet until explicitly stated to edit it
                 .cboAlignment.Enabled = False
@@ -341,7 +337,7 @@
                 .txtAC.ReadOnly = True
                 .txtMoney.ReadOnly = True
                 .txtInitiative.ReadOnly = True
-                .txtPerception.ReadOnly = True
+                .txtCheck.ReadOnly = True
                 .txtAP.ReadOnly = True
                 .txtColor.ReadOnly = True
                 .txtCarryCap.ReadOnly = True
@@ -442,6 +438,10 @@
                             Console.WriteLine("AC After Mod: " & Val(.txtAC.Text))
                         End If
                     End If
+                Case "chk"
+                    'sum all check mods
+                    .txtCheck.text = Val(.txtCheck.text) + arr
+                    Console.WriteLine("Check: " & vbTab & Val(.txtCheck.text))
             End Select
         End With
     End Sub

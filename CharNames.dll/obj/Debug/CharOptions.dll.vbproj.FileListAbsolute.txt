@@ -6,3 +6,11 @@ C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.dll.vbproj.Gener
 C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.dll
 C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.xml
 C:\Users\Curtis\Desktop\DnD\CharNames.dll\obj\Debug\CharOptions.pdb
+E:\VB\DnD\CharNames.dll\bin\Debug\CharOptions.dll
+E:\VB\DnD\CharNames.dll\bin\Debug\CharOptions.pdb
+E:\VB\DnD\CharNames.dll\bin\Debug\CharOptions.xml
+E:\VB\DnD\CharNames.dll\obj\Debug\CharOptions.Resources.resources
+E:\VB\DnD\CharNames.dll\obj\Debug\CharOptions.dll.vbproj.GenerateResource.Cache
+E:\VB\DnD\CharNames.dll\obj\Debug\CharOptions.dll
+E:\VB\DnD\CharNames.dll\obj\Debug\CharOptions.xml
+E:\VB\DnD\CharNames.dll\obj\Debug\CharOptions.pdb

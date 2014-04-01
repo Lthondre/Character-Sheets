@@ -46,7 +46,7 @@ Partial Class frmCharSheet
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtInitiative = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.txtPerception = New System.Windows.Forms.TextBox()
+        Me.txtCheck = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtAP = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -269,6 +269,7 @@ Partial Class frmCharSheet
         Me.txtAC.Size = New System.Drawing.Size(100, 20)
         Me.txtAC.TabIndex = 16
         Me.txtAC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.ttpHelp.SetToolTip(Me.txtAC, "10+(1/2 level) + 1d20 + DexMod")
         '
         'Label11
         '
@@ -311,17 +312,18 @@ Partial Class frmCharSheet
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(3, 240)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(58, 13)
+        Me.Label13.Size = New System.Drawing.Size(38, 13)
         Me.Label13.TabIndex = 27
-        Me.Label13.Text = "Perception"
+        Me.Label13.Text = "Check"
         '
-        'txtPerception
+        'txtCheck
         '
-        Me.txtPerception.Location = New System.Drawing.Point(84, 237)
-        Me.txtPerception.Name = "txtPerception"
-        Me.txtPerception.Size = New System.Drawing.Size(100, 20)
-        Me.txtPerception.TabIndex = 26
-        Me.txtPerception.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.txtCheck.Enabled = False
+        Me.txtCheck.Location = New System.Drawing.Point(84, 237)
+        Me.txtCheck.Name = "txtCheck"
+        Me.txtCheck.Size = New System.Drawing.Size(100, 20)
+        Me.txtCheck.TabIndex = 26
+        Me.txtCheck.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label14
         '
@@ -629,7 +631,7 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Controls.Add(Me.Label17)
         Me.pnlCharSheet.Controls.Add(Me.Label12)
         Me.pnlCharSheet.Controls.Add(Me.cboClass)
-        Me.pnlCharSheet.Controls.Add(Me.txtPerception)
+        Me.pnlCharSheet.Controls.Add(Me.txtCheck)
         Me.pnlCharSheet.Controls.Add(Me.Label16)
         Me.pnlCharSheet.Controls.Add(Me.Label13)
         Me.pnlCharSheet.Controls.Add(Me.txtExp)
@@ -936,7 +938,7 @@ Partial Class frmCharSheet
     Public WithEvents Label12 As System.Windows.Forms.Label
     Public WithEvents txtInitiative As System.Windows.Forms.TextBox
     Public WithEvents Label13 As System.Windows.Forms.Label
-    Public WithEvents txtPerception As System.Windows.Forms.TextBox
+    Public WithEvents txtCheck As System.Windows.Forms.TextBox
     Public WithEvents Label14 As System.Windows.Forms.Label
     Public WithEvents txtAP As System.Windows.Forms.TextBox
     Public WithEvents Label15 As System.Windows.Forms.Label
