@@ -24,7 +24,7 @@ Public Class rndOpts
         Dim randR As Integer
         Dim randG As Integer
         Dim randB As Integer
-        Dim randCol As String
+        'Dim randCol As String
 
         Randomize()
         randR = CInt(Int(Rnd() * 255) + 1)
@@ -33,6 +33,6 @@ Public Class rndOpts
         Randomize()
         randB = CInt(Int(Rnd() * 255) + 1)
         'randCol = randomcolor (randr,randg,randg) Red,Green,Blue
-        Return randCol
+        Return Nothing 'randCol
     End Function
 End Class

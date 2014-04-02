@@ -115,6 +115,13 @@ DnD
 	<param name="arr">a player stat property of an array</param>
 	<param name="stat">the type of stat arr refers to</param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.frmCharSheet_Load(System.Object,System.EventArgs)">
+	<summary>
+ add event handlers on formload and set the value of check in mdlGlobal
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnClose_Click(System.Object,System.EventArgs)">
 	<summary>
  Closes the form
@@ -136,6 +143,48 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.rStats(System.Object@,System.Object@)">
+	<summary>
+ Sub that randomizes stats for the user
+ </summary>
+	<param name="name">name of the character</param>
+	<param name="tag">unique character ID</param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnEdit_Click(System.Object,System.EventArgs)">
+	<summary>
+ toggles readonly/enabled mode for the form, allowing or disallowing the user to edit their character sheet
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnSelWeap_Click(System.Object,System.EventArgs)">
+	<summary>
+ sub for selecting/equipping new weapon. updates corresponding text control/tag
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnSelArmor_Click(System.Object,System.EventArgs)">
+	<summary>
+ sub for selecting/equipping new armor. updates corresponding text control and it's tag
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.txtCarryCap_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ Updates tooltip and weight for character
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.txtMoney_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ Update weight of money when money changes
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnRoll_Click(System.Object,System.EventArgs)">
 	<summary>
  Shows form used for rolling ability/skill rolls
@@ -146,6 +195,43 @@ DnD
 </member><member name="M:DnD.frmCharSheet.txtCheck_TextChanged(System.Object,System.EventArgs)">
 	<summary>
  updates public variable for check modifier
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.txtLevel_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ tracks character progress (level)
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.cboRace_SelectedIndexChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates racial ability modifiers. 
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
+</member><member name="M:DnD.frmCharSheet.txtExp_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates character level based on experience
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.levelUp(System.Object@,System.Object@,System.Object@,System.Object@)">
+	<summary>
+ sub that increments levels
+ </summary>
+	<param name="xp">current exp</param>
+	<param name="lBound">lower bound of level (between X and Y: X)</param>
+	<param name="uBound">upper bound of level (between X and Y: Y)</param>
+	<param name="lvl">level to increment to</param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnExp_Click(System.Object,System.EventArgs)">
+	<summary>
+ update experience
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
@@ -174,6 +260,7 @@ DnD
  </summary>
 	<param name="dgv">datagrid view object</param>
 	<param name="key">the unique armor/weapon ID</param>
+	<param name="column">name of the column to look for key, in dgv</param>
 	<returns>returns the row that the key was found on</returns>
 	<remarks></remarks>
 </member><member name="M:DnD.frmAbilSkillRoll.btnInit_Click(System.Object,System.EventArgs)">

@@ -4,6 +4,12 @@ Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
     Event weapArmor As EventHandler
 
+    ''' <summary>
+    ''' add event handlers on formload and set the value of check in mdlGlobal
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub frmCharSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'alots for the secod select weapon button
         AddHandler btnSWeap.Click, AddressOf btnSelWeap_Click
@@ -230,15 +236,14 @@ Public Class frmCharSheet
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnRandomize_Click(sender As Object, e As EventArgs) Handles btnRandomize.Click
-        'only roll new stats if your character doens't exist
-        'else leave him the fuck alone
-        If Val(txtCName.Tag).ToString <> "" Then
+        'only roll new stats if your character doesn't exist
+        If txtCName.Tag.ToString <> "" Then
             'Question saved characters
             Dim result As Integer = MessageBox.Show("I can't let you do that, Dave..." & vbCrLf & "Are you sure you want to randomize your existing character?", "error", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error)
             If result = DialogResult.Yes Then
                 'randomize saved characters only if they give consent
                 MessageBox.Show("Very well...", "Randomize", MessageBoxButtons.OK, MessageBoxIcon.None)
-                Call rStats(txtCName.Text)
+                Call rStats(txtCName.Text, txtCName.Tag)
             End If
         Else
             'randomize stats for new characters
@@ -246,7 +251,13 @@ Public Class frmCharSheet
         End If
     End Sub
 
-    Private Sub rStats(Optional ByRef name = "")
+    ''' <summary>
+    ''' Sub that randomizes stats for the user
+    ''' </summary>
+    ''' <param name="name">name of the character</param>
+    ''' <param name="tag">unique character ID</param>
+    ''' <remarks></remarks>
+    Private Sub rStats(Optional ByRef name = "", Optional ByRef tag = "")
         'generate ability scores (STR, DEX, INT, WIS, CON, CHA)
         'using the third method as described in the DnD 4e player handbook #1
         Dim abilArray(5) As Integer 'roll 6*(4d6). Add highest three values. Assign to base ability
@@ -279,6 +290,12 @@ Public Class frmCharSheet
         txtWis.Text = abilArray(4)
         txtCha.Text = abilArray(5)
 
+        'new random name if it's a brand new character
+        If name = "" Or tag = "" Then
+            Dim newName As New CharOptions.rndOpts
+            txtCName.Text = newName.selName
+        End If
+
         'new characters are always level 1, with 0 experience
         txtLevel.Text = 1
         txtExp.Text = 0
@@ -304,12 +321,6 @@ Public Class frmCharSheet
         txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
         txtCheck.Text = "0"
         txtAP.Text = "9"
-
-        'new random name if it's a brand new character
-        If name <> "" Then
-            Dim newName As New CharOptions.rndOpts
-            txtCName.Text = newName.selName
-        End If
         txtColor.Text = "R"
         txtLoc.Text = "0,0"
         txtWepName.Text = "None/Unarmed"
@@ -336,52 +347,66 @@ Public Class frmCharSheet
         txtWrists.Tag = "1"
 
         'Health points
-        If LCase(cboClass.Text) = "cleric" Or LCase(cboClass.Text) = "ranger" Or LCase(cboClass.Text) = "rogue" Or LCase(cboClass.Text) = "warlock" Or LCase(cboClass.Text) = "warlord" Then
+        If LCase(cboClass.Text) = "cleric" Then
+            'page 60
             txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "fighter" Or LCase(cboClass.Text) = "paladin" Then
+        ElseIf LCase(cboClass.Text) = "ranger" Then
+            'page 103
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "rogue" Then
+            'page 116
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "warlock" Then
+            'page 129
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "warlord" Then
+            'page 143
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "fighter" Then
+            'page 75
+            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "paladin" Then
+            'page 89
             txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
         ElseIf LCase(cboClass.Text) = "wizard" Then
+            'page 156
             txtHP.Text = Val(txtLevel.Text) * 4 - 4 + 10 + Val(txtCon.Text)
         End If
 
         'make easier to continue filling out sheets
-        txtAC.Focus()
+        txtHP.Focus()
     End Sub
 
+    ''' <summary>
+    ''' toggles readonly/enabled mode for the form, allowing or disallowing the user to edit their character sheet
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         'toggle editing of character sheet
-        cboAlignment.Enabled = IIf(cboAlignment.Enabled = True, False, True)
-        cboClass.Enabled = IIf(cboClass.Enabled = True, False, True)
-        cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
-        cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
+        If txtCName.Tag = Nothing Then
+            'only toggle these if character has not finished creating
+            cboAlignment.Enabled = IIf(cboAlignment.Enabled = True, False, True)
+            cboClass.Enabled = IIf(cboClass.Enabled = True, False, True)
+            cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
+            cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
+            txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
+            txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
+        End If
+
         txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
         txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
         txtCha.ReadOnly = IIf(txtCha.ReadOnly = False, True, False)
         txtCon.ReadOnly = IIf(txtCon.ReadOnly = False, True, False)
-        txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
         txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
         txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
         txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
-        'txtAC.ReadOnly = IIf(txtAC.ReadOnly = False, True, False)
         txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
-        'txtCheck.ReadOnly = IIf(txtCheck.ReadOnly = False, True, False)
         txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
-        txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
-        'txtWepName.ReadOnly = IIf(txtWepName.ReadOnly = False, True, False)
-        txtLevel.ReadOnly = IIf(txtLevel.ReadOnly = False, True, False)
-        txtExp.ReadOnly = IIf(txtExp.ReadOnly = False, True, False)
         txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
         btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
         btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
-        'armor
-        'txtHelm.ReadOnly = IIf(txtHelm.ReadOnly = False, True, False)
-        'txtChest.ReadOnly = IIf(txtChest.ReadOnly = False, True, False)
-        'txtLegs.ReadOnly = IIf(txtLegs.ReadOnly = False, True, False)
-        'txtArms.ReadOnly = IIf(txtArms.ReadOnly = False, True, False)
-        'txtHands.ReadOnly = IIf(txtHands.ReadOnly = False, True, False)
-        'txtFeet.ReadOnly = IIf(txtFeet.ReadOnly = False, True, False)
-        'txtNeck.ReadOnly = IIf(txtNeck.ReadOnly = False, True, False)
-        'txtWrists.ReadOnly = IIf(txtWrists.ReadOnly = False, True, False)
 
         'equipment buttons
         btnSelWeap.Enabled = IIf(btnSelWeap.Enabled = False, True, False)
@@ -398,6 +423,12 @@ Public Class frmCharSheet
         txtStr.Focus()
     End Sub
 
+    ''' <summary>
+    ''' sub for selecting/equipping new weapon. updates corresponding text control/tag
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnSelWeap_Click(sender As Object, e As EventArgs) Handles btnSelWeap.Click
         'open frmSelWeap for weapon selection
         With frmSelWeap
@@ -418,6 +449,12 @@ Public Class frmCharSheet
         End With
     End Sub
 
+    ''' <summary>
+    ''' sub for selecting/equipping new armor. updates corresponding text control and it's tag
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnSelArmor_Click(sender As Object, e As EventArgs)
         'based on name of button that called this, update theTag in module
         'this will be used for default selected tabs in frmSelArmor
@@ -532,7 +569,7 @@ Public Class frmCharSheet
             'heavy load
             MsgBox("Your character is slowed due to their carrying load.")
             txtCarryCap.BackColor = Color.Yellow
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered" & vbCrLf & "Can carry up to: " & HEAVY *(Val(txtStr.Text) & "lbs before maximum dragging load")
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered" & vbCrLf & "Can carry up to: " & HEAVY * (Val(txtStr.Text) & "lbs before maximum dragging load"))
         ElseIf (Val(txtCarryCap.Text) > HEAVY * Val(txtStr.Text)) And (Val(txtCarryCap.Text) <= MAXIMUM * Val(txtStr.Text)) Then
             'maximum dragging load
             MsgBox("Your character's movement is severely hampered by their carrying load.")
@@ -594,5 +631,445 @@ Public Class frmCharSheet
     Private Sub txtCheck_TextChanged(sender As Object, e As EventArgs) Handles txtCheck.TextChanged
         'update variable as soon as the check mod changes
         mdlGlobal.check = Val(txtCheck.Text)
+    End Sub
+
+    ''' <summary>
+    ''' tracks character progress (level)
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtLevel_TextChanged(sender As Object, e As EventArgs) Handles txtLevel.TextChanged
+        'add some stat mods to your character when you level up some times
+        Select Case Val(txtLevel.Text)
+            Case 1
+                'racials are applied
+                'can know 2 cantrips
+                '           1 encounter
+                '           1 daily
+                '           0 utility
+            Case 2
+                'can know 2 cantrips
+                '           1 encounter
+                '           1 daily
+                '           1 utility
+            Case 3
+                'can know 2 cantrips
+                '           2 encounter
+                '           1 daily
+                '           1 utility
+            Case 4
+                '+1 to two abilities
+            Case 5
+                'can know 2 cantrips
+                '           2 encounter
+                '           2 daily
+                '           1 utility
+            Case 6
+                'can know 2 cantrips
+                '           2 encounter
+                '           2 daily
+                '           2 utility
+            Case 7
+                'can know 2 cantrips
+                '           3 encounter
+                '           2 daily
+                '           2 utility
+            Case 8
+                '+1 to two abilities
+            Case 9
+                'can know 2 cantrips
+                '           3 encounter
+                '           3 daily
+                '           2 utility
+            Case 10
+                'can know 2 cantrips
+                '           3 encounter
+                '           3 daily
+                '           3 utility
+
+
+
+            Case 11
+                '+1 to ALL abilities
+                'paragon path features
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           3 utility
+            Case 12
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           3 utility
+                '               1 paragon
+            Case 13
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           3 utility
+                '               1 paragon
+                'replace 1 encounter
+            Case 14
+                '+1 to two abilities
+            Case 15
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           3 utility
+                '               1 paragon
+                'replace 1 daily
+            Case 16
+                'paragon path feature
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           4 utility
+                '               1 paragon
+            Case 17
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           4 utility
+                '               1 paragon
+                'replace 1 encounter
+            Case 18
+                '+1 to two abilities
+            Case 19
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '           4 utility
+                '               1 paragon
+                'replace 1 daily
+            Case 20
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           4 utility
+                '               1 paragon
+
+
+
+            Case 21
+                '+1 to ALL abilities
+                'epic destiny feature
+            Case 22
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+            Case 23
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+                'replace 1 encounter
+            Case 24
+                '+1 to two abilities
+                'epic destiny feature
+            Case 25
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+                'replace 1 daily
+            Case 26
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+                '               1 epic
+            Case 27
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+                '               1 epic
+                'replace 1 encounter
+            Case 28
+                '+1 to two abilities
+            Case 29
+                'can know 2 cantrips
+                '           3 encounter
+                '               1 paragon 
+                '           3 daily
+                '               1 paragon
+                '           5 utility
+                '               1 paragon
+                '               1 epic
+                'replace 1 daily
+            Case 30
+                'epic destiny feature
+
+
+
+            Case Is > 30
+                'do nothing
+            Case Is < 1
+                'levels start at 1, and are never negative
+                txtLevel.Text = "1"
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' updates racial ability modifiers. 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
+    Private Sub cboRace_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRace.SelectedIndexChanged
+        'should only fire on a new character
+        If txtCName.Tag = Nothing Then
+            Dim newEquip As String = "Unequipped"
+            Dim newTag As String = "1"
+            'remove existing racial bonus
+            txtDex.Tag = 0
+            txtCha.Tag = 0
+            txtInt.Tag = 0
+            txtStr.Tag = 0
+            txtCon.Tag = 0
+            txtWis.Tag = 0
+
+            'I have no idea how else to do this, armor must come off if you're going to change your race
+            txtHelm.Text = newEquip
+            txtHelm.Tag = newTag
+            txtArms.Text = newEquip
+            txtArms.Tag = newTag
+            txtWrists.Text = newEquip
+            txtWrists.Tag = newTag
+            txtHands.Text = newEquip
+            txtHands.Tag = newTag
+            txtNeck.Text = newEquip
+            txtNeck.Tag = newTag
+            txtChest.Text = newEquip
+            txtChest.Tag = newTag
+            txtLegs.Text = newEquip
+            txtLegs.Tag = newTag
+            txtFeet.Text = newEquip
+            txtFeet.Tag = newTag
+            txtWepName.Text = newEquip
+            txtWepName.Tag = newTag
+
+            'add new racials
+            If LCase(cboRace.Text) = "human" Then
+                '+2 to any one ability
+                Dim goodIn As Boolean
+                'could search string for first three letters at beginning of string to make this easier
+                Do
+                    Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier")
+                    goodIn = True
+                    Select Case LCase(res)
+                        Case "dex", "dexterity"
+                            txtDex.Tag = Val(txtDex.Tag) + 2
+                        Case "str", "strength"
+                            txtStr.Tag = Val(txtStr.Tag) + 2
+                        Case "cha", "charisma"
+                            txtCha.Tag = Val(txtCha.Tag) + 2
+                        Case "int", "intelligence", "intellect"
+                            txtInt.Tag = Val(txtInt.Tag) + 2
+                        Case "wis", "wisdom"
+                            txtWis.Tag = Val(txtWis.Tag) + 2
+                        Case "con", "constitution"
+                            txtCon.Tag = Val(txtCon.Tag) + 2
+                        Case Else
+                            'Nice output for user
+                            MessageBox.Show("That is not a valid ability to modify" & vbCrLf & "Choose DEX, STR, CHA, INT, WIS, or CON", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            goodIn = False
+                    End Select
+                Loop While goodIn = False
+            ElseIf LCase(cboRace.Text) = "halfling" Then
+                txtDex.Tag = Val(txtDex.Tag) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+            ElseIf LCase(cboRace.Text) = "gnome" Then
+                'book two
+                txtInt.Tag = Val(txtInt.Tag) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+            ElseIf LCase(cboRace.Text) = "half orc" Then
+                txtStr.Tag = Val(txtStr.Tag) + 2
+                txtDex.Tag = Val(txtDex.Tag) + 2
+            ElseIf LCase(cboRace.Text) = "dwarf" Then
+                txtCon.Tag = Val(txtCon.Tag) + 2
+                txtWis.Tag = Val(txtWis.Tag) + 2
+            ElseIf LCase(cboRace.Text) = "half elf" Then
+                txtCon.Tag = Val(txtCon.Tag) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+            ElseIf LCase(cboRace.Text) = "elf" Then
+                txtDex.Tag = Val(txtDex.Tag) + 2
+                txtWis.Tag = Val(txtWis.Tag) + 2
+            End If
+            Console.WriteLine(LCase(cboRace.Text))
+            Console.WriteLine("Dex: " & txtDex.Tag)
+            Console.WriteLine("Str: " & txtStr.Tag)
+            Console.WriteLine("Con: " & txtCon.Tag)
+            Console.WriteLine("Int: " & txtInt.Tag)
+            Console.WriteLine("Wis: " & txtWis.Tag)
+            Console.WriteLine("Cha: " & txtCha.Tag)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' updates character level based on experience
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtExp_TextChanged(sender As Object, e As EventArgs) Handles txtExp.TextChanged
+        'constants for experience thresholds
+        Const lev02 As Integer = 1000
+        Const lev03 As Integer = 2250
+        Const lev04 As Integer = 3750
+        Const lev05 As Integer = 5500
+        Const lev06 As Integer = 7500
+        Const lev07 As Integer = 10000
+        Const lev08 As Integer = 13000
+        Const lev09 As Integer = 16500
+        Const lev10 As Integer = 20500
+        Const lev11 As Integer = 26000
+        Const lev12 As Integer = 32000
+        Const lev13 As Integer = 39000
+        Const lev14 As Integer = 47000
+        Const lev15 As Integer = 57000
+        Const lev16 As Integer = 69000
+        Const lev17 As Integer = 83000
+        Const lev18 As Integer = 99000
+        Const lev19 As Integer = 119000
+        Const lev20 As Integer = 143000
+        Const lev21 As Integer = 175000
+        Const lev22 As Integer = 210000
+        Const lev23 As Integer = 255000
+        Const lev24 As Integer = 310000
+        Const lev25 As Integer = 375000
+        Const lev26 As Integer = 450000
+        Const lev27 As Integer = 550000
+        Const lev28 As Integer = 675000
+        Const lev29 As Integer = 825000
+        Const lev30 As Integer = 1000000
+
+        'no negative experience allowed
+        If Val(txtExp.Text) < 0 Then txtExp.Text = 0
+
+        'check all levels possible, unfortunately
+        If Val(txtExp.Text) > lev30 Then
+            'check last level manually (sub doesn't allow for it, currently)
+            For i As Integer = Val(txtLevel.Text) To 29
+                txtLevel.Text = Val(txtLevel.Text) + 1
+                'increase health accordingly
+                Select Case LCase(cboClass.Text)
+                    Case "cleric", "ranger", "rogue", "warlock", "warlord"
+                        txtHP.Text = Val(txtHP.Text) + 5
+                    Case "fighter", "paladin"
+                        txtHP.Text = Val(txtHP.Text) + 6
+                    Case "wizard"
+                        txtHP.Text = Val(txtHP.Text) + 4
+                End Select
+            Next
+        End If
+        Call levelUp(Val(txtExp.Text), lev29, lev30, 28)
+        Call levelUp(Val(txtExp.Text), lev28, lev29, 27)
+        Call levelUp(Val(txtExp.Text), lev27, lev28, 26)
+        Call levelUp(Val(txtExp.Text), lev26, lev27, 25)
+        Call levelUp(Val(txtExp.Text), lev25, lev26, 24)
+        Call levelUp(Val(txtExp.Text), lev24, lev25, 23)
+        Call levelUp(Val(txtExp.Text), lev23, lev24, 22)
+        Call levelUp(Val(txtExp.Text), lev22, lev23, 21)
+
+        Call levelUp(Val(txtExp.Text), lev21, lev22, 20)
+        Call levelUp(Val(txtExp.Text), lev20, lev21, 19)
+        Call levelUp(Val(txtExp.Text), lev19, lev20, 18)
+        Call levelUp(Val(txtExp.Text), lev18, lev19, 17)
+        Call levelUp(Val(txtExp.Text), lev17, lev18, 16)
+        Call levelUp(Val(txtExp.Text), lev16, lev17, 15)
+        Call levelUp(Val(txtExp.Text), lev15, lev16, 14)
+        Call levelUp(Val(txtExp.Text), lev14, lev15, 13)
+        Call levelUp(Val(txtExp.Text), lev13, lev14, 12)
+        Call levelUp(Val(txtExp.Text), lev12, lev13, 11)
+
+        Call levelUp(Val(txtExp.Text), lev11, lev12, 10)
+        Call levelUp(Val(txtExp.Text), lev10, lev11, 9)
+        Call levelUp(Val(txtExp.Text), lev09, lev10, 8)
+        Call levelUp(Val(txtExp.Text), lev08, lev09, 7)
+        Call levelUp(Val(txtExp.Text), lev07, lev08, 6)
+        Call levelUp(Val(txtExp.Text), lev06, lev07, 5)
+        Call levelUp(Val(txtExp.Text), lev05, lev06, 4)
+        Call levelUp(Val(txtExp.Text), lev04, lev05, 3)
+        Call levelUp(Val(txtExp.Text), lev03, lev04, 2)
+        Call levelUp(Val(txtExp.Text), lev02, lev03, 1)
+    End Sub
+
+    ''' <summary>
+    ''' sub that increments levels
+    ''' </summary>
+    ''' <param name="xp">current exp</param>
+    ''' <param name="lBound">lower bound of level (between X and Y: X)</param>
+    ''' <param name="uBound">upper bound of level (between X and Y: Y)</param>
+    ''' <param name="lvl">level to increment to</param>
+    ''' <remarks></remarks>
+    Private Sub levelUp(ByRef xp, ByRef lBound, ByRef uBound, ByRef lvl)
+        'automates the checking procedure of experience versus level thresholds
+        Dim start As Integer = Val(txtLevel.Text)
+        If xp >= lBound And xp < uBound Then
+            For i As Integer = start To lvl
+                txtLevel.Text = Val(txtLevel.Text) + 1
+                'increase health accordingly
+                Select Case LCase(cboClass.Text)
+                    Case "cleric", "ranger", "rogue", "warlock", "warlord"
+                        txtHP.Text = Val(txtHP.Text) + 5
+                    Case "fighter", "paladin"
+                        txtHP.Text = Val(txtHP.Text) + 6
+                    Case "wizard"
+                        txtHP.Text = Val(txtHP.Text) + 4
+                End Select
+            Next
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' update experience
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnExp_Click(sender As Object, e As EventArgs) Handles btnExp.Click
+        Dim res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
+        Dim goodInt As Boolean
+        Do
+            'assigns goodInt as true/false based on whether or not it's a number
+            Integer.TryParse(res, goodInt)
+            If goodInt Then
+                'parse to integer
+                'Integer.Parse(res, Globalization.NumberStyles.Integer)
+                'if it's a good integer, add it to your existing experience
+                txtExp.Text = Val(txtExp.Text) + res
+            Else
+                'tell the user what they did wrong
+                MessageBox.Show("Input must be a positive or negative number", "error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
+            End If
+        Loop Until goodInt = True
     End Sub
 End Class

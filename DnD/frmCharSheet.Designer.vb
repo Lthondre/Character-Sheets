@@ -103,6 +103,7 @@ Partial Class frmCharSheet
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
         Me.btnRoll = New System.Windows.Forms.Button()
+        Me.btnExp = New System.Windows.Forms.Button()
         Me.pnlCharSheet.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -318,7 +319,6 @@ Partial Class frmCharSheet
         '
         'txtCheck
         '
-        Me.txtCheck.Enabled = False
         Me.txtCheck.Location = New System.Drawing.Point(84, 237)
         Me.txtCheck.Name = "txtCheck"
         Me.txtCheck.Size = New System.Drawing.Size(100, 20)
@@ -568,6 +568,7 @@ Partial Class frmCharSheet
         '
         'pnlCharSheet
         '
+        Me.pnlCharSheet.Controls.Add(Me.btnExp)
         Me.pnlCharSheet.Controls.Add(Me.Label31)
         Me.pnlCharSheet.Controls.Add(Me.txtCarryCap)
         Me.pnlCharSheet.Controls.Add(Me.btnWrists)
@@ -887,6 +888,15 @@ Partial Class frmCharSheet
         Me.btnRoll.Text = "R&oll"
         Me.btnRoll.UseVisualStyleBackColor = True
         '
+        'btnExp
+        '
+        Me.btnExp.Location = New System.Drawing.Point(379, 261)
+        Me.btnExp.Name = "btnExp"
+        Me.btnExp.Size = New System.Drawing.Size(38, 23)
+        Me.btnExp.TabIndex = 80
+        Me.btnExp.Text = "&Exp"
+        Me.btnExp.UseVisualStyleBackColor = True
+        '
         'frmCharSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -989,5 +999,6 @@ Partial Class frmCharSheet
     Public WithEvents btnSWeap As System.Windows.Forms.Button
     Public WithEvents Label31 As System.Windows.Forms.Label
     Public WithEvents txtCarryCap As System.Windows.Forms.TextBox
+    Friend WithEvents btnExp As System.Windows.Forms.Button
 
 End Class
