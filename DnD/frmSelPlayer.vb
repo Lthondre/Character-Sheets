@@ -217,8 +217,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim c As Color = Color.FromName(Player(lstPlayers.SelectedIndex).Color)
         If lstPlayers.SelectedIndex > -1 Then
+            Dim c As Color = Color.FromName(Player(lstPlayers.SelectedIndex).Color)
             Dim PlayerRecord As New frmCharSheet
             With PlayerRecord
                 .txtCName.Tag = Player(lstPlayers.SelectedIndex).ID

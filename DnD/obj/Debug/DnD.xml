@@ -6,7 +6,21 @@ DnD
 </name>
 </assembly>
 <members>
-<member name="F:DnD.clsData.conn">
+<member name="M:DnD.frmAddWeap.btnClose_Click(System.Object,System.EventArgs)">
+	<summary>
+ closes the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAddWeap.btnAdd_Click(System.Object,System.EventArgs)">
+	<summary>
+ validates and adds the new weapon to the database and structure in frmSelPlayer
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="F:DnD.clsData.conn">
 	<summary>
  Connection to database
  </summary>

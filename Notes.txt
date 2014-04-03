@@ -1,11 +1,10 @@
 CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
 
 after you select a weapon/armor, weapon stats need to be applied to character
-	need to augment character base stats by their modifiers before weapon stats
 	need to implement ability modifiers on weapons/armor
 
 need to add class powers. try to do in access
-	see phone for DnD 4e wiki on each classes powers
+	www.dandwiki.com
 	change text property so that classes power title
 		-Spells/Prayers/Exploits (Arcane/Divine/Martial)
 	click button, see all powers at or below current level

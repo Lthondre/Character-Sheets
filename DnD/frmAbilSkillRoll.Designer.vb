@@ -48,7 +48,7 @@ Partial Class frmAbilSkillRoll
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(118, 383)
+        Me.btnClose.Location = New System.Drawing.Point(118, 304)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 2
@@ -74,7 +74,7 @@ Partial Class frmAbilSkillRoll
         '
         'btnOkay
         '
-        Me.btnOkay.Location = New System.Drawing.Point(12, 383)
+        Me.btnOkay.Location = New System.Drawing.Point(12, 304)
         Me.btnOkay.Name = "btnOkay"
         Me.btnOkay.Size = New System.Drawing.Size(75, 23)
         Me.btnOkay.TabIndex = 5
@@ -232,7 +232,7 @@ Partial Class frmAbilSkillRoll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(213, 418)
+        Me.ClientSize = New System.Drawing.Size(213, 339)
         Me.Controls.Add(Me.gbxChkType)
         Me.Controls.Add(Me.txtChaChk)
         Me.Controls.Add(Me.txtIntChk)
@@ -253,7 +253,7 @@ Partial Class frmAbilSkillRoll
         Me.Controls.Add(Me.btnInit)
         Me.Controls.Add(Me.btnClose)
         Me.Name = "frmAbilSkillRoll"
-        Me.Text = "frmAbilSkillRoll"
+        Me.Text = "Ability Check"
         Me.gbxChkType.ResumeLayout(False)
         Me.gbxChkType.PerformLayout()
         Me.ResumeLayout(False)

@@ -1,11 +1,23 @@
 ﻿Public Class frmAddWeap
     Dim duplicate As Boolean = False
 
+    ''' <summary>
+    ''' closes the form
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         'close the form
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' validates and adds the new weapon to the database and structure in frmSelPlayer
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         'add the record to the datagridview
         If txtName.Text = "" Then

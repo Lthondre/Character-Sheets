@@ -290,7 +290,6 @@ Partial Class frmDiceRoll
         Me.MinimizeBox = False
         Me.Name = "frmDiceRoll"
         Me.ShowIcon = False
-        Me.ShowInTaskbar = False
         Me.Text = "Dice Rolls"
         CType(Me.numXd4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numXd6, System.ComponentModel.ISupportInitialize).EndInit()

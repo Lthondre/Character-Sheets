@@ -1089,7 +1089,6 @@ Public Class frmCharSheet
             Integer.TryParse(res, goodInt)
             If goodInt Then
                 'parse to integer
-                'Integer.Parse(res, Globalization.NumberStyles.Integer)
                 'if it's a good integer, add it to your existing experience
                 txtExp.Text = Val(txtExp.Text) + res
             Else
