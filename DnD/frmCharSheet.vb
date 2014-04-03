@@ -1,4 +1,5 @@
-﻿Imports CharOptions.rndOpts
+﻿Imports System.Drawing
+Imports CharOptions.rndOpts
 
 Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
@@ -290,10 +291,34 @@ Public Class frmCharSheet
         txtWis.Text = abilArray(4)
         txtCha.Text = abilArray(5)
 
-        'new random name if it's a brand new character
+        'new random name and color if it's a brand new character
         If name = "" Or tag = "" Then
             Dim newName As New CharOptions.rndOpts
             txtCName.Text = newName.selName
+
+            'random color
+            'credit to: andrepeters.co.uk/?p=142
+            Dim colType As Type = GetType(Color)
+            Dim colInfo() As System.Reflection.PropertyInfo = colType.GetProperties
+            Dim conv As New ColorConverter
+            Dim allCols() As Color = New Color() {}
+            Dim i As Integer = 0
+            Dim c As Color = Nothing
+            Dim o As Object = Nothing
+            For Each pi As System.Reflection.PropertyInfo In colInfo
+                If pi.PropertyType.Name = "Color" And pi.Name <> "Transparent" Then
+                    o = conv.ConvertFromString(pi.Name)
+                    c = CType(o, Color)
+                    ReDim Preserve allCols(i)
+                    allCols(i) = c
+                    i += 1
+                End If
+            Next
+            'select random index of allcols and assign that to the textbox
+            Dim r As New Random
+            Dim rCol = allCols(r.Next(0, allCols.Length - 1))
+            txtColor.Text = rCol.Name.ToString
+            pbxColor.BackColor = rCol
         End If
 
         'new characters are always level 1, with 0 experience
@@ -321,7 +346,6 @@ Public Class frmCharSheet
         txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
         txtCheck.Text = "0"
         txtAP.Text = "9"
-        txtColor.Text = "R"
         txtLoc.Text = "0,0"
         txtWepName.Text = "None/Unarmed"
         txtWepName.Tag = "1"
@@ -502,7 +526,7 @@ Public Class frmCharSheet
                     Case "feet"
                         box = txtFeet
                     Case "wrists"
-                        box = txtwrists
+                        box = txtWrists
                     Case "none"
                         'catch the oddballs
                         Select Case mdlGlobal.theTag
@@ -881,7 +905,7 @@ Public Class frmCharSheet
                 Dim goodIn As Boolean
                 'could search string for first three letters at beginning of string to make this easier
                 Do
-                    Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier")
+                    Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier", 0)
                     goodIn = True
                     Select Case LCase(res)
                         Case "dex", "dexterity"
@@ -896,6 +920,9 @@ Public Class frmCharSheet
                             txtWis.Tag = Val(txtWis.Tag) + 2
                         Case "con", "constitution"
                             txtCon.Tag = Val(txtCon.Tag) + 2
+                        Case 0
+                            'Default to Strength modifer
+                            txtStr.Tag = Val(txtStr.Tag) + 2
                         Case Else
                             'Nice output for user
                             MessageBox.Show("That is not a valid ability to modify" & vbCrLf & "Choose DEX, STR, CHA, INT, WIS, or CON", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -973,7 +1000,7 @@ Public Class frmCharSheet
         'no negative experience allowed
         If Val(txtExp.Text) < 0 Then txtExp.Text = 0
 
-        'check all levels possible, unfortunately
+        'check all levels possible, unfortunately (call statements)
         If Val(txtExp.Text) > lev30 Then
             'check last level manually (sub doesn't allow for it, currently)
             For i As Integer = Val(txtLevel.Text) To 29

@@ -75,6 +75,7 @@ Partial Class frmCharSheet
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnSelArmor = New System.Windows.Forms.Button()
         Me.pnlCharSheet = New System.Windows.Forms.Panel()
+        Me.btnExp = New System.Windows.Forms.Button()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.txtCarryCap = New System.Windows.Forms.TextBox()
         Me.btnWrists = New System.Windows.Forms.Button()
@@ -103,8 +104,9 @@ Partial Class frmCharSheet
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
         Me.btnRoll = New System.Windows.Forms.Button()
-        Me.btnExp = New System.Windows.Forms.Button()
+        Me.pbxColor = New System.Windows.Forms.PictureBox()
         Me.pnlCharSheet.SuspendLayout()
+        CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnCalc
@@ -526,6 +528,7 @@ Partial Class frmCharSheet
         Me.txtColor.Name = "txtColor"
         Me.txtColor.Size = New System.Drawing.Size(100, 20)
         Me.txtColor.TabIndex = 35
+        Me.txtColor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ttpHelp.SetToolTip(Me.txtColor, "WUBRG (White, blUe, Black, Red, Green)")
         '
         'btnRandomize
@@ -568,6 +571,7 @@ Partial Class frmCharSheet
         '
         'pnlCharSheet
         '
+        Me.pnlCharSheet.Controls.Add(Me.pbxColor)
         Me.pnlCharSheet.Controls.Add(Me.btnExp)
         Me.pnlCharSheet.Controls.Add(Me.Label31)
         Me.pnlCharSheet.Controls.Add(Me.txtCarryCap)
@@ -644,6 +648,15 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Name = "pnlCharSheet"
         Me.pnlCharSheet.Size = New System.Drawing.Size(552, 520)
         Me.pnlCharSheet.TabIndex = 55
+        '
+        'btnExp
+        '
+        Me.btnExp.Location = New System.Drawing.Point(379, 261)
+        Me.btnExp.Name = "btnExp"
+        Me.btnExp.Size = New System.Drawing.Size(38, 23)
+        Me.btnExp.TabIndex = 80
+        Me.btnExp.Text = "&Exp"
+        Me.btnExp.UseVisualStyleBackColor = True
         '
         'Label31
         '
@@ -888,14 +901,15 @@ Partial Class frmCharSheet
         Me.btnRoll.Text = "R&oll"
         Me.btnRoll.UseVisualStyleBackColor = True
         '
-        'btnExp
+        'pbxColor
         '
-        Me.btnExp.Location = New System.Drawing.Point(379, 261)
-        Me.btnExp.Name = "btnExp"
-        Me.btnExp.Size = New System.Drawing.Size(38, 23)
-        Me.btnExp.TabIndex = 80
-        Me.btnExp.Text = "&Exp"
-        Me.btnExp.UseVisualStyleBackColor = True
+        Me.pbxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbxColor.Enabled = False
+        Me.pbxColor.Location = New System.Drawing.Point(391, 159)
+        Me.pbxColor.Name = "pbxColor"
+        Me.pbxColor.Size = New System.Drawing.Size(26, 20)
+        Me.pbxColor.TabIndex = 82
+        Me.pbxColor.TabStop = False
         '
         'frmCharSheet
         '
@@ -916,6 +930,7 @@ Partial Class frmCharSheet
         Me.Text = "Character Sheet"
         Me.pnlCharSheet.ResumeLayout(False)
         Me.pnlCharSheet.PerformLayout()
+        CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1000,5 +1015,6 @@ Partial Class frmCharSheet
     Public WithEvents Label31 As System.Windows.Forms.Label
     Public WithEvents txtCarryCap As System.Windows.Forms.TextBox
     Friend WithEvents btnExp As System.Windows.Forms.Button
+    Friend WithEvents pbxColor As System.Windows.Forms.PictureBox
 
 End Class

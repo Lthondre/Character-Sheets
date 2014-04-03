@@ -217,6 +217,7 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim c As Color = Color.FromName(Player(lstPlayers.SelectedIndex).Color)
         If lstPlayers.SelectedIndex > -1 Then
             Dim PlayerRecord As New frmCharSheet
             With PlayerRecord
@@ -236,6 +237,7 @@
                 .cboAlignment.Text = Player(lstPlayers.SelectedIndex).Align
                 .txtCName.Text = Player(lstPlayers.SelectedIndex).Name
                 .txtColor.Text = Player(lstPlayers.SelectedIndex).Color
+                .pbxColor.BackColor = c
                 .txtWepName.Tag = Player(lstPlayers.SelectedIndex).WepID
                 .txtHelm.Tag = Player(lstPlayers.SelectedIndex).helm
                 .txtChest.Tag = Player(lstPlayers.SelectedIndex).chest
