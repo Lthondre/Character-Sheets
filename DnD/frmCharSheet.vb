@@ -461,8 +461,8 @@ Public Class frmCharSheet
             Me.Show()
             'Only change if the values have changed
             If .dtext <> "" Then
-                Console.WriteLine("Prev Chk: " & .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
-                Console.WriteLine("New Chk: " & .dcheckMod)
+                'Console.WriteLine("Prev Chk: " & .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value)
+                'Console.WriteLine("New Chk: " & .dcheckMod)
                 txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvWeapons.Item(2, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dweight
                 txtAC.Text = Val(txtAC.Text) - .dgvWeapons.Item(3, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .darmBonus
                 txtCheck.Text = Val(txtCheck.Text) - .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dcheckMod
@@ -550,11 +550,6 @@ Public Class frmCharSheet
                                 MessageBox.Show("Error: To unequip an armor piece, click the button next to the armor you would like to unequip.", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         End Select
                 End Select
-                'view old armor
-                'Console.WriteLine("Prev Box: " & box.Name & vbCrLf & vbTab & vbTab & box.Text & vbTab & box.Tag)
-                'Console.WriteLine("Prev wgt: " & .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
-                'Console.WriteLine("Prev AC: " & .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
-                'Console.WriteLine("Prev Chk: " & .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
                 'update character sheet using new "box" textbox
                 txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dweight
                 txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .darmBonus
@@ -568,11 +563,6 @@ Public Class frmCharSheet
                 txtCon.Tag = Val(txtCon.Tag) - .dgvArmor.Item(13, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dCON
                 box.Text = .dtext
                 box.Tag = .dtag
-                'view new armor information
-                'Console.WriteLine("New Wgt: " & .dweight)
-                'Console.WriteLine("New AC: " & .darmBonus)
-                'Console.WriteLine("New Chk: " & .dcheckMod)
-                'Console.WriteLine("New Box:" & .dtext & vbTab & vbTab & .dtag)
             End If
             .Dispose()
         End With

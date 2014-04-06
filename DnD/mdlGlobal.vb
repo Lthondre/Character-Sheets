@@ -1,5 +1,5 @@
 ﻿Module mdlGlobal
-    'Public source As String = "Data Source=Database\DnD.accdb;"    'RC
+    'Public source As String = "Data Source=Database\DnD.accdb;"    'Release Candidate
     Public source As String = "Data Source=DnD.accdb;"              'Working directory
 
     ''' <summary>
@@ -21,7 +21,7 @@
     ''' <param name="key">the unique armor/weapon ID</param>
     ''' <param name="column">name of the column to look for key, in dgv</param>
     ''' <returns>returns the row that the key was found on</returns>
-    ''' <remarks></remarks>
+    ''' <remarks>modified from YWE's post: https://stackoverflow.com/questions/4228278/datagridview-programmatically-select-a-row-based-on-values-find-in-the-grid </remarks>
     <System.Runtime.CompilerServices.Extension()> _
     Function FindValue(ByRef dgv As DataGridView, ByVal key As Object, ByRef column As String) As DataGridViewRow
         For Each row As DataGridViewRow In dgv.Rows

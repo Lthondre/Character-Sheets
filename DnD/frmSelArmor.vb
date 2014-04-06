@@ -20,7 +20,6 @@
     Private Sub frmSelArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'I've tried just about every fucking thing to get this to work. tagVal MUST be taken from a module
         'form must also be disposed every time it's called or tagVal will not update to newest value from module
-        Console.WriteLine("frmSelArmor armor tag: " & tagVal)
         If tagVal < 1 Or tagVal > 9 Then
             MessageBox.Show("Warning! Selected armor button is not attributed. Default to showing all.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

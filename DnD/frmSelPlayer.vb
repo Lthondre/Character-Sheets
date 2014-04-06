@@ -3,7 +3,6 @@
     Public Player(-1) As PlayerStats
     Public Weapon(-1) As WeapStats
     Public Armor(-1) As ArmorStats
-    Dim TextBox As Control
     Event editPhone As EventHandler
 
     ''' <summary>
@@ -47,6 +46,10 @@
         Public wrists As Long
     End Structure
 
+    ''' <summary>
+    ''' structure holds all relevant stats pertaining to a single weapon ID
+    ''' </summary>
+    ''' <remarks></remarks>
     Structure WeapStats
         Public WID As Long
         Public wgt As Long
@@ -56,6 +59,10 @@
         Public name As String
     End Structure
 
+    ''' <summary>
+    ''' structure holds all relevant stats pertaining to a single armor ID
+    ''' </summary>
+    ''' <remarks></remarks>
     Structure ArmorStats
         Public AID As Long
         Public wgt As Integer
@@ -498,22 +505,18 @@
             Select Case stat
                 Case "weight"
                     .txtCarryCap.Text = Val(.txtCarryCap.Text) + arr
-                    Console.WriteLine("Weight: " & vbTab & Val(.txtCarryCap.Text))
                 Case "ac"
                     'AC is 10+ 1/2level + weapon/armor AC bonuses
                     '(10+ 1/2level) is taken care of outside of this subprocedure as it should only be called once
                     .txtAC.Text = Val(.txtAC.Text) + arr
-                    Console.WriteLine("AC: " & vbTab & vbTab & Val(.txtAC.Text))
                     If LCase(type) = "light" Or LCase(type) = "none" Then
                         If Val(.txtDex.tag) > 0 Or Val(.txtint.tag) Then
                             .txtAC.Text += IIf(Val(.txtDex.Tag) > Val(.txtInt.Tag), Val(.txtDex.Tag), Val(.txtInt.Tag))
-                            Console.WriteLine("AC After Mod: " & Val(.txtAC.Text))
                         End If
                     End If
                 Case "chk"
                     'sum all check mods
                     .txtCheck.text = Val(.txtCheck.text) + arr
-                    Console.WriteLine("Check: " & vbTab & Val(.txtCheck.text))
                 Case "str"
                     'add strength modifer
                     .txtStr.tag = Val(.txtStr.tag) + arr
