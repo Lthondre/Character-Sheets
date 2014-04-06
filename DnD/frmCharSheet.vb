@@ -551,21 +551,28 @@ Public Class frmCharSheet
                         End Select
                 End Select
                 'view old armor
-                Console.WriteLine("Prev Box: " & box.Name & vbCrLf & vbTab & vbTab & box.Text & vbTab & box.Tag)
-                Console.WriteLine("Prev wgt: " & .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
-                Console.WriteLine("Prev AC: " & .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
-                Console.WriteLine("Prev Chk: " & .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                'Console.WriteLine("Prev Box: " & box.Name & vbCrLf & vbTab & vbTab & box.Text & vbTab & box.Tag)
+                'Console.WriteLine("Prev wgt: " & .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                'Console.WriteLine("Prev AC: " & .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
+                'Console.WriteLine("Prev Chk: " & .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value)
                 'update character sheet using new "box" textbox
                 txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvArmor.Item(2, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dweight
                 txtAC.Text = Val(txtAC.Text) - .dgvArmor.Item(3, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .darmBonus
                 txtCheck.Text = Val(txtCheck.Text) - .dgvArmor.Item(4, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dcheckMod
+                'ability mods
+                txtStr.Tag = Val(txtStr.Tag) - .dgvArmor.Item(8, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dSTR
+                txtDex.Tag = Val(txtDex.Tag) - .dgvArmor.Item(9, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dDEX
+                txtWis.Tag = Val(txtWis.Tag) - .dgvArmor.Item(10, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dWIS
+                txtCha.Tag = Val(txtCha.Tag) - .dgvArmor.Item(11, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dCHA
+                txtInt.Tag = Val(txtInt.Tag) - .dgvArmor.Item(12, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dINT
+                txtCon.Tag = Val(txtCon.Tag) - .dgvArmor.Item(13, FindValue(.dgvArmor, Val(box.Tag), "allID").Index).Value + .dCON
                 box.Text = .dtext
                 box.Tag = .dtag
                 'view new armor information
-                Console.WriteLine("New Wgt: " & .dweight)
-                Console.WriteLine("New AC: " & .darmBonus)
-                Console.WriteLine("New Chk: " & .dcheckMod)
-                Console.WriteLine("New Box:" & .dtext & vbTab & vbTab & .dtag)
+                'Console.WriteLine("New Wgt: " & .dweight)
+                'Console.WriteLine("New AC: " & .darmBonus)
+                'Console.WriteLine("New Chk: " & .dcheckMod)
+                'Console.WriteLine("New Box:" & .dtext & vbTab & vbTab & .dtag)
             End If
             .Dispose()
         End With

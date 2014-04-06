@@ -79,7 +79,7 @@ DnD
  Load customer information to structure using clsData
  </summary>
 	<remarks></remarks>
-</member><member name="M:DnD.frmSelPlayer.frmContacts_Load(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmSelPlayer.frmSelPlayer_Load(System.Object,System.EventArgs)">
 	<summary>
  Load customer information to program and screen
  </summary>
@@ -249,6 +249,32 @@ DnD
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelArmor.dgvWeapons_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+	<summary>
+ on doubleclick, adds selected armor to variables, so the can be added back in parent form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelArmor.btnCancel_Click(System.Object,System.EventArgs)">
+	<summary>
+ closes form making no changes
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelArmor.btnAdd_Click(System.Object,System.EventArgs)">
+	<summary>
+ show dialog for adding new armor
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelArmor.loadArmor">
+	<summary>
+ loads new armor to corresponding armor datagridviews
+ </summary>
 	<remarks></remarks>
 </member><member name="P:DnD.My.Resources.Resources.ResourceManager">
 	<summary>

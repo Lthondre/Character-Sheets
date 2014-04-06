@@ -34,3 +34,38 @@ No feats
 
 No gods No Kings
     only man
+
+consider cleaning up armor load statements in frmSelPlayer
+
+weapons
+-update database
+-skill mods
+-change all datagrids
+-change all calls/updates
+-change all forms
+-update all SQL commands
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

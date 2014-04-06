@@ -65,6 +65,13 @@
         Public price As Double
         Public name As String
         Public type As String
+        'abil mods
+        Public str As Integer
+        Public dex As Integer
+        Public wis As Integer
+        Public cha As Integer
+        Public int As Integer
+        Public con As Integer
     End Structure
 
     ''' <summary>
@@ -159,6 +166,13 @@
                 .price = ArmorData.ds.Tables(0).Rows(i).Item("aPrice").ToString
                 .name = ArmorData.ds.Tables(0).Rows(i).Item("aName").ToString
                 .type = ArmorData.ds.Tables(0).Rows(i).Item("aType").ToString
+                'abil mods
+                .str = ArmorData.ds.Tables(0).Rows(i).Item("aSTR").ToString
+                .dex = ArmorData.ds.Tables(0).Rows(i).Item("aDEX").ToString()
+                .wis = ArmorData.ds.Tables(0).Rows(i).Item("aWIS").ToString()
+                .cha = ArmorData.ds.Tables(0).Rows(i).Item("aCHA").ToString()
+                .int = ArmorData.ds.Tables(0).Rows(i).Item("aINT").ToString()
+                .con = ArmorData.ds.Tables(0).Rows(i).Item("aCON").ToString()
             End With
         Next
     End Sub
@@ -169,7 +183,7 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub frmContacts_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmSelPlayer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'load all players into list box on startup
         Call LoadPlayerStats()
         'select the listbox on loadup of form
@@ -273,53 +287,109 @@
 
                 'load armor based on armor IDs
                 For j As Integer = 0 To (Armor.Length - 1)
+                    'headpiece
                     If Armor(j).AID = .txtHelm.Tag Then
                         .txtHelm.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'chestpiece
                     If Armor(j).AID = .txtChest.Tag Then
                         .txtChest.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'leg armor
                     If Armor(j).AID = .txtLegs.Tag Then
                         .txtLegs.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'arm armor
                     If Armor(j).AID = .txtArms.Tag Then
                         .txtArms.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'gloves
                     If Armor(j).AID = .txtHands.Tag Then
                         .txtHands.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'shoes
                     If Armor(j).AID = .txtFeet.Tag Then
                         .txtFeet.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'necklace
                     If Armor(j).AID = .txtNeck.Tag Then
                         .txtNeck.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
+                    'bracers
                     If Armor(j).AID = .txtWrists.Tag Then
                         .txtWrists.Text = Armor(j).name
                         loadStat(Armor(j).wgt, "weight", PlayerRecord)
                         loadStat(Armor(j).ACBon, "ac", PlayerRecord, Armor(j).aClass)
                         loadStat(Val(Armor(j).chkMod), "chk", PlayerRecord)
+                        loadStat(Armor(j).str, "str", PlayerRecord)
+                        loadStat(Armor(j).dex, "dex", PlayerRecord)
+                        loadStat(Armor(j).wis, "wis", PlayerRecord)
+                        loadStat(Armor(j).cha, "cha", PlayerRecord)
+                        loadStat(Armor(j).int, "int", PlayerRecord)
+                        loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
                 Next
 
@@ -332,9 +402,9 @@
                 .txtDex.ReadOnly = True
                 .txtCha.ReadOnly = True
                 .txtCon.ReadOnly = True
-                .txtCName.ReadOnly = True
                 .txtInt.ReadOnly = True
                 .txtWis.ReadOnly = True
+                .txtCName.ReadOnly = True
                 .txtHP.ReadOnly = True
                 .txtAC.ReadOnly = True
                 .txtMoney.ReadOnly = True
@@ -444,6 +514,24 @@
                     'sum all check mods
                     .txtCheck.text = Val(.txtCheck.text) + arr
                     Console.WriteLine("Check: " & vbTab & Val(.txtCheck.text))
+                Case "str"
+                    'add strength modifer
+                    .txtStr.tag = Val(.txtStr.tag) + arr
+                Case "dex"
+                    'add dex mod
+                    .txtDex.tag = Val(.txtDex.tag) + arr
+                Case "wis"
+                    'add wis mod
+                    .txtWis.tag = Val(.txtWis.tag) + arr
+                Case "cha"
+                    'add cha mod
+                    .txtCha.tag = Val(.txtCha.tag) + arr
+                Case "int"
+                    'add int mod
+                    .txtInt.tag = Val(.txtInt.tag) + arr
+                Case "con"
+                    'add con mod
+                    .txtCon.tag = Val(.txtCon.tag) + arr
             End Select
         End With
     End Sub

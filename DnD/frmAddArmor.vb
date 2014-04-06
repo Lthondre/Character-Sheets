@@ -47,6 +47,13 @@
                     frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).price = numPrice.Value
                     frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).name = txtName.Text
                     frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).type = cboType.Text
+                    'ability mods
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).str = numStr.Value
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).dex = numDex.Value
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).wis = numWis.Value
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).cha = numCha.Value
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).int = numInt.Value
+                    frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).con = numCon.Value
                     frmSelPlayer.Armor(frmSelPlayer.Armor.Length - 1).AID = highest
 
                     'add new armor to database
@@ -67,6 +74,13 @@
                         .Item("aPrice") = numPrice.Value
                         .Item("aName") = txtName.Text
                         .Item("aType") = cboType.Text
+                        'abil mods
+                        .Item("aSTR") = numStr.Value
+                        .Item("aDEX") = numDex.Value
+                        .Item("aWIS") = numWis.Value
+                        .Item("aCHA") = numCha.Value
+                        .Item("aINT") = numInt.Value
+                        .Item("aCON") = numCon.Value
                     End With
                     'add row to dataset
                     ArmorData.ds.Tables(0).Rows.Add(dsNewRow)
@@ -77,31 +91,31 @@
                     .dgvArmor.Rows.Insert(.dgvArmor.Rows(.dgvArmor.Rows.Count - 2).Index + 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
                     'add to specific datagrid
                     If LCase(cboType.Text) = "head" Then
-                        .dgvHead.Rows.Insert(.dgvHead.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvHead.Rows.Insert(.dgvHead.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "chest" Then
-                        .dgvChest.Rows.Insert(.dgvChest.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvChest.Rows.Insert(.dgvChest.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "arms" Then
-                        .dgvArms.Rows.Insert(.dgvArms.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvArms.Rows.Insert(.dgvArms.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "wrists" Then
-                        .dgvWrists.Rows.Insert(.dgvWrists.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvWrists.Rows.Insert(.dgvWrists.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "hands" Then
-                        .dgvHands.Rows.Insert(.dgvHands.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvHands.Rows.Insert(.dgvHands.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "legs" Then
-                        .dgvLegs.Rows.Insert(.dgvLegs.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvLegs.Rows.Insert(.dgvLegs.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "feet" Then
-                        .dgvFeet.Rows.Insert(.dgvFeet.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvFeet.Rows.Insert(.dgvFeet.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = "neck" Then
-                        .dgvNeck.Rows.Insert(.dgvNeck.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvNeck.Rows.Insert(.dgvNeck.Rows.Count - 2, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     ElseIf LCase(cboType.Text) = LCase("none") Then
                         'add oddballs to everything (such as unequipped)
-                        .dgvHead.Rows.Insert(.dgvHead.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvChest.Rows.Insert(.dgvChest.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvArms.Rows.Insert(.dgvArms.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvWrists.Rows.Insert(.dgvWrists.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvHands.Rows.Insert(.dgvHands.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvLegs.Rows.Insert(.dgvLegs.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvFeet.Rows.Insert(.dgvFeet.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
-                        .dgvNeck.Rows.Insert(.dgvNeck.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text)})
+                        .dgvHead.Rows.Insert(.dgvHead.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvChest.Rows.Insert(.dgvChest.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvArms.Rows.Insert(.dgvArms.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvWrists.Rows.Insert(.dgvWrists.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvHands.Rows.Insert(.dgvHands.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvLegs.Rows.Insert(.dgvLegs.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvFeet.Rows.Insert(.dgvFeet.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
+                        .dgvNeck.Rows.Insert(.dgvNeck.Rows.Count - 1, New String() {highest, txtName.Text, numWgt.Value, numArmBon.Value, numChk.Value, numPrice.Value, cboClass.Text, LCase(cboType.Text), numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
                     End If
                     'close the form after adding a new armor
                     Me.Close()
