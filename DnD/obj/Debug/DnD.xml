@@ -74,6 +74,16 @@ DnD
  Structure to hold contact information
  </summary>
 	<remarks>This will be implemented in an array</remarks>
+</member><member name="T:DnD.frmSelPlayer.WeapStats">
+	<summary>
+ structure holds all relevant stats pertaining to a single weapon ID
+ </summary>
+	<remarks></remarks>
+</member><member name="T:DnD.frmSelPlayer.ArmorStats">
+	<summary>
+ structure holds all relevant stats pertaining to a single armor ID
+ </summary>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelPlayer.LoadPlayerStats">
 	<summary>
  Load customer information to structure using clsData
@@ -250,6 +260,13 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.abilMod_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates tooltip to show the modifier of each ability score
+ </summary>
+	<param name="sender">ability text control</param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelArmor.dgvWeapons_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
 	<summary>
  on doubleclick, adds selected armor to variables, so the can be added back in parent form
@@ -302,7 +319,7 @@ DnD
 	<param name="key">the unique armor/weapon ID</param>
 	<param name="column">name of the column to look for key, in dgv</param>
 	<returns>returns the row that the key was found on</returns>
-	<remarks></remarks>
+	<remarks>modified from YWE's post: https://stackoverflow.com/questions/4228278/datagridview-programmatically-select-a-row-based-on-values-find-in-the-grid </remarks>
 </member><member name="M:DnD.frmAbilSkillRoll.btnInit_Click(System.Object,System.EventArgs)">
 	<summary>
  button rolls a random initiative

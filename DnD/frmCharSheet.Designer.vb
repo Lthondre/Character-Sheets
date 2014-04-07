@@ -75,6 +75,7 @@ Partial Class frmCharSheet
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnSelArmor = New System.Windows.Forms.Button()
         Me.pnlCharSheet = New System.Windows.Forms.Panel()
+        Me.pbxColor = New System.Windows.Forms.PictureBox()
         Me.btnExp = New System.Windows.Forms.Button()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.txtCarryCap = New System.Windows.Forms.TextBox()
@@ -104,7 +105,6 @@ Partial Class frmCharSheet
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
         Me.btnRoll = New System.Windows.Forms.Button()
-        Me.pbxColor = New System.Windows.Forms.PictureBox()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -526,6 +526,7 @@ Partial Class frmCharSheet
         Me.txtColor.Location = New System.Drawing.Point(423, 159)
         Me.txtColor.MaxLength = 1
         Me.txtColor.Name = "txtColor"
+        Me.txtColor.ReadOnly = True
         Me.txtColor.Size = New System.Drawing.Size(100, 20)
         Me.txtColor.TabIndex = 35
         Me.txtColor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -648,6 +649,16 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Name = "pnlCharSheet"
         Me.pnlCharSheet.Size = New System.Drawing.Size(552, 520)
         Me.pnlCharSheet.TabIndex = 55
+        '
+        'pbxColor
+        '
+        Me.pbxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbxColor.Enabled = False
+        Me.pbxColor.Location = New System.Drawing.Point(391, 159)
+        Me.pbxColor.Name = "pbxColor"
+        Me.pbxColor.Size = New System.Drawing.Size(26, 20)
+        Me.pbxColor.TabIndex = 82
+        Me.pbxColor.TabStop = False
         '
         'btnExp
         '
@@ -900,16 +911,6 @@ Partial Class frmCharSheet
         Me.btnRoll.TabIndex = 80
         Me.btnRoll.Text = "R&oll"
         Me.btnRoll.UseVisualStyleBackColor = True
-        '
-        'pbxColor
-        '
-        Me.pbxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbxColor.Enabled = False
-        Me.pbxColor.Location = New System.Drawing.Point(391, 159)
-        Me.pbxColor.Name = "pbxColor"
-        Me.pbxColor.Size = New System.Drawing.Size(26, 20)
-        Me.pbxColor.TabIndex = 82
-        Me.pbxColor.TabStop = False
         '
         'frmCharSheet
         '

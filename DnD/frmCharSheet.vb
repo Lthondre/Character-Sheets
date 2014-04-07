@@ -129,6 +129,14 @@ Public Class frmCharSheet
             MessageBox.Show("Please enter a Neck", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             btnNeck.Focus()
         Else
+            'return to base stats before saving to database
+            txtStr.Text = Val(txtStr.Text) - Val(txtStr.Tag)
+            txtDex.Text = Val(txtDex.Text) - Val(txtDex.Tag)
+            txtWis.Text = Val(txtWis.Text) - Val(txtWis.Tag)
+            txtCha.Text = Val(txtCha.Text) - Val(txtCha.Tag)
+            txtInt.Text = Val(txtInt.Text) - Val(txtInt.Tag)
+            txtCon.Text = Val(txtCon.Text) - Val(txtCon.Tag)
+
             'validate add/edit
             If txtCName.Tag.ToString <> "" Then
                 'create new instance of class
@@ -416,15 +424,15 @@ Public Class frmCharSheet
             cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
             cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
             txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
-            txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
+            'txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
+            'only newbies should have this power
+            txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
+            txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
+            txtCha.ReadOnly = IIf(txtCha.ReadOnly = False, True, False)
+            txtCon.ReadOnly = IIf(txtCon.ReadOnly = False, True, False)
+            txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
+            txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
         End If
-
-        txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
-        txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
-        txtCha.ReadOnly = IIf(txtCha.ReadOnly = False, True, False)
-        txtCon.ReadOnly = IIf(txtCon.ReadOnly = False, True, False)
-        txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
-        txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
         txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
         txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
         txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
@@ -444,7 +452,7 @@ Public Class frmCharSheet
         btnFeet.Enabled = IIf(btnFeet.Enabled = False, True, False)
         btnWrists.Enabled = IIf(btnWrists.Enabled = False, True, False)
         btnSelArmor.Enabled = IIf(btnSelArmor.Enabled = False, True, False)
-        txtStr.Focus()
+        txtHP.Focus()
     End Sub
 
     ''' <summary>
@@ -904,22 +912,30 @@ Public Class frmCharSheet
                 Do
                     Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier", 0)
                     goodIn = True
+                    'increase stats and mods by their increment value, difference is the base ability
                     Select Case LCase(res)
                         Case "dex", "dexterity"
                             txtDex.Tag = Val(txtDex.Tag) + 2
+                            txtDex.Text = Val(txtDex.Text) + 2
                         Case "str", "strength"
                             txtStr.Tag = Val(txtStr.Tag) + 2
+                            txtStr.Text = Val(txtStr.Text) + 2
                         Case "cha", "charisma"
                             txtCha.Tag = Val(txtCha.Tag) + 2
+                            txtCha.Text = Val(txtCha.Text) + 2
                         Case "int", "intelligence", "intellect"
                             txtInt.Tag = Val(txtInt.Tag) + 2
+                            txtInt.Text = Val(txtInt.Text) + 2
                         Case "wis", "wisdom"
                             txtWis.Tag = Val(txtWis.Tag) + 2
+                            txtWis.Text = Val(txtWis.Text) + 2
                         Case "con", "constitution"
                             txtCon.Tag = Val(txtCon.Tag) + 2
+                            txtCon.Text = Val(txtCon.Text) + 2
                         Case 0
                             'Default to Strength modifer
                             txtStr.Tag = Val(txtStr.Tag) + 2
+                            txtStr.Text = Val(txtStr.Text) + 2
                         Case Else
                             'Nice output for user
                             MessageBox.Show("That is not a valid ability to modify" & vbCrLf & "Choose DEX, STR, CHA, INT, WIS, or CON", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -928,23 +944,35 @@ Public Class frmCharSheet
                 Loop While goodIn = False
             ElseIf LCase(cboRace.Text) = "halfling" Then
                 txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
                 txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
             ElseIf LCase(cboRace.Text) = "gnome" Then
                 'book two
                 txtInt.Tag = Val(txtInt.Tag) + 2
+                txtInt.Text = Val(txtInt.Text) + 2
                 txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
             ElseIf LCase(cboRace.Text) = "half orc" Then
                 txtStr.Tag = Val(txtStr.Tag) + 2
+                txtStr.Text = Val(txtStr.Text) + 2
                 txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
             ElseIf LCase(cboRace.Text) = "dwarf" Then
                 txtCon.Tag = Val(txtCon.Tag) + 2
+                txtCon.Text = Val(txtCon.Text) + 2
                 txtWis.Tag = Val(txtWis.Tag) + 2
+                txtWis.Text = Val(txtWis.Text) + 2
             ElseIf LCase(cboRace.Text) = "half elf" Then
                 txtCon.Tag = Val(txtCon.Tag) + 2
+                txtCon.Text = Val(txtCon.Text) + 2
                 txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
             ElseIf LCase(cboRace.Text) = "elf" Then
                 txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
                 txtWis.Tag = Val(txtWis.Tag) + 2
+                txtWis.Text = Val(txtWis.Text) + 2
             End If
             Console.WriteLine(LCase(cboRace.Text))
             Console.WriteLine("Dex: " & txtDex.Tag)
@@ -1094,5 +1122,17 @@ Public Class frmCharSheet
                 res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
             End If
         Loop Until goodInt = True
+    End Sub
+
+    ''' <summary>
+    ''' updates tooltip to show the modifier of each ability score
+    ''' </summary>
+    ''' <param name="sender">ability text control</param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub abilMod_TextChanged(sender As Object, e As EventArgs) Handles txtStr.TextChanged, txtDex.TextChanged, txtWis.TextChanged, txtCha.TextChanged, txtInt.TextChanged, txtCon.TextChanged
+        'everytime the ability score changes, update the tooltip
+        Me.ttpHelp.SetToolTip(sender, "Roll 4d6. Take sum minus lowest result" & vbCrLf & "Modifier: " & vbTab & Val(sender.tag))
+        Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
     End Sub
 End Class

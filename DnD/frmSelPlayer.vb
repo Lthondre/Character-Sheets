@@ -32,10 +32,10 @@
         Public Loc As String
         Public moSTR As String
         Public moDEX As String
-        Public moCON As String
-        Public moINT As String
         Public moWIS As String
         Public moCHA As String
+        Public moINT As String
+        Public moCON As String
         Public helm As Long
         Public chest As Long
         Public legs As Long
@@ -279,7 +279,6 @@
                         loadStat(Val(Weapon(j).check), "chk", PlayerRecord)
                     End If
                 Next
-
                 .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
                 .txtExp.Text = Player(lstPlayers.SelectedIndex).Exp
                 .txtLoc.Text = Player(lstPlayers.SelectedIndex).Loc
@@ -418,7 +417,7 @@
                 .txtInitiative.ReadOnly = True
                 .txtCheck.ReadOnly = True
                 .txtAP.ReadOnly = True
-                .txtColor.ReadOnly = True
+                '.txtColor.ReadOnly = True
                 .txtCarryCap.ReadOnly = True
                 .txtWepName.ReadOnly = True
                 .txtLevel.ReadOnly = True
@@ -520,21 +519,27 @@
                 Case "str"
                     'add strength modifer
                     .txtStr.tag = Val(.txtStr.tag) + arr
+                    .txtstr.text = Val(.txtstr.text) + arr
                 Case "dex"
                     'add dex mod
                     .txtDex.tag = Val(.txtDex.tag) + arr
+                    .txtDex.text = Val(.txtDex.text) + arr
                 Case "wis"
                     'add wis mod
                     .txtWis.tag = Val(.txtWis.tag) + arr
+                    .txtWis.text = Val(.txtWis.text) + arr
                 Case "cha"
                     'add cha mod
                     .txtCha.tag = Val(.txtCha.tag) + arr
+                    .txtCha.text = Val(.txtCha.text) + arr
                 Case "int"
                     'add int mod
                     .txtInt.tag = Val(.txtInt.tag) + arr
+                    .txtInt.text = Val(.txtInt.text) + arr
                 Case "con"
                     'add con mod
                     .txtCon.tag = Val(.txtCon.tag) + arr
+                    .txtCon.text = Val(.txtCon.text) + arr
             End Select
         End With
     End Sub

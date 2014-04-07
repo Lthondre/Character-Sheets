@@ -1,7 +1,12 @@
 CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
 
 after you select a weapon/armor, weapon stats need to be applied to character
-	need to implement ability modifiers on weapons/armor
+	need to implement ability modifiers on weapons
+
+recently added modifier tooltiptext for user on ability scores
+	-check values for moABILITY (only usage in frmAbilSkillRoll?)
+	-make sure everything updates properly
+	-base stat is difference between text prop. and tag prop.
 
 need to add class powers. try to do in access
 	www.dandwiki.com
