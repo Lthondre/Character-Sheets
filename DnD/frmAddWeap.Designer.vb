@@ -34,10 +34,28 @@ Partial Class frmAddWeap
         Me.txtPrice = New System.Windows.Forms.NumericUpDown()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.numStr = New System.Windows.Forms.NumericUpDown()
+        Me.numDex = New System.Windows.Forms.NumericUpDown()
+        Me.numWis = New System.Windows.Forms.NumericUpDown()
+        Me.numCha = New System.Windows.Forms.NumericUpDown()
+        Me.numInt = New System.Windows.Forms.NumericUpDown()
+        Me.numCon = New System.Windows.Forms.NumericUpDown()
         CType(Me.txtWgt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtChk, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numStr, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numDex, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numWis, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numCha, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numInt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.numCon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -99,6 +117,7 @@ Partial Class frmAddWeap
         Me.txtWgt.Name = "txtWgt"
         Me.txtWgt.Size = New System.Drawing.Size(100, 20)
         Me.txtWgt.TabIndex = 1
+        Me.txtWgt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtArm
         '
@@ -107,6 +126,7 @@ Partial Class frmAddWeap
         Me.txtArm.Name = "txtArm"
         Me.txtArm.Size = New System.Drawing.Size(100, 20)
         Me.txtArm.TabIndex = 2
+        Me.txtArm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtChk
         '
@@ -115,6 +135,7 @@ Partial Class frmAddWeap
         Me.txtChk.Name = "txtChk"
         Me.txtChk.Size = New System.Drawing.Size(100, 20)
         Me.txtChk.TabIndex = 3
+        Me.txtChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtPrice
         '
@@ -122,10 +143,11 @@ Partial Class frmAddWeap
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(100, 20)
         Me.txtPrice.TabIndex = 4
+        Me.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(197, 142)
+        Me.btnClose.Location = New System.Drawing.Point(197, 298)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
         Me.btnClose.TabIndex = 6
@@ -134,18 +156,132 @@ Partial Class frmAddWeap
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(12, 142)
+        Me.btnAdd.Location = New System.Drawing.Point(12, 298)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 23)
         Me.btnAdd.TabIndex = 5
         Me.btnAdd.Text = "&Add"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 144)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Str Mod"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(12, 170)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(50, 13)
+        Me.Label7.TabIndex = 8
+        Me.Label7.Text = "Dex Mod"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 196)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(49, 13)
+        Me.Label8.TabIndex = 9
+        Me.Label8.Text = "Wis Mod"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(12, 222)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(50, 13)
+        Me.Label9.TabIndex = 10
+        Me.Label9.Text = "Cha Mod"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(12, 248)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(43, 13)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "Int Mod"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(12, 274)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(50, 13)
+        Me.Label11.TabIndex = 12
+        Me.Label11.Text = "Con Mod"
+        '
+        'numStr
+        '
+        Me.numStr.Location = New System.Drawing.Point(172, 142)
+        Me.numStr.Name = "numStr"
+        Me.numStr.Size = New System.Drawing.Size(100, 20)
+        Me.numStr.TabIndex = 13
+        Me.numStr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'numDex
+        '
+        Me.numDex.Location = New System.Drawing.Point(172, 168)
+        Me.numDex.Name = "numDex"
+        Me.numDex.Size = New System.Drawing.Size(100, 20)
+        Me.numDex.TabIndex = 14
+        Me.numDex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'numWis
+        '
+        Me.numWis.Location = New System.Drawing.Point(172, 194)
+        Me.numWis.Name = "numWis"
+        Me.numWis.Size = New System.Drawing.Size(100, 20)
+        Me.numWis.TabIndex = 15
+        Me.numWis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'numCha
+        '
+        Me.numCha.Location = New System.Drawing.Point(172, 220)
+        Me.numCha.Name = "numCha"
+        Me.numCha.Size = New System.Drawing.Size(100, 20)
+        Me.numCha.TabIndex = 16
+        Me.numCha.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'numInt
+        '
+        Me.numInt.Location = New System.Drawing.Point(172, 246)
+        Me.numInt.Name = "numInt"
+        Me.numInt.Size = New System.Drawing.Size(100, 20)
+        Me.numInt.TabIndex = 17
+        Me.numInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'numCon
+        '
+        Me.numCon.Location = New System.Drawing.Point(172, 272)
+        Me.numCon.Name = "numCon"
+        Me.numCon.Size = New System.Drawing.Size(100, 20)
+        Me.numCon.TabIndex = 18
+        Me.numCon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'frmAddWeap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 177)
+        Me.ClientSize = New System.Drawing.Size(284, 334)
+        Me.Controls.Add(Me.numCon)
+        Me.Controls.Add(Me.numInt)
+        Me.Controls.Add(Me.numCha)
+        Me.Controls.Add(Me.numWis)
+        Me.Controls.Add(Me.numDex)
+        Me.Controls.Add(Me.numStr)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.txtPrice)
@@ -166,6 +302,12 @@ Partial Class frmAddWeap
         CType(Me.txtArm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtChk, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numStr, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numDex, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numWis, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numCha, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numInt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.numCon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -182,4 +324,16 @@ Partial Class frmAddWeap
     Friend WithEvents txtPrice As System.Windows.Forms.NumericUpDown
     Friend WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents btnAdd As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents numStr As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numDex As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numWis As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numCha As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numInt As System.Windows.Forms.NumericUpDown
+    Friend WithEvents numCon As System.Windows.Forms.NumericUpDown
 End Class

@@ -305,8 +305,8 @@ Public Class frmCharSheet
             Dim newName As New CharOptions.rndOpts
             txtCName.Text = newName.selName
 
-            'if genColors has been ran, then just select a color from allCols at random, else generate the colors
-            If allCols(0).Name <> "" Then
+            'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
+            If allCols.Length <= 0 Then
                 genColors()
                 rColor()
             Else
@@ -336,7 +336,7 @@ Public Class frmCharSheet
         cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
 
         'testing Information
-        txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), txtDex.Tag, txtInt.Tag)
+        txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), Val(txtDex.Tag), Val(txtInt.Tag))
         txtCheck.Text = "0"
         txtAP.Text = "9"
         txtLoc.Text = "0,0"
@@ -459,6 +459,13 @@ Public Class frmCharSheet
                 txtCarryCap.Text = Val(txtCarryCap.Text) - .dgvWeapons.Item(2, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dweight
                 txtAC.Text = Val(txtAC.Text) - .dgvWeapons.Item(3, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .darmBonus
                 txtCheck.Text = Val(txtCheck.Text) - .dgvWeapons.Item(4, FindValue(.dgvWeapons, Val(txtWepName.Tag), "wID").Index).Value + .dcheckMod
+                'ability mods
+                txtStr.Tag = Val(txtStr.Tag) - .dgvWeapons.Item(8, FindValue(.dgvWeapons, Val(txtStr.Tag), "allID").Index).Value + .dSTR
+                txtDex.Tag = Val(txtDex.Tag) - .dgvWeapons.Item(9, FindValue(.dgvWeapons, Val(txtDex.Tag), "allID").Index).Value + .dDEX
+                txtWis.Tag = Val(txtWis.Tag) - .dgvWeapons.Item(10, FindValue(.dgvWeapons, Val(txtWis.Tag), "allID").Index).Value + .dWIS
+                txtCha.Tag = Val(txtCha.Tag) - .dgvWeapons.Item(11, FindValue(.dgvWeapons, Val(txtCha.Tag), "allID").Index).Value + .dCHA
+                txtInt.Tag = Val(txtInt.Tag) - .dgvWeapons.Item(12, FindValue(.dgvWeapons, Val(txtInt.Tag), "allID").Index).Value + .dINT
+                txtCon.Tag = Val(txtCon.Tag) - .dgvWeapons.Item(13, FindValue(.dgvWeapons, Val(txtCon.Tag), "allID").Index).Value + .dCON
                 txtWepName.Text = .dtext
                 txtWepName.Tag = .dtag
             End If

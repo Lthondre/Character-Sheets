@@ -61,6 +61,13 @@
                     frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).armor = txtArm.Text
                     frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).wgt = txtWgt.Text
                     frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).price = txtPrice.Text
+                    'ability mods
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).str = numStr.Value
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).dex = numDex.Value
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).wis = numWis.Value
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).cha = numCha.Value
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).int = numInt.Value
+                    frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).con = numCon.Value
                     frmSelPlayer.Weapon(frmSelPlayer.Weapon.Length - 1).WID = tag
 
                     'add new weapon to database
@@ -79,6 +86,13 @@
                         .Item("wArmBon") = txtArm.Text
                         .Item("wWgt") = txtWgt.Text
                         .Item("wPrice") = txtPrice.Text
+                        'abil mods
+                        .Item("wSTR") = numStr.Value
+                        .Item("wDEX") = numDex.Value
+                        .Item("wWIS") = numWis.Value
+                        .Item("wCHA") = numCha.Value
+                        .Item("wINT") = numInt.Value
+                        .Item("wCON") = numCon.Value
                     End With
                     'add row to dataset
                     WeaponData.ds.Tables(0).Rows.Add(dsNewRow)
@@ -86,7 +100,7 @@
                     WeaponData.da.Update(WeaponData.ds)
 
                     'add values to datagrid
-                    .dgvWeapons.Rows.Insert(idx, New String() {tag, txtName.Text, txtWgt.Value, txtArm.Value, txtChk.Value, txtPrice.Value})
+                    .dgvWeapons.Rows.Insert(idx, New String() {tag, txtName.Text, txtWgt.Value, txtArm.Value, txtChk.Value, txtPrice.Value, numStr.Value, numDex.Value, numWis.Value, numCha.Value, numInt.Value, numCon.Value})
 
                     'close the form after adding a new weapon
                     Me.Close()

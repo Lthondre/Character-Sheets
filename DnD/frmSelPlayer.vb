@@ -57,6 +57,13 @@
         Public check As Long
         Public price As Double
         Public name As String
+        'ability mods
+        Public str As Integer
+        Public dex As Integer
+        Public wis As Integer
+        Public cha As Integer
+        Public int As Integer
+        Public con As Integer
     End Structure
 
     ''' <summary>
@@ -159,6 +166,13 @@
                 .check = WeaponData.ds.Tables(0).Rows(i).Item("wChkMod").ToString
                 .price = WeaponData.ds.Tables(0).Rows(i).Item("wPrice").ToString
                 .name = WeaponData.ds.Tables(0).Rows(i).Item("wName").ToString
+                'abil mods
+                .str = WeaponData.ds.Tables(0).Rows(i).Item("wSTR").ToString
+                .dex = WeaponData.ds.Tables(0).Rows(i).Item("wDEX").ToString()
+                .wis = WeaponData.ds.Tables(0).Rows(i).Item("wWIS").ToString()
+                .cha = WeaponData.ds.Tables(0).Rows(i).Item("wCHA").ToString()
+                .int = WeaponData.ds.Tables(0).Rows(i).Item("wINT").ToString()
+                .con = WeaponData.ds.Tables(0).Rows(i).Item("wCON").ToString()
             End With
         Next
         'armor
@@ -277,6 +291,12 @@
                         loadStat(Val(Weapon(j).wgt), "weight", PlayerRecord)
                         loadStat(Val(Weapon(j).armor), "ac", PlayerRecord)
                         loadStat(Val(Weapon(j).check), "chk", PlayerRecord)
+                        loadStat(Weapon(j).str, "str", PlayerRecord)
+                        loadStat(Weapon(j).dex, "dex", PlayerRecord)
+                        loadStat(Weapon(j).wis, "wis", PlayerRecord)
+                        loadStat(Weapon(j).cha, "cha", PlayerRecord)
+                        loadStat(Weapon(j).int, "int", PlayerRecord)
+                        loadStat(Weapon(j).con, "con", PlayerRecord)
                     End If
                 Next
                 .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
