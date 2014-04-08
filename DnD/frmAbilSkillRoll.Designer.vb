@@ -111,8 +111,10 @@ Partial Class frmAbilSkillRoll
         '
         Me.txtStrChk.Location = New System.Drawing.Point(93, 136)
         Me.txtStrChk.Name = "txtStrChk"
+        Me.txtStrChk.ReadOnly = True
         Me.txtStrChk.Size = New System.Drawing.Size(100, 20)
         Me.txtStrChk.TabIndex = 9
+        Me.txtStrChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btnDexChk
         '
@@ -163,36 +165,46 @@ Partial Class frmAbilSkillRoll
         '
         Me.txtDexChk.Location = New System.Drawing.Point(93, 162)
         Me.txtDexChk.Name = "txtDexChk"
+        Me.txtDexChk.ReadOnly = True
         Me.txtDexChk.Size = New System.Drawing.Size(100, 20)
         Me.txtDexChk.TabIndex = 15
+        Me.txtDexChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtConChk
         '
         Me.txtConChk.Location = New System.Drawing.Point(93, 188)
         Me.txtConChk.Name = "txtConChk"
+        Me.txtConChk.ReadOnly = True
         Me.txtConChk.Size = New System.Drawing.Size(100, 20)
         Me.txtConChk.TabIndex = 16
+        Me.txtConChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtWisChk
         '
         Me.txtWisChk.Location = New System.Drawing.Point(93, 214)
         Me.txtWisChk.Name = "txtWisChk"
+        Me.txtWisChk.ReadOnly = True
         Me.txtWisChk.Size = New System.Drawing.Size(100, 20)
         Me.txtWisChk.TabIndex = 17
+        Me.txtWisChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtIntChk
         '
         Me.txtIntChk.Location = New System.Drawing.Point(93, 240)
         Me.txtIntChk.Name = "txtIntChk"
+        Me.txtIntChk.ReadOnly = True
         Me.txtIntChk.Size = New System.Drawing.Size(100, 20)
         Me.txtIntChk.TabIndex = 18
+        Me.txtIntChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtChaChk
         '
         Me.txtChaChk.Location = New System.Drawing.Point(93, 266)
         Me.txtChaChk.Name = "txtChaChk"
+        Me.txtChaChk.ReadOnly = True
         Me.txtChaChk.Size = New System.Drawing.Size(100, 20)
         Me.txtChaChk.TabIndex = 19
+        Me.txtChaChk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'rbtnAbil
         '

@@ -3,6 +3,7 @@ Imports CharOptions.rndOpts
 
 Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
+    Dim allCols() As Color = New Color() {} 'array that holds all colors
     Event weapArmor As EventHandler
 
     ''' <summary>
@@ -93,7 +94,7 @@ Public Class frmCharSheet
             MessageBox.Show("Please enter Weapon Name", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtWepName.Focus()
         ElseIf txtColor.Text = "" Then
-            MessageBox.Show("Pleae enter a Color", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Pleae enter a Color (click the color box)", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtColor.Focus()
         ElseIf txtLevel.Text = "" Then
             MessageBox.Show("Please enter Level", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -304,29 +305,13 @@ Public Class frmCharSheet
             Dim newName As New CharOptions.rndOpts
             txtCName.Text = newName.selName
 
-            'random color
-            'credit to: andrepeters.co.uk/?p=142
-            Dim colType As Type = GetType(Color)
-            Dim colInfo() As System.Reflection.PropertyInfo = colType.GetProperties
-            Dim conv As New ColorConverter
-            Dim allCols() As Color = New Color() {}
-            Dim i As Integer = 0
-            Dim c As Color = Nothing
-            Dim o As Object = Nothing
-            For Each pi As System.Reflection.PropertyInfo In colInfo
-                If pi.PropertyType.Name = "Color" And pi.Name <> "Transparent" Then
-                    o = conv.ConvertFromString(pi.Name)
-                    c = CType(o, Color)
-                    ReDim Preserve allCols(i)
-                    allCols(i) = c
-                    i += 1
-                End If
-            Next
-            'select random index of allcols and assign that to the textbox
-            Dim r As New Random
-            Dim rCol = allCols(r.Next(0, allCols.Length - 1))
-            txtColor.Text = rCol.Name.ToString
-            pbxColor.BackColor = rCol
+            'if genColors has been ran, then just select a color from allCols at random, else generate the colors
+            If allCols(0).Name <> "" Then
+                genColors()
+                rColor()
+            Else
+                rColor()
+            End If
         End If
 
         'new characters are always level 1, with 0 experience
@@ -1134,5 +1119,60 @@ Public Class frmCharSheet
         'everytime the ability score changes, update the tooltip
         Me.ttpHelp.SetToolTip(sender, "Roll 4d6. Take sum minus lowest result" & vbCrLf & "Modifier: " & vbTab & Val(sender.tag))
         Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
+    End Sub
+
+    ''' <summary>
+    ''' sets new random color on click of picturebox
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub pbxColor_Click(sender As Object, e As EventArgs) Handles pbxColor.Click
+        'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
+        If allCols.Length <= 0 Then
+            genColors()
+            rColor()
+        Else
+            rColor()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' generates an array that holds all colors in it
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub genColors()
+        'credit to: andrepeters.co.uk/?p=142
+        Console.WriteLine("Gen")
+        Dim colType As Type = GetType(Color)
+        Dim colInfo() As System.Reflection.PropertyInfo = colType.GetProperties
+        Dim conv As New ColorConverter
+        allCols = New Color() {}
+        Dim i As Integer = 0
+        Dim c As Color = Nothing
+        Dim o As Object = Nothing
+        For Each pi As System.Reflection.PropertyInfo In colInfo
+            If pi.PropertyType.Name = "Color" And pi.Name <> "Transparent" Then
+                o = conv.ConvertFromString(pi.Name)
+                c = CType(o, Color)
+                ReDim Preserve allCols(i)
+                allCols(i) = c
+                i += 1
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' takes all colors into an array only if their of type Color
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub rColor()
+        Console.WriteLine("rand")
+        'select random index of allcols and assign that to the textbox
+        Randomize()
+        Dim r As New Random
+        Dim rCol = allCols(r.Next(0, allCols.Length - 1))
+        txtColor.Text = rCol.Name.ToString
+        pbxColor.BackColor = rCol
     End Sub
 End Class

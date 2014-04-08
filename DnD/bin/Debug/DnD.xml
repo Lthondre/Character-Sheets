@@ -267,6 +267,23 @@ DnD
 	<param name="sender">ability text control</param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.pbxColor_Click(System.Object,System.EventArgs)">
+	<summary>
+ sets new random color on click of picturebox
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.genColors">
+	<summary>
+ generates an array that holds all colors in it
+ </summary>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.rColor">
+	<summary>
+ takes all colors into an array only if their of type Color
+ </summary>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelArmor.dgvWeapons_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
 	<summary>
  on doubleclick, adds selected armor to variables, so the can be added back in parent form

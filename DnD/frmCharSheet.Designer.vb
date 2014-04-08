@@ -653,7 +653,6 @@ Partial Class frmCharSheet
         'pbxColor
         '
         Me.pbxColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbxColor.Enabled = False
         Me.pbxColor.Location = New System.Drawing.Point(391, 159)
         Me.pbxColor.Name = "pbxColor"
         Me.pbxColor.Size = New System.Drawing.Size(26, 20)
