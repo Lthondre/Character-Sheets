@@ -1,35 +1,19 @@
 CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
 
-after you select a weapon/armor, weapon stats need to be applied to character
-	need to implement ability modifiers on weapons
-
-recently added modifier tooltiptext for user on ability scores
-	-check values for moABILITY (only usage in frmAbilSkillRoll?)
-	-make sure everything updates properly
-	-base stat is difference between text prop. and tag prop.
-
 need to add class powers. try to do in access
-	www.dandwiki.com
-	change text property so that classes power title
-		-Spells/Prayers/Exploits (Arcane/Divine/Martial)
-	click button, see all powers at or below current level
 	keep small files per user on how many non-cantrip spells they've used
 		-check every day
 		-total allowed/day | total used today
+began implementing powers
+	-reads correctly from database
+	-need to recieve player calss and level from frmCharSheet
 	
-still closes frmCharSheet after error
-	do-while loop does not counter this
-
 frmCharSheet save statements can probably look better
 
 format string works fine in console, looks like shit in list box	
 
 need following calculated fields on random roll:
 	Action Points
-
-needs gui
-
-does not change things levelling down
 
 release versions need proper connection string.
 	it is in comments in mdlGlobal
@@ -39,38 +23,3 @@ No feats
 
 No gods No Kings
     only man
-
-consider cleaning up armor load statements in frmSelPlayer::btnEdit_Click
-
-weapons
--update database
--skill mods
--change all datagrids
--change all calls/updates
--change all forms
--update all SQL commands
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

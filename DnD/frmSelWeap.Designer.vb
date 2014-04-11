@@ -22,13 +22,11 @@ Partial Class frmSelWeap
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvWeapons = New System.Windows.Forms.DataGridView()
-        Me.btnClose = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
         Me.wID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wWeight = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -41,6 +39,8 @@ Partial Class frmSelWeap
         Me.wCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         CType(Me.dgvWeapons, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,24 +60,6 @@ Partial Class frmSelWeap
         Me.dgvWeapons.Size = New System.Drawing.Size(1305, 306)
         Me.dgvWeapons.TabIndex = 0
         '
-        'btnClose
-        '
-        Me.btnClose.Location = New System.Drawing.Point(631, 312)
-        Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(75, 23)
-        Me.btnClose.TabIndex = 2
-        Me.btnClose.Text = "&Close"
-        Me.btnClose.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.Location = New System.Drawing.Point(12, 312)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.btnAdd.TabIndex = 3
-        Me.btnAdd.Text = "&Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
-        '
         'wID
         '
         Me.wID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -85,7 +67,6 @@ Partial Class frmSelWeap
         Me.wID.Name = "wID"
         Me.wID.ReadOnly = True
         Me.wID.Visible = False
-        Me.wID.Width = 84
         '
         'wName
         '
@@ -97,8 +78,8 @@ Partial Class frmSelWeap
         'wWeight
         '
         Me.wWeight.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        Me.wWeight.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.wWeight.DefaultCellStyle = DataGridViewCellStyle1
         Me.wWeight.HeaderText = "Weight (Pounds)"
         Me.wWeight.Name = "wWeight"
         Me.wWeight.ReadOnly = True
@@ -107,8 +88,8 @@ Partial Class frmSelWeap
         'wArmorBonus
         '
         Me.wArmorBonus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        Me.wArmorBonus.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.wArmorBonus.DefaultCellStyle = DataGridViewCellStyle2
         Me.wArmorBonus.HeaderText = "Armor Bonus"
         Me.wArmorBonus.Name = "wArmorBonus"
         Me.wArmorBonus.ReadOnly = True
@@ -117,8 +98,8 @@ Partial Class frmSelWeap
         'wCheck
         '
         Me.wCheck.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        Me.wCheck.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.wCheck.DefaultCellStyle = DataGridViewCellStyle3
         Me.wCheck.HeaderText = "Check Modifier"
         Me.wCheck.Name = "wCheck"
         Me.wCheck.ReadOnly = True
@@ -127,8 +108,8 @@ Partial Class frmSelWeap
         'wPrice
         '
         Me.wPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        Me.wPrice.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.wPrice.DefaultCellStyle = DataGridViewCellStyle4
         Me.wPrice.HeaderText = "Price (Gold)"
         Me.wPrice.Name = "wPrice"
         Me.wPrice.ReadOnly = True
@@ -176,11 +157,33 @@ Partial Class frmSelWeap
         Me.wCon.Name = "wCon"
         Me.wCon.Width = 87
         '
+        'btnClose
+        '
+        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnClose.Location = New System.Drawing.Point(631, 312)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(75, 23)
+        Me.btnClose.TabIndex = 2
+        Me.btnClose.Text = "&Close"
+        Me.btnClose.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnAdd.Location = New System.Drawing.Point(12, 312)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnAdd.TabIndex = 3
+        Me.btnAdd.Text = "&Add"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
         'frmSelWeap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(1305, 347)
+        Me.ControlBox = False
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.dgvWeapons)

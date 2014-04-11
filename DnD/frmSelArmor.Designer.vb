@@ -23,40 +23,6 @@ Partial Class frmSelArmor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dgvHead = New System.Windows.Forms.DataGridView()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.tabArmor = New System.Windows.Forms.TabControl()
-        Me.tabAll = New System.Windows.Forms.TabPage()
-        Me.dgvArmor = New System.Windows.Forms.DataGridView()
-        Me.tabHelm = New System.Windows.Forms.TabPage()
-        Me.tabNeck = New System.Windows.Forms.TabPage()
-        Me.dgvNeck = New System.Windows.Forms.DataGridView()
-        Me.tabChest = New System.Windows.Forms.TabPage()
-        Me.dgvChest = New System.Windows.Forms.DataGridView()
-        Me.tabArms = New System.Windows.Forms.TabPage()
-        Me.dgvArms = New System.Windows.Forms.DataGridView()
-        Me.tabWrists = New System.Windows.Forms.TabPage()
-        Me.dgvWrists = New System.Windows.Forms.DataGridView()
-        Me.tabHands = New System.Windows.Forms.TabPage()
-        Me.dgvHands = New System.Windows.Forms.DataGridView()
-        Me.tabLegs = New System.Windows.Forms.TabPage()
-        Me.dgvLegs = New System.Windows.Forms.DataGridView()
-        Me.tabFeet = New System.Windows.Forms.TabPage()
-        Me.dgvFeet = New System.Windows.Forms.DataGridView()
-        Me.allID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allArm = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allChk = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allAC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allStr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allDex = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allWis = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.allCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.headID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.headName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.headWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,6 +37,28 @@ Partial Class frmSelArmor
         Me.headCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.headInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.headCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.tabArmor = New System.Windows.Forms.TabControl()
+        Me.tabAll = New System.Windows.Forms.TabPage()
+        Me.dgvArmor = New System.Windows.Forms.DataGridView()
+        Me.allID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allArm = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allChk = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allAC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allStr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allDex = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allWis = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.allCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabHelm = New System.Windows.Forms.TabPage()
+        Me.tabNeck = New System.Windows.Forms.TabPage()
+        Me.dgvNeck = New System.Windows.Forms.DataGridView()
         Me.neckID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.neckName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.neckWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,6 +73,8 @@ Partial Class frmSelArmor
         Me.neckCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.neckInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.neckCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabChest = New System.Windows.Forms.TabPage()
+        Me.dgvChest = New System.Windows.Forms.DataGridView()
         Me.chestID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chestName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chestWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -99,6 +89,8 @@ Partial Class frmSelArmor
         Me.chestCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chestInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.chestCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabArms = New System.Windows.Forms.TabPage()
+        Me.dgvArms = New System.Windows.Forms.DataGridView()
         Me.armID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.armName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.armWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -113,6 +105,8 @@ Partial Class frmSelArmor
         Me.armCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.armInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.armCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabWrists = New System.Windows.Forms.TabPage()
+        Me.dgvWrists = New System.Windows.Forms.DataGridView()
         Me.wristID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wristName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wristWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -127,6 +121,8 @@ Partial Class frmSelArmor
         Me.wristCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wristInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.wristCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabHands = New System.Windows.Forms.TabPage()
+        Me.dgvHands = New System.Windows.Forms.DataGridView()
         Me.handID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.handName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.handWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -141,6 +137,8 @@ Partial Class frmSelArmor
         Me.handCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.handInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.handCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabLegs = New System.Windows.Forms.TabPage()
+        Me.dgvLegs = New System.Windows.Forms.DataGridView()
         Me.legID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.legName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.legWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -155,6 +153,8 @@ Partial Class frmSelArmor
         Me.legCha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.legInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.legCon = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tabFeet = New System.Windows.Forms.TabPage()
+        Me.dgvFeet = New System.Windows.Forms.DataGridView()
         Me.feetID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.feetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.feetWgt = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -207,8 +207,119 @@ Partial Class frmSelArmor
         Me.dgvHead.Size = New System.Drawing.Size(1291, 274)
         Me.dgvHead.TabIndex = 0
         '
+        'headID
+        '
+        Me.headID.HeaderText = "aID"
+        Me.headID.Name = "headID"
+        Me.headID.ReadOnly = True
+        Me.headID.Visible = False
+        '
+        'headName
+        '
+        Me.headName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.headName.HeaderText = "Name"
+        Me.headName.Name = "headName"
+        Me.headName.ReadOnly = True
+        '
+        'headWgt
+        '
+        Me.headWgt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headWgt.HeaderText = "Weight"
+        Me.headWgt.Name = "headWgt"
+        Me.headWgt.ReadOnly = True
+        Me.headWgt.Width = 66
+        '
+        'headAC
+        '
+        Me.headAC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headAC.HeaderText = "Armor Bonus"
+        Me.headAC.Name = "headAC"
+        Me.headAC.ReadOnly = True
+        Me.headAC.Width = 85
+        '
+        'headChk
+        '
+        Me.headChk.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headChk.HeaderText = "Check Modifier"
+        Me.headChk.Name = "headChk"
+        Me.headChk.ReadOnly = True
+        Me.headChk.Width = 95
+        '
+        'headPrice
+        '
+        Me.headPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headPrice.HeaderText = "Price"
+        Me.headPrice.Name = "headPrice"
+        Me.headPrice.ReadOnly = True
+        Me.headPrice.Width = 56
+        '
+        'headClass
+        '
+        Me.headClass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headClass.HeaderText = "Armor Class"
+        Me.headClass.Name = "headClass"
+        Me.headClass.ReadOnly = True
+        Me.headClass.Width = 80
+        '
+        'headType
+        '
+        Me.headType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headType.HeaderText = "Armor Spot"
+        Me.headType.Name = "headType"
+        Me.headType.ReadOnly = True
+        Me.headType.Visible = False
+        '
+        'headStr
+        '
+        Me.headStr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headStr.HeaderText = "Strength"
+        Me.headStr.Name = "headStr"
+        Me.headStr.ReadOnly = True
+        Me.headStr.Width = 72
+        '
+        'headDex
+        '
+        Me.headDex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headDex.HeaderText = "Dexterity"
+        Me.headDex.Name = "headDex"
+        Me.headDex.ReadOnly = True
+        Me.headDex.Width = 73
+        '
+        'headWis
+        '
+        Me.headWis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headWis.HeaderText = "Wisdom"
+        Me.headWis.Name = "headWis"
+        Me.headWis.ReadOnly = True
+        Me.headWis.Width = 70
+        '
+        'headCha
+        '
+        Me.headCha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headCha.HeaderText = "Charisma"
+        Me.headCha.Name = "headCha"
+        Me.headCha.ReadOnly = True
+        Me.headCha.Width = 75
+        '
+        'headInt
+        '
+        Me.headInt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headInt.HeaderText = "Intelligence"
+        Me.headInt.Name = "headInt"
+        Me.headInt.ReadOnly = True
+        Me.headInt.Width = 86
+        '
+        'headCon
+        '
+        Me.headCon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.headCon.HeaderText = "Constitution"
+        Me.headCon.Name = "headCon"
+        Me.headCon.ReadOnly = True
+        Me.headCon.Width = 87
+        '
         'btnAdd
         '
+        Me.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnAdd.Location = New System.Drawing.Point(12, 312)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 23)
@@ -218,6 +329,7 @@ Partial Class frmSelArmor
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(631, 312)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
@@ -272,213 +384,6 @@ Partial Class frmSelArmor
         Me.dgvArmor.Size = New System.Drawing.Size(1291, 274)
         Me.dgvArmor.TabIndex = 6
         '
-        'tabHelm
-        '
-        Me.tabHelm.Controls.Add(Me.dgvHead)
-        Me.tabHelm.Location = New System.Drawing.Point(4, 22)
-        Me.tabHelm.Name = "tabHelm"
-        Me.tabHelm.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabHelm.Size = New System.Drawing.Size(1297, 280)
-        Me.tabHelm.TabIndex = 0
-        Me.tabHelm.Text = "Head"
-        Me.tabHelm.UseVisualStyleBackColor = True
-        '
-        'tabNeck
-        '
-        Me.tabNeck.Controls.Add(Me.dgvNeck)
-        Me.tabNeck.Location = New System.Drawing.Point(4, 22)
-        Me.tabNeck.Name = "tabNeck"
-        Me.tabNeck.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabNeck.Size = New System.Drawing.Size(1297, 280)
-        Me.tabNeck.TabIndex = 7
-        Me.tabNeck.Text = "Neck"
-        Me.tabNeck.UseVisualStyleBackColor = True
-        '
-        'dgvNeck
-        '
-        Me.dgvNeck.AllowUserToDeleteRows = False
-        Me.dgvNeck.AllowUserToResizeColumns = False
-        Me.dgvNeck.AllowUserToResizeRows = False
-        Me.dgvNeck.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvNeck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvNeck.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.neckID, Me.neckName, Me.neckWgt, Me.neckArm, Me.neckChk, Me.neckPrice, Me.neckAC, Me.neckType, Me.neckStr, Me.neckDex, Me.neckWis, Me.neckCha, Me.neckInt, Me.neckCon})
-        Me.dgvNeck.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvNeck.Location = New System.Drawing.Point(3, 3)
-        Me.dgvNeck.MultiSelect = False
-        Me.dgvNeck.Name = "dgvNeck"
-        Me.dgvNeck.ReadOnly = True
-        Me.dgvNeck.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvNeck.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvNeck.TabIndex = 6
-        '
-        'tabChest
-        '
-        Me.tabChest.Controls.Add(Me.dgvChest)
-        Me.tabChest.Location = New System.Drawing.Point(4, 22)
-        Me.tabChest.Name = "tabChest"
-        Me.tabChest.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabChest.Size = New System.Drawing.Size(1297, 280)
-        Me.tabChest.TabIndex = 1
-        Me.tabChest.Text = "Chest"
-        Me.tabChest.UseVisualStyleBackColor = True
-        '
-        'dgvChest
-        '
-        Me.dgvChest.AllowUserToDeleteRows = False
-        Me.dgvChest.AllowUserToResizeColumns = False
-        Me.dgvChest.AllowUserToResizeRows = False
-        Me.dgvChest.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvChest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvChest.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.chestID, Me.chestName, Me.chestWgt, Me.chestArm, Me.chestChk, Me.chestPrice, Me.chestAC, Me.chestType, Me.chestStr, Me.chestDex, Me.chestWis, Me.chestCha, Me.chestInt, Me.chestCon})
-        Me.dgvChest.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvChest.Location = New System.Drawing.Point(3, 3)
-        Me.dgvChest.MultiSelect = False
-        Me.dgvChest.Name = "dgvChest"
-        Me.dgvChest.ReadOnly = True
-        Me.dgvChest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvChest.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvChest.TabIndex = 6
-        '
-        'tabArms
-        '
-        Me.tabArms.Controls.Add(Me.dgvArms)
-        Me.tabArms.Location = New System.Drawing.Point(4, 22)
-        Me.tabArms.Name = "tabArms"
-        Me.tabArms.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabArms.Size = New System.Drawing.Size(1297, 280)
-        Me.tabArms.TabIndex = 4
-        Me.tabArms.Text = "Arms"
-        Me.tabArms.UseVisualStyleBackColor = True
-        '
-        'dgvArms
-        '
-        Me.dgvArms.AllowUserToDeleteRows = False
-        Me.dgvArms.AllowUserToResizeColumns = False
-        Me.dgvArms.AllowUserToResizeRows = False
-        Me.dgvArms.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvArms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvArms.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.armID, Me.armName, Me.armWgt, Me.armArm, Me.armChk, Me.armPrice, Me.armAC, Me.armType, Me.armStr, Me.armDex, Me.armWis, Me.armCha, Me.armInt, Me.armCon})
-        Me.dgvArms.Dock = System.Windows.Forms.DockStyle.Top
-        Me.dgvArms.Location = New System.Drawing.Point(3, 3)
-        Me.dgvArms.MultiSelect = False
-        Me.dgvArms.Name = "dgvArms"
-        Me.dgvArms.ReadOnly = True
-        Me.dgvArms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvArms.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvArms.TabIndex = 7
-        '
-        'tabWrists
-        '
-        Me.tabWrists.Controls.Add(Me.dgvWrists)
-        Me.tabWrists.Location = New System.Drawing.Point(4, 22)
-        Me.tabWrists.Name = "tabWrists"
-        Me.tabWrists.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabWrists.Size = New System.Drawing.Size(1297, 280)
-        Me.tabWrists.TabIndex = 8
-        Me.tabWrists.Text = "Wrists"
-        Me.tabWrists.UseVisualStyleBackColor = True
-        '
-        'dgvWrists
-        '
-        Me.dgvWrists.AllowUserToDeleteRows = False
-        Me.dgvWrists.AllowUserToResizeColumns = False
-        Me.dgvWrists.AllowUserToResizeRows = False
-        Me.dgvWrists.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvWrists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvWrists.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.wristID, Me.wristName, Me.wristWgt, Me.wristArm, Me.wristChk, Me.wristPrice, Me.wristAC, Me.wristType, Me.wristStr, Me.wristDex, Me.wristWis, Me.wristCha, Me.wristInt, Me.wristCon})
-        Me.dgvWrists.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvWrists.Location = New System.Drawing.Point(3, 3)
-        Me.dgvWrists.MultiSelect = False
-        Me.dgvWrists.Name = "dgvWrists"
-        Me.dgvWrists.ReadOnly = True
-        Me.dgvWrists.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvWrists.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvWrists.TabIndex = 7
-        '
-        'tabHands
-        '
-        Me.tabHands.Controls.Add(Me.dgvHands)
-        Me.tabHands.Location = New System.Drawing.Point(4, 22)
-        Me.tabHands.Name = "tabHands"
-        Me.tabHands.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabHands.Size = New System.Drawing.Size(1297, 280)
-        Me.tabHands.TabIndex = 6
-        Me.tabHands.Text = "Hands"
-        Me.tabHands.UseVisualStyleBackColor = True
-        '
-        'dgvHands
-        '
-        Me.dgvHands.AllowUserToDeleteRows = False
-        Me.dgvHands.AllowUserToResizeColumns = False
-        Me.dgvHands.AllowUserToResizeRows = False
-        Me.dgvHands.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvHands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvHands.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.handID, Me.handName, Me.handWgt, Me.handArm, Me.handChk, Me.handPrice, Me.handAC, Me.handType, Me.handStr, Me.handDex, Me.handWis, Me.handCha, Me.handInt, Me.handCon})
-        Me.dgvHands.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvHands.Location = New System.Drawing.Point(3, 3)
-        Me.dgvHands.MultiSelect = False
-        Me.dgvHands.Name = "dgvHands"
-        Me.dgvHands.ReadOnly = True
-        Me.dgvHands.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvHands.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvHands.TabIndex = 7
-        '
-        'tabLegs
-        '
-        Me.tabLegs.Controls.Add(Me.dgvLegs)
-        Me.tabLegs.Location = New System.Drawing.Point(4, 22)
-        Me.tabLegs.Name = "tabLegs"
-        Me.tabLegs.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabLegs.Size = New System.Drawing.Size(1297, 280)
-        Me.tabLegs.TabIndex = 3
-        Me.tabLegs.Text = "Legs"
-        Me.tabLegs.UseVisualStyleBackColor = True
-        '
-        'dgvLegs
-        '
-        Me.dgvLegs.AllowUserToDeleteRows = False
-        Me.dgvLegs.AllowUserToResizeColumns = False
-        Me.dgvLegs.AllowUserToResizeRows = False
-        Me.dgvLegs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvLegs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLegs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.legID, Me.legName, Me.legWgt, Me.legArm, Me.legChk, Me.legPrice, Me.legAC, Me.legType, Me.legStr, Me.legDex, Me.legWis, Me.legCha, Me.legInt, Me.legCon})
-        Me.dgvLegs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvLegs.Location = New System.Drawing.Point(3, 3)
-        Me.dgvLegs.MultiSelect = False
-        Me.dgvLegs.Name = "dgvLegs"
-        Me.dgvLegs.ReadOnly = True
-        Me.dgvLegs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvLegs.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvLegs.TabIndex = 7
-        '
-        'tabFeet
-        '
-        Me.tabFeet.Controls.Add(Me.dgvFeet)
-        Me.tabFeet.Location = New System.Drawing.Point(4, 22)
-        Me.tabFeet.Name = "tabFeet"
-        Me.tabFeet.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabFeet.Size = New System.Drawing.Size(1297, 280)
-        Me.tabFeet.TabIndex = 5
-        Me.tabFeet.Text = "Feet"
-        Me.tabFeet.UseVisualStyleBackColor = True
-        '
-        'dgvFeet
-        '
-        Me.dgvFeet.AllowUserToDeleteRows = False
-        Me.dgvFeet.AllowUserToResizeColumns = False
-        Me.dgvFeet.AllowUserToResizeRows = False
-        Me.dgvFeet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
-        Me.dgvFeet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvFeet.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.feetID, Me.feetName, Me.feetWgt, Me.feetArm, Me.feetChk, Me.feetPrice, Me.feetAC, Me.feetType, Me.feetStr, Me.feetDex, Me.feetWis, Me.feetCha, Me.feetInt, Me.feetCon})
-        Me.dgvFeet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvFeet.Location = New System.Drawing.Point(3, 3)
-        Me.dgvFeet.MultiSelect = False
-        Me.dgvFeet.Name = "dgvFeet"
-        Me.dgvFeet.ReadOnly = True
-        Me.dgvFeet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvFeet.Size = New System.Drawing.Size(1291, 274)
-        Me.dgvFeet.TabIndex = 7
-        '
         'allID
         '
         Me.allID.HeaderText = "aID"
@@ -507,7 +412,7 @@ Partial Class frmSelArmor
         Me.allArm.HeaderText = "Armor Bonus"
         Me.allArm.Name = "allArm"
         Me.allArm.ReadOnly = True
-        Me.allArm.Width = 92
+        Me.allArm.Width = 85
         '
         'allChk
         '
@@ -589,116 +494,44 @@ Partial Class frmSelArmor
         Me.allCon.ReadOnly = True
         Me.allCon.Width = 87
         '
-        'headID
+        'tabHelm
         '
-        Me.headID.HeaderText = "aID"
-        Me.headID.Name = "headID"
-        Me.headID.ReadOnly = True
-        Me.headID.Visible = False
+        Me.tabHelm.Controls.Add(Me.dgvHead)
+        Me.tabHelm.Location = New System.Drawing.Point(4, 22)
+        Me.tabHelm.Name = "tabHelm"
+        Me.tabHelm.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabHelm.Size = New System.Drawing.Size(1297, 280)
+        Me.tabHelm.TabIndex = 0
+        Me.tabHelm.Text = "Head"
+        Me.tabHelm.UseVisualStyleBackColor = True
         '
-        'headName
+        'tabNeck
         '
-        Me.headName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.headName.HeaderText = "Name"
-        Me.headName.Name = "headName"
-        Me.headName.ReadOnly = True
+        Me.tabNeck.Controls.Add(Me.dgvNeck)
+        Me.tabNeck.Location = New System.Drawing.Point(4, 22)
+        Me.tabNeck.Name = "tabNeck"
+        Me.tabNeck.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabNeck.Size = New System.Drawing.Size(1297, 280)
+        Me.tabNeck.TabIndex = 7
+        Me.tabNeck.Text = "Neck"
+        Me.tabNeck.UseVisualStyleBackColor = True
         '
-        'headWgt
+        'dgvNeck
         '
-        Me.headWgt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headWgt.HeaderText = "Weight"
-        Me.headWgt.Name = "headWgt"
-        Me.headWgt.ReadOnly = True
-        Me.headWgt.Width = 66
-        '
-        'headAC
-        '
-        Me.headAC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headAC.HeaderText = "Armor Bonus"
-        Me.headAC.Name = "headAC"
-        Me.headAC.ReadOnly = True
-        Me.headAC.Width = 92
-        '
-        'headChk
-        '
-        Me.headChk.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headChk.HeaderText = "Check Modifier"
-        Me.headChk.Name = "headChk"
-        Me.headChk.ReadOnly = True
-        Me.headChk.Width = 95
-        '
-        'headPrice
-        '
-        Me.headPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headPrice.HeaderText = "Price"
-        Me.headPrice.Name = "headPrice"
-        Me.headPrice.ReadOnly = True
-        Me.headPrice.Width = 56
-        '
-        'headClass
-        '
-        Me.headClass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headClass.HeaderText = "Armor Class"
-        Me.headClass.Name = "headClass"
-        Me.headClass.ReadOnly = True
-        Me.headClass.Width = 80
-        '
-        'headType
-        '
-        Me.headType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headType.HeaderText = "Armor Spot"
-        Me.headType.Name = "headType"
-        Me.headType.ReadOnly = True
-        Me.headType.Visible = False
-        Me.headType.Width = 78
-        '
-        'headStr
-        '
-        Me.headStr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headStr.HeaderText = "Strength"
-        Me.headStr.Name = "headStr"
-        Me.headStr.ReadOnly = True
-        Me.headStr.Width = 72
-        '
-        'headDex
-        '
-        Me.headDex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headDex.HeaderText = "Dexterity"
-        Me.headDex.Name = "headDex"
-        Me.headDex.ReadOnly = True
-        Me.headDex.Width = 73
-        '
-        'headWis
-        '
-        Me.headWis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headWis.HeaderText = "Wisdom"
-        Me.headWis.Name = "headWis"
-        Me.headWis.ReadOnly = True
-        Me.headWis.Width = 70
-        '
-        'headCha
-        '
-        Me.headCha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headCha.HeaderText = "Charisma"
-        Me.headCha.Name = "headCha"
-        Me.headCha.ReadOnly = True
-        Me.headCha.Width = 75
-        '
-        'headInt
-        '
-        Me.headInt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headInt.HeaderText = "Intelligence"
-        Me.headInt.Name = "headInt"
-        Me.headInt.ReadOnly = True
-        Me.headInt.Width = 86
-        '
-        'headCon
-        '
-        Me.headCon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.headCon.HeaderText = "Constitution"
-        Me.headCon.Name = "headCon"
-        Me.headCon.ReadOnly = True
-        Me.headCon.Width = 87
+        Me.dgvNeck.AllowUserToDeleteRows = False
+        Me.dgvNeck.AllowUserToResizeColumns = False
+        Me.dgvNeck.AllowUserToResizeRows = False
+        Me.dgvNeck.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvNeck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvNeck.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.neckID, Me.neckName, Me.neckWgt, Me.neckArm, Me.neckChk, Me.neckPrice, Me.neckAC, Me.neckType, Me.neckStr, Me.neckDex, Me.neckWis, Me.neckCha, Me.neckInt, Me.neckCon})
+        Me.dgvNeck.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvNeck.Location = New System.Drawing.Point(3, 3)
+        Me.dgvNeck.MultiSelect = False
+        Me.dgvNeck.Name = "dgvNeck"
+        Me.dgvNeck.ReadOnly = True
+        Me.dgvNeck.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvNeck.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvNeck.TabIndex = 6
         '
         'neckID
         '
@@ -728,7 +561,7 @@ Partial Class frmSelArmor
         Me.neckArm.HeaderText = "Armor Bonus"
         Me.neckArm.Name = "neckArm"
         Me.neckArm.ReadOnly = True
-        Me.neckArm.Width = 92
+        Me.neckArm.Width = 85
         '
         'neckChk
         '
@@ -761,7 +594,6 @@ Partial Class frmSelArmor
         Me.neckType.Name = "neckType"
         Me.neckType.ReadOnly = True
         Me.neckType.Visible = False
-        Me.neckType.Width = 78
         '
         'neckStr
         '
@@ -811,6 +643,34 @@ Partial Class frmSelArmor
         Me.neckCon.ReadOnly = True
         Me.neckCon.Width = 87
         '
+        'tabChest
+        '
+        Me.tabChest.Controls.Add(Me.dgvChest)
+        Me.tabChest.Location = New System.Drawing.Point(4, 22)
+        Me.tabChest.Name = "tabChest"
+        Me.tabChest.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabChest.Size = New System.Drawing.Size(1297, 280)
+        Me.tabChest.TabIndex = 1
+        Me.tabChest.Text = "Chest"
+        Me.tabChest.UseVisualStyleBackColor = True
+        '
+        'dgvChest
+        '
+        Me.dgvChest.AllowUserToDeleteRows = False
+        Me.dgvChest.AllowUserToResizeColumns = False
+        Me.dgvChest.AllowUserToResizeRows = False
+        Me.dgvChest.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvChest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvChest.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.chestID, Me.chestName, Me.chestWgt, Me.chestArm, Me.chestChk, Me.chestPrice, Me.chestAC, Me.chestType, Me.chestStr, Me.chestDex, Me.chestWis, Me.chestCha, Me.chestInt, Me.chestCon})
+        Me.dgvChest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvChest.Location = New System.Drawing.Point(3, 3)
+        Me.dgvChest.MultiSelect = False
+        Me.dgvChest.Name = "dgvChest"
+        Me.dgvChest.ReadOnly = True
+        Me.dgvChest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvChest.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvChest.TabIndex = 6
+        '
         'chestID
         '
         Me.chestID.HeaderText = "aID"
@@ -839,7 +699,7 @@ Partial Class frmSelArmor
         Me.chestArm.HeaderText = "Armor Bonus"
         Me.chestArm.Name = "chestArm"
         Me.chestArm.ReadOnly = True
-        Me.chestArm.Width = 92
+        Me.chestArm.Width = 85
         '
         'chestChk
         '
@@ -872,7 +732,6 @@ Partial Class frmSelArmor
         Me.chestType.Name = "chestType"
         Me.chestType.ReadOnly = True
         Me.chestType.Visible = False
-        Me.chestType.Width = 78
         '
         'chestStr
         '
@@ -922,6 +781,34 @@ Partial Class frmSelArmor
         Me.chestCon.ReadOnly = True
         Me.chestCon.Width = 87
         '
+        'tabArms
+        '
+        Me.tabArms.Controls.Add(Me.dgvArms)
+        Me.tabArms.Location = New System.Drawing.Point(4, 22)
+        Me.tabArms.Name = "tabArms"
+        Me.tabArms.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabArms.Size = New System.Drawing.Size(1297, 280)
+        Me.tabArms.TabIndex = 4
+        Me.tabArms.Text = "Arms"
+        Me.tabArms.UseVisualStyleBackColor = True
+        '
+        'dgvArms
+        '
+        Me.dgvArms.AllowUserToDeleteRows = False
+        Me.dgvArms.AllowUserToResizeColumns = False
+        Me.dgvArms.AllowUserToResizeRows = False
+        Me.dgvArms.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvArms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvArms.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.armID, Me.armName, Me.armWgt, Me.armArm, Me.armChk, Me.armPrice, Me.armAC, Me.armType, Me.armStr, Me.armDex, Me.armWis, Me.armCha, Me.armInt, Me.armCon})
+        Me.dgvArms.Dock = System.Windows.Forms.DockStyle.Top
+        Me.dgvArms.Location = New System.Drawing.Point(3, 3)
+        Me.dgvArms.MultiSelect = False
+        Me.dgvArms.Name = "dgvArms"
+        Me.dgvArms.ReadOnly = True
+        Me.dgvArms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvArms.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvArms.TabIndex = 7
+        '
         'armID
         '
         Me.armID.HeaderText = "aID"
@@ -950,7 +837,7 @@ Partial Class frmSelArmor
         Me.armArm.HeaderText = "Armor Bonus"
         Me.armArm.Name = "armArm"
         Me.armArm.ReadOnly = True
-        Me.armArm.Width = 92
+        Me.armArm.Width = 85
         '
         'armChk
         '
@@ -983,7 +870,6 @@ Partial Class frmSelArmor
         Me.armType.Name = "armType"
         Me.armType.ReadOnly = True
         Me.armType.Visible = False
-        Me.armType.Width = 78
         '
         'armStr
         '
@@ -1033,6 +919,34 @@ Partial Class frmSelArmor
         Me.armCon.ReadOnly = True
         Me.armCon.Width = 87
         '
+        'tabWrists
+        '
+        Me.tabWrists.Controls.Add(Me.dgvWrists)
+        Me.tabWrists.Location = New System.Drawing.Point(4, 22)
+        Me.tabWrists.Name = "tabWrists"
+        Me.tabWrists.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabWrists.Size = New System.Drawing.Size(1297, 280)
+        Me.tabWrists.TabIndex = 8
+        Me.tabWrists.Text = "Wrists"
+        Me.tabWrists.UseVisualStyleBackColor = True
+        '
+        'dgvWrists
+        '
+        Me.dgvWrists.AllowUserToDeleteRows = False
+        Me.dgvWrists.AllowUserToResizeColumns = False
+        Me.dgvWrists.AllowUserToResizeRows = False
+        Me.dgvWrists.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvWrists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvWrists.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.wristID, Me.wristName, Me.wristWgt, Me.wristArm, Me.wristChk, Me.wristPrice, Me.wristAC, Me.wristType, Me.wristStr, Me.wristDex, Me.wristWis, Me.wristCha, Me.wristInt, Me.wristCon})
+        Me.dgvWrists.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvWrists.Location = New System.Drawing.Point(3, 3)
+        Me.dgvWrists.MultiSelect = False
+        Me.dgvWrists.Name = "dgvWrists"
+        Me.dgvWrists.ReadOnly = True
+        Me.dgvWrists.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvWrists.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvWrists.TabIndex = 7
+        '
         'wristID
         '
         Me.wristID.HeaderText = "aID"
@@ -1061,7 +975,7 @@ Partial Class frmSelArmor
         Me.wristArm.HeaderText = "Armor Bonus"
         Me.wristArm.Name = "wristArm"
         Me.wristArm.ReadOnly = True
-        Me.wristArm.Width = 92
+        Me.wristArm.Width = 85
         '
         'wristChk
         '
@@ -1094,7 +1008,6 @@ Partial Class frmSelArmor
         Me.wristType.Name = "wristType"
         Me.wristType.ReadOnly = True
         Me.wristType.Visible = False
-        Me.wristType.Width = 78
         '
         'wristStr
         '
@@ -1144,6 +1057,34 @@ Partial Class frmSelArmor
         Me.wristCon.ReadOnly = True
         Me.wristCon.Width = 87
         '
+        'tabHands
+        '
+        Me.tabHands.Controls.Add(Me.dgvHands)
+        Me.tabHands.Location = New System.Drawing.Point(4, 22)
+        Me.tabHands.Name = "tabHands"
+        Me.tabHands.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabHands.Size = New System.Drawing.Size(1297, 280)
+        Me.tabHands.TabIndex = 6
+        Me.tabHands.Text = "Hands"
+        Me.tabHands.UseVisualStyleBackColor = True
+        '
+        'dgvHands
+        '
+        Me.dgvHands.AllowUserToDeleteRows = False
+        Me.dgvHands.AllowUserToResizeColumns = False
+        Me.dgvHands.AllowUserToResizeRows = False
+        Me.dgvHands.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvHands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvHands.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.handID, Me.handName, Me.handWgt, Me.handArm, Me.handChk, Me.handPrice, Me.handAC, Me.handType, Me.handStr, Me.handDex, Me.handWis, Me.handCha, Me.handInt, Me.handCon})
+        Me.dgvHands.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvHands.Location = New System.Drawing.Point(3, 3)
+        Me.dgvHands.MultiSelect = False
+        Me.dgvHands.Name = "dgvHands"
+        Me.dgvHands.ReadOnly = True
+        Me.dgvHands.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvHands.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvHands.TabIndex = 7
+        '
         'handID
         '
         Me.handID.HeaderText = "aID"
@@ -1172,7 +1113,7 @@ Partial Class frmSelArmor
         Me.handArm.HeaderText = "Armor Bonus"
         Me.handArm.Name = "handArm"
         Me.handArm.ReadOnly = True
-        Me.handArm.Width = 92
+        Me.handArm.Width = 85
         '
         'handChk
         '
@@ -1205,7 +1146,6 @@ Partial Class frmSelArmor
         Me.handType.Name = "handType"
         Me.handType.ReadOnly = True
         Me.handType.Visible = False
-        Me.handType.Width = 78
         '
         'handStr
         '
@@ -1255,6 +1195,34 @@ Partial Class frmSelArmor
         Me.handCon.ReadOnly = True
         Me.handCon.Width = 87
         '
+        'tabLegs
+        '
+        Me.tabLegs.Controls.Add(Me.dgvLegs)
+        Me.tabLegs.Location = New System.Drawing.Point(4, 22)
+        Me.tabLegs.Name = "tabLegs"
+        Me.tabLegs.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabLegs.Size = New System.Drawing.Size(1297, 280)
+        Me.tabLegs.TabIndex = 3
+        Me.tabLegs.Text = "Legs"
+        Me.tabLegs.UseVisualStyleBackColor = True
+        '
+        'dgvLegs
+        '
+        Me.dgvLegs.AllowUserToDeleteRows = False
+        Me.dgvLegs.AllowUserToResizeColumns = False
+        Me.dgvLegs.AllowUserToResizeRows = False
+        Me.dgvLegs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvLegs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvLegs.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.legID, Me.legName, Me.legWgt, Me.legArm, Me.legChk, Me.legPrice, Me.legAC, Me.legType, Me.legStr, Me.legDex, Me.legWis, Me.legCha, Me.legInt, Me.legCon})
+        Me.dgvLegs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvLegs.Location = New System.Drawing.Point(3, 3)
+        Me.dgvLegs.MultiSelect = False
+        Me.dgvLegs.Name = "dgvLegs"
+        Me.dgvLegs.ReadOnly = True
+        Me.dgvLegs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvLegs.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvLegs.TabIndex = 7
+        '
         'legID
         '
         Me.legID.HeaderText = "aID"
@@ -1283,7 +1251,7 @@ Partial Class frmSelArmor
         Me.legArm.HeaderText = "Armor Bonus"
         Me.legArm.Name = "legArm"
         Me.legArm.ReadOnly = True
-        Me.legArm.Width = 92
+        Me.legArm.Width = 85
         '
         'legChk
         '
@@ -1316,7 +1284,6 @@ Partial Class frmSelArmor
         Me.legType.Name = "legType"
         Me.legType.ReadOnly = True
         Me.legType.Visible = False
-        Me.legType.Width = 78
         '
         'legStr
         '
@@ -1366,6 +1333,34 @@ Partial Class frmSelArmor
         Me.legCon.ReadOnly = True
         Me.legCon.Width = 87
         '
+        'tabFeet
+        '
+        Me.tabFeet.Controls.Add(Me.dgvFeet)
+        Me.tabFeet.Location = New System.Drawing.Point(4, 22)
+        Me.tabFeet.Name = "tabFeet"
+        Me.tabFeet.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabFeet.Size = New System.Drawing.Size(1297, 280)
+        Me.tabFeet.TabIndex = 5
+        Me.tabFeet.Text = "Feet"
+        Me.tabFeet.UseVisualStyleBackColor = True
+        '
+        'dgvFeet
+        '
+        Me.dgvFeet.AllowUserToDeleteRows = False
+        Me.dgvFeet.AllowUserToResizeColumns = False
+        Me.dgvFeet.AllowUserToResizeRows = False
+        Me.dgvFeet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable
+        Me.dgvFeet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvFeet.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.feetID, Me.feetName, Me.feetWgt, Me.feetArm, Me.feetChk, Me.feetPrice, Me.feetAC, Me.feetType, Me.feetStr, Me.feetDex, Me.feetWis, Me.feetCha, Me.feetInt, Me.feetCon})
+        Me.dgvFeet.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvFeet.Location = New System.Drawing.Point(3, 3)
+        Me.dgvFeet.MultiSelect = False
+        Me.dgvFeet.Name = "dgvFeet"
+        Me.dgvFeet.ReadOnly = True
+        Me.dgvFeet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvFeet.Size = New System.Drawing.Size(1291, 274)
+        Me.dgvFeet.TabIndex = 7
+        '
         'feetID
         '
         Me.feetID.HeaderText = "aID"
@@ -1394,7 +1389,7 @@ Partial Class frmSelArmor
         Me.feetArm.HeaderText = "Armor Bonus"
         Me.feetArm.Name = "feetArm"
         Me.feetArm.ReadOnly = True
-        Me.feetArm.Width = 92
+        Me.feetArm.Width = 85
         '
         'feetChk
         '
@@ -1427,7 +1422,6 @@ Partial Class frmSelArmor
         Me.feetType.Name = "feetType"
         Me.feetType.ReadOnly = True
         Me.feetType.Visible = False
-        Me.feetType.Width = 78
         '
         'feetStr
         '
@@ -1481,7 +1475,9 @@ Partial Class frmSelArmor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(1305, 347)
+        Me.ControlBox = False
         Me.Controls.Add(Me.tabArmor)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnAdd)

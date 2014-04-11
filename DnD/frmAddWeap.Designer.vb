@@ -220,6 +220,8 @@ Partial Class frmAddWeap
         'numStr
         '
         Me.numStr.Location = New System.Drawing.Point(172, 142)
+        Me.numStr.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numStr.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numStr.Name = "numStr"
         Me.numStr.Size = New System.Drawing.Size(100, 20)
         Me.numStr.TabIndex = 13
@@ -228,6 +230,8 @@ Partial Class frmAddWeap
         'numDex
         '
         Me.numDex.Location = New System.Drawing.Point(172, 168)
+        Me.numDex.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numDex.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numDex.Name = "numDex"
         Me.numDex.Size = New System.Drawing.Size(100, 20)
         Me.numDex.TabIndex = 14
@@ -236,6 +240,8 @@ Partial Class frmAddWeap
         'numWis
         '
         Me.numWis.Location = New System.Drawing.Point(172, 194)
+        Me.numWis.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numWis.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numWis.Name = "numWis"
         Me.numWis.Size = New System.Drawing.Size(100, 20)
         Me.numWis.TabIndex = 15
@@ -244,6 +250,8 @@ Partial Class frmAddWeap
         'numCha
         '
         Me.numCha.Location = New System.Drawing.Point(172, 220)
+        Me.numCha.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numCha.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numCha.Name = "numCha"
         Me.numCha.Size = New System.Drawing.Size(100, 20)
         Me.numCha.TabIndex = 16
@@ -252,6 +260,8 @@ Partial Class frmAddWeap
         'numInt
         '
         Me.numInt.Location = New System.Drawing.Point(172, 246)
+        Me.numInt.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numInt.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numInt.Name = "numInt"
         Me.numInt.Size = New System.Drawing.Size(100, 20)
         Me.numInt.TabIndex = 17
@@ -260,6 +270,8 @@ Partial Class frmAddWeap
         'numCon
         '
         Me.numCon.Location = New System.Drawing.Point(172, 272)
+        Me.numCon.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.numCon.Minimum = New Decimal(New Integer() {10, 0, 0, -2147483648})
         Me.numCon.Name = "numCon"
         Me.numCon.Size = New System.Drawing.Size(100, 20)
         Me.numCon.TabIndex = 18

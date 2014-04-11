@@ -75,6 +75,7 @@ Partial Class frmCharSheet
         Me.btnEdit = New System.Windows.Forms.Button()
         Me.btnSelArmor = New System.Windows.Forms.Button()
         Me.pnlCharSheet = New System.Windows.Forms.Panel()
+        Me.btnPowers = New System.Windows.Forms.Button()
         Me.pbxColor = New System.Windows.Forms.PictureBox()
         Me.btnExp = New System.Windows.Forms.Button()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -572,6 +573,7 @@ Partial Class frmCharSheet
         '
         'pnlCharSheet
         '
+        Me.pnlCharSheet.Controls.Add(Me.btnPowers)
         Me.pnlCharSheet.Controls.Add(Me.pbxColor)
         Me.pnlCharSheet.Controls.Add(Me.btnExp)
         Me.pnlCharSheet.Controls.Add(Me.Label31)
@@ -649,6 +651,15 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Name = "pnlCharSheet"
         Me.pnlCharSheet.Size = New System.Drawing.Size(552, 520)
         Me.pnlCharSheet.TabIndex = 55
+        '
+        'btnPowers
+        '
+        Me.btnPowers.Location = New System.Drawing.Point(6, 344)
+        Me.btnPowers.Name = "btnPowers"
+        Me.btnPowers.Size = New System.Drawing.Size(75, 23)
+        Me.btnPowers.TabIndex = 83
+        Me.btnPowers.Text = "Powers"
+        Me.btnPowers.UseVisualStyleBackColor = True
         '
         'pbxColor
         '
@@ -971,7 +982,6 @@ Partial Class frmCharSheet
     Public WithEvents Label16 As System.Windows.Forms.Label
     Public WithEvents txtExp As System.Windows.Forms.TextBox
     Public WithEvents Label17 As System.Windows.Forms.Label
-    Public WithEvents cboClass As System.Windows.Forms.ComboBox
     Public WithEvents Label18 As System.Windows.Forms.Label
     Public WithEvents cboRace As System.Windows.Forms.ComboBox
     Public WithEvents Label19 As System.Windows.Forms.Label
@@ -1016,5 +1026,7 @@ Partial Class frmCharSheet
     Public WithEvents txtCarryCap As System.Windows.Forms.TextBox
     Friend WithEvents btnExp As System.Windows.Forms.Button
     Friend WithEvents pbxColor As System.Windows.Forms.PictureBox
+    Public WithEvents cboClass As System.Windows.Forms.ComboBox
+    Public WithEvents btnPowers As System.Windows.Forms.Button
 
 End Class

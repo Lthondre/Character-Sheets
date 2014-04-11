@@ -117,6 +117,12 @@
     <Compile Include="frmDiceRoll.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmSelPowers.Designer.vb">
+      <DependentUpon>frmSelPowers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelPowers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSelArmor.Designer.vb">
       <DependentUpon>frmSelArmor.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDiceRoll.resx">
       <DependentUpon>frmDiceRoll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelPowers.resx">
+      <DependentUpon>frmSelPowers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelArmor.resx">
       <DependentUpon>frmSelArmor.vb</DependentUpon>

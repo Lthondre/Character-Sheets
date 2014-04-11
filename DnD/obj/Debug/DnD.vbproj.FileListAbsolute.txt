@@ -50,3 +50,4 @@ C:\Users\Curtis\Desktop\DnD\DnD\bin\Debug\CharOptions.xml
 E:\VB\DnD\DnD\bin\Debug\CharOptions.dll
 E:\VB\DnD\DnD\bin\Debug\CharOptions.pdb
 E:\VB\DnD\DnD\bin\Debug\CharOptions.xml
+E:\VB\DnD\DnD\obj\Debug\DnD.frmSelPowers.resources

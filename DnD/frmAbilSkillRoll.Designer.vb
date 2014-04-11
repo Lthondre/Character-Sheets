@@ -154,6 +154,7 @@ Partial Class frmAbilSkillRoll
         '
         'btnChaChk
         '
+        Me.btnChaChk.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnChaChk.Location = New System.Drawing.Point(12, 264)
         Me.btnChaChk.Name = "btnChaChk"
         Me.btnChaChk.Size = New System.Drawing.Size(75, 23)
@@ -244,7 +245,9 @@ Partial Class frmAbilSkillRoll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(213, 339)
+        Me.ControlBox = False
         Me.Controls.Add(Me.gbxChkType)
         Me.Controls.Add(Me.txtChaChk)
         Me.Controls.Add(Me.txtIntChk)

@@ -4,6 +4,9 @@ Imports CharOptions.rndOpts
 Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
     Dim allCols() As Color = New Color() {} 'array that holds all colors
+    Public cantrips = 0                   'holds number of cantrips available to current character
+    Public encounters = 0
+    Public dailies = 0
     Event weapArmor As EventHandler
 
     ''' <summary>
@@ -167,6 +170,7 @@ Public Class frmCharSheet
                     .Item("pCharLoc") = txtLoc.Text
                     .Item("pLevel") = txtLevel.Text
                     .Item("pExp") = txtExp.Text
+                    'save ability modifiers
                     .Item("modSTR") = txtStr.Tag
                     .Item("modDEX") = txtDex.Tag
                     .Item("modCON") = txtCon.Tag
@@ -215,7 +219,8 @@ Public Class frmCharSheet
                     .Item("pCharLoc") = txtLoc.Text
                     .Item("pLevel") = txtLevel.Text
                     .Item("pExp") = txtExp.Text
-                    .Item("modSTR") = 0          'new characters have no ability modifiers. They're new.
+                    'new characters have no ability modifiers. They're new.
+                    .Item("modSTR") = 0
                     .Item("modDEX") = 0
                     .Item("modCON") = 0
                     .Item("modINT") = 0
@@ -666,6 +671,9 @@ Public Class frmCharSheet
             Case 1
                 'racials are applied
                 'can know 2 cantrips
+                cantrips = 2
+                encounters = 1
+                dailies = 1
                 '           1 encounter
                 '           1 daily
                 '           0 utility
@@ -1181,5 +1189,48 @@ Public Class frmCharSheet
         Dim rCol = allCols(r.Next(0, allCols.Length - 1))
         txtColor.Text = rCol.Name.ToString
         pbxColor.BackColor = rCol
+    End Sub
+
+    ''' <summary>
+    ''' changes the text of btnPowers when cboClass changes
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub cboClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboClass.SelectedIndexChanged
+        'change text of powers button to something more user-relevant
+        Select Case LCase(cboClass.Text)
+            Case "cleric", "paladin"
+                btnPowers.Text = "Prayers"
+            Case "fighter", "ranger", "rogue", "warlord"
+                btnPowers.Text = "Exploits"
+            Case "warlock", "wizard"
+                btnPowers.Text = "Spells"
+            Case Else
+                btnPowers.Text = "Powers"
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' opens frmSelPowers for power selection
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnPowers_Click(sender As Object, e As EventArgs) Handles btnPowers.Click
+        Dim pow As New frmSelPowers
+        If cboClass.Text = "" Then
+            MessageBox.Show("You must select a class to see its powers", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            If txtLevel.Text = "" Then
+                txtLevel.Text = "1"
+            End If
+            'set values in the module
+            'reaaaaaaaaaaally ought to be a better way of doing this
+            mdlGlobal.plevel = Val(txtLevel.Text)
+            mdlGlobal.pClass = cboClass.Text
+            pow.ShowDialog()
+            pow.Dispose()
+        End If
     End Sub
 End Class
