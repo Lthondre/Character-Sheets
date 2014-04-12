@@ -1,5 +1,5 @@
 ﻿Imports System.Drawing
-Imports CharOptions.rndOpts
+Imports CharOptions.opts
 
 Public Class frmCharSheet
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
@@ -307,7 +307,7 @@ Public Class frmCharSheet
 
         'new random name and color if it's a brand new character
         If name = "" Or tag = "" Then
-            Dim newName As New CharOptions.rndOpts
+            Dim newName As New CharOptions.opts
             txtCName.Text = newName.selName
 
             'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
@@ -1229,6 +1229,9 @@ Public Class frmCharSheet
             'reaaaaaaaaaaally ought to be a better way of doing this
             mdlGlobal.plevel = Val(txtLevel.Text)
             mdlGlobal.pClass = cboClass.Text
+            Dim powChk As New CharOptions.opts
+            powChk.chkPower(Val(txtCName.Tag), 3)
+            pow.Owner = Me
             pow.ShowDialog()
             pow.Dispose()
         End If

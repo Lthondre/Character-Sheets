@@ -35,6 +35,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPowers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Owner.Top = 0
+        Console.WriteLine("Owner: " & vbTab & Me.Owner.Text)
         'load player level and class from the module
         Dim lev As Integer = mdlGlobal.plevel
         Dim pcls As String = mdlGlobal.pClass
