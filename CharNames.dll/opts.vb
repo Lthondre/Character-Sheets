@@ -30,7 +30,7 @@ Public Class opts
     ''' <param name="pID"></param>
     ''' <param name="sID"></param>
     ''' <remarks></remarks>
-    Public Sub chkPower(ByVal pID As Integer, Optional ByVal sID As Integer = 0)
+    Public Function chkPower(ByVal pID As Integer, Optional ByVal sID As Integer = 0) As Boolean
         Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & pID & ".pow"
         Dim i As Integer = 0
         Dim pwrs(-1) As String
@@ -43,23 +43,40 @@ Public Class opts
             Do While sr.Peek() >= 0
                 ReDim Preserve pwrs(pwrs.Length)
                 pwrs(i) = sr.ReadLine()
+                Console.WriteLine("pwrs: " & pwrs(i))
                 i += 1
             Loop
-
             'search array for spell id
             Dim fsID As Integer 'file spell id
             Dim fsLeft As Integer   'file spells left
-            For j As Integer = 0 To pwrs.Length - 1
-                If pwrs(i) = sID.ToString Then
-                    fsID = pwrs(i)
-                    fsLeft = pwrs(i + 1)
+            For j As Integer = 0 To pwrs.Length - 1 Step 2
+                If pwrs(j) = sID Then
+                    fsID = pwrs(j)
+                    fsLeft = pwrs(j + 1)
+                    Console.WriteLine("SID: " & vbTab & sID)
                     Console.WriteLine("FSID:" & vbTab & fsID)
                     Console.WriteLine("SLEFT: " & vbTab & fsLeft)
+                    Return True
                 End If
             Next
             'close the file
             sr.Close()
+            Return False
         Else
+            Console.WriteLine("Powers file does not exist at: " & path)
+            Return False
+        End If
+    End Function
+
+    ''' <summary>
+    ''' append spell to powers file, create if not exist
+    ''' </summary>
+    ''' <param name="pid"></param>
+    ''' <param name="sid"></param>
+    ''' <remarks></remarks>
+    Public Sub setPowers(ByVal pid As Integer, ByVal sid As Integer)
+        Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & pid & ".pow"
+        If Not File.Exists(path) Then
             'create directory if not exists
             If (Not System.IO.Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")) Then
                 Console.WriteLine("Creating 'Powers\' subdirectory")
@@ -72,9 +89,8 @@ Public Class opts
             Console.WriteLine("Powers file does not exist! Creating at: " & path)
             File.Create(path).Dispose()
             Dim sw As New StreamWriter(path)
-            sw.WriteLine(sID)
+            sw.WriteLine(sid)
             sw.WriteLine(0)
-            sw.WriteLine()
             sw.Close()
         End If
     End Sub

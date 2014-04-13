@@ -39,9 +39,6 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPowers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Console.WriteLine("Lev: " & vbTab & lev)
-        Console.WriteLine("Pcls:" & vbTab & pcls)
-        Console.WriteLine("frmcharsheet PID: " & pid)
         'declare instance of class
         Dim Cantrips As New clsData
         Dim Encounters As New clsData
@@ -71,11 +68,20 @@
 
         'determine which dailies have been used already
         Dim powChk As New CharOptions.opts
+        Dim i As Integer = 0
         'only check if there IS a player ID
         If pid > 0 Then
-            powChk.chkPower(pid, 2)
+            For Each row As DataGridViewRow In dgvDailies.Rows
+                Dim used As Boolean = powChk.chkPower(pid, dgvDailies.Rows(i).Cells("sID").Value)
+                Console.WriteLine("Used: " & used)
+                If used Then
+                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = Color.Red
+                Else
+                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = Color.Green
+                End If
+                i += 1
+            Next
         End If
-
     End Sub
 
     ''' <summary>

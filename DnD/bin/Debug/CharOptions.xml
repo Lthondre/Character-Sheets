@@ -32,6 +32,13 @@ CharOptions
 	<param name="pID"></param>
 	<param name="sID"></param>
 	<remarks></remarks>
+</member><member name="M:CharOptions.opts.setPowers(System.Int32,System.Int32)">
+	<summary>
+ append spell to powers file, create if not exist
+ </summary>
+	<param name="pid"></param>
+	<param name="sid"></param>
+	<remarks></remarks>
 </member>
 </members>
 </doc>
