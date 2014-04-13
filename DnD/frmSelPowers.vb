@@ -1,5 +1,9 @@
 ﻿Public Class frmSelPowers
     Dim pow(-1) As powers
+    Public lev As Integer
+    Public pcls As String
+    Public pid As Integer
+
     ''' <summary>
     ''' structure for holding information of powers available to character
     ''' </summary>
@@ -35,12 +39,9 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPowers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Owner.Top = 0
-        Console.WriteLine("Owner: " & vbTab & Me.Owner.Text)
-        'load player level and class from the module
-        Dim lev As Integer = mdlGlobal.plevel
-        Dim pcls As String = mdlGlobal.pClass
-
+        Console.WriteLine("Lev: " & vbTab & lev)
+        Console.WriteLine("Pcls:" & vbTab & pcls)
+        Console.WriteLine("frmcharsheet PID: " & pid)
         'declare instance of class
         Dim Cantrips As New clsData
         Dim Encounters As New clsData
@@ -67,6 +68,14 @@
         Call setupDGV(dgvCantrips, lev)
         Call setupDGV(dgvEncounters, lev)
         Call setupDGV(dgvDailies, lev)
+
+        'determine which dailies have been used already
+        Dim powChk As New CharOptions.opts
+        'only check if there IS a player ID
+        If pid > 0 Then
+            powChk.chkPower(pid, 2)
+        End If
+
     End Sub
 
     ''' <summary>

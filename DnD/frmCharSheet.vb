@@ -1225,15 +1225,14 @@ Public Class frmCharSheet
             If txtLevel.Text = "" Then
                 txtLevel.Text = "1"
             End If
-            'set values in the module
-            'reaaaaaaaaaaally ought to be a better way of doing this
-            mdlGlobal.plevel = Val(txtLevel.Text)
-            mdlGlobal.pClass = cboClass.Text
-            Dim powChk As New CharOptions.opts
-            powChk.chkPower(Val(txtCName.Tag), 3)
-            pow.Owner = Me
-            pow.ShowDialog()
-            pow.Dispose()
+            'set values for powers and show form
+            With pow
+                .lev = Val(txtLevel.Text)
+                .pcls = cboClass.Text
+                .pid = Val(txtCName.Tag)
+                .ShowDialog()
+                .Dispose()
+            End With
         End If
     End Sub
 End Class

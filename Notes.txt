@@ -6,7 +6,7 @@ need to add class powers. try to do in access
 		-total allowed/day | total used today
 began implementing powers
 	-reads correctly from database
-	-need to recieve player calss and level from frmCharSheet
+	-receives all things at form creation (frmCharSheet)
 	
 frmCharSheet save statements can probably look better
 

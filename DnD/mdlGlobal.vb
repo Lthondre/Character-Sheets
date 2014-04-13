@@ -13,8 +13,6 @@
     'this is the only real workaround I could think of doing
     Public theTag As Integer    'used for selecting the correct armor tab
     Public check As Integer     'public variable holding value of check modifier
-    Public plevel As Integer    'player level
-    Public pClass As String     'player class
 
     ''' <summary>
     ''' an extension for finding the row of a datagrid given the armor/weapon ID

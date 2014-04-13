@@ -6,20 +6,7 @@ CharOptions
 </name>
 </assembly>
 <members>
-<member name="M:CharOptions.opts.selName">
-	<summary>
- public sub that selects a random name (for new characters) from the names.txt file
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:CharOptions.opts.chkPower(System.Int32,System.Int32)">
-	<summary>
- sub that tracks spell usage
- </summary>
-	<param name="pID"></param>
-	<param name="sID"></param>
-	<remarks></remarks>
-</member><member name="P:CharOptions.My.Resources.Resources.ResourceManager">
+<member name="P:CharOptions.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
@@ -32,6 +19,19 @@ CharOptions
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="M:CharOptions.opts.selName">
+	<summary>
+ public sub that selects a random name (for new characters) from the names.txt file
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CharOptions.opts.chkPower(System.Int32,System.Int32)">
+	<summary>
+ sub that tracks spell usage
+ </summary>
+	<param name="pID"></param>
+	<param name="sID"></param>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

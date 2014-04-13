@@ -30,13 +30,14 @@ Public Class opts
     ''' <param name="pID"></param>
     ''' <param name="sID"></param>
     ''' <remarks></remarks>
-    Public Sub chkPower(ByVal pID As Integer, ByVal sID As Integer)
-        Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & pID & ".pow"
+    Public Sub chkPower(ByVal pID As Integer, Optional ByVal sID As Integer = 0)
+        Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & pID & ".pow"
         Dim i As Integer = 0
         Dim pwrs(-1) As String
 
         'check to see if file exists, else create one and store into it the correct information
         If File.Exists(path) Then
+            Console.WriteLine("Powers' cache exists for this character!")
             Dim sr As New StreamReader(path)
             'read whole file into pwrs array
             Do While sr.Peek() >= 0
@@ -59,13 +60,17 @@ Public Class opts
             'close the file
             sr.Close()
         Else
+            'create directory if not exists
+            If (Not System.IO.Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")) Then
+                Console.WriteLine("Creating 'Powers\' subdirectory")
+                System.IO.Directory.CreateDirectory(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")
+            End If
             'create the file and store:
-            'player id
-            'spell id
-            'spells left today
-            Console.WriteLine("File does not exist!")
+            '   player id
+            '   spell id
+            '   spells left today
+            Console.WriteLine("Powers file does not exist! Creating at: " & path)
             File.Create(path).Dispose()
-            Console.WriteLine(path)
             Dim sw As New StreamWriter(path)
             sw.WriteLine(sID)
             sw.WriteLine(0)
