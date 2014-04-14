@@ -194,7 +194,6 @@
             sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.badCol
         Else
             'throw a message to the user concerning the spell's unavailability
-            Console.WriteLine("Spell already used today.")
             MessageBox.Show("Spell '" & sender.item(2, e.RowIndex).value.ToString & "' already used today.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub

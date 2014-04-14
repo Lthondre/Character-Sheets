@@ -113,6 +113,8 @@ Partial Class frmCharSheet
         Me.mnuClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.pdDialog = New System.Windows.Forms.PrintDialog()
+        Me.pdCharSheet = New System.Drawing.Printing.PrintDocument()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuCharSheet.SuspendLayout()
@@ -964,6 +966,13 @@ Partial Class frmCharSheet
         Me.mnuHelp.Text = "&Help"
         Me.mnuHelp.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
         '
+        'pdDialog
+        '
+        Me.pdDialog.UseEXDialog = True
+        '
+        'pdCharSheet
+        '
+        '
         'frmCharSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1079,5 +1088,7 @@ Partial Class frmCharSheet
     Friend WithEvents mnuClose As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuDice As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents pdDialog As System.Windows.Forms.PrintDialog
+    Friend WithEvents pdCharSheet As System.Drawing.Printing.PrintDocument
 
 End Class

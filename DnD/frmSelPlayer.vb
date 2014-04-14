@@ -418,7 +418,6 @@
                         loadStat(Armor(j).con, "con", PlayerRecord)
                     End If
                 Next
-
                 'lock the Character sheet until explicitly stated to edit it
                 .cboAlignment.Enabled = False
                 .cboClass.Enabled = False

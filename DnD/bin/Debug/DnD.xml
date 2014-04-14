@@ -351,6 +351,20 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.mnuPrint_Click(System.Object,System.EventArgs)">
+	<summary>
+ show print dialog for user and allow them to print out their character sheet
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.pdCharSheet_PrintPage(System.Object,System.Drawing.Printing.PrintPageEventArgs)">
+	<summary>
+ format of the output for the user when they print their character sheets
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelArmor.dgvWeapons_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
 	<summary>
  on doubleclick, adds selected armor to variables, so the can be added back in parent form

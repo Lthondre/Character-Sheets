@@ -1242,4 +1242,97 @@ Public Class frmCharSheet
             End With
         End If
     End Sub
+
+    ''' <summary>
+    ''' show print dialog for user and allow them to print out their character sheet
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub mnuPrint_Click(sender As Object, e As EventArgs) Handles mnuPrint.Click
+        Dim res As Integer = MessageBox.Show("Print Character Sheet?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        'opens a print inquiry
+        If res = DialogResult.Yes Then
+            pdDialog.Document = pdCharSheet
+            pdDialog.PrinterSettings = pdCharSheet.PrinterSettings
+            pdDialog.AllowSomePages = True
+            'open printer dialog for user to select correct printer
+            If pdDialog.ShowDialog = DialogResult.OK Then
+                pdCharSheet.PrinterSettings = pdDialog.PrinterSettings
+                pdCharSheet.Print()
+            End If
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' format of the output for the user when they print their character sheets
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub pdCharSheet_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles pdCharSheet.PrintPage
+        'must print a saved character
+        If Val(txtCName.Tag) >= 0 Then
+            Try
+                'code for creating the invoice for the customer
+                Dim intX As Integer = 10
+                Dim intY As Integer = 10
+                Dim chk As String = IIf(Val(txtCheck.Text) > 0, "+" & txtCheck.Text, txtCheck.Text)
+                Dim strmod As String = IIf(Val(txtStr.Tag) > 0, "+" & txtStr.Tag, txtStr.Tag)
+                Dim dexmod As String = IIf(Val(txtDex.Tag) > 0, "+" & txtDex.Tag, txtDex.Tag)
+                Dim conmod As String = IIf(Val(txtCon.Tag) > 0, "+" & txtCon.Tag, txtCon.Tag)
+                Dim intmod As String = IIf(Val(txtInt.Tag) > 0, "+" & txtInt.Tag, txtInt.Tag)
+                Dim wismod As String = IIf(Val(txtWis.Tag) > 0, "+" & txtWis.Tag, txtWis.Tag)
+                Dim chamod As String = IIf(Val(txtCha.Tag) > 0, "+" & txtCha.Tag, txtCha.Tag)
+
+                Dim str As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).STR
+                Dim dex As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).DEX
+                Dim con As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).CON
+                Dim int As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).INT
+                Dim wis As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).WIS
+                Dim cha As Integer = frmSelPlayer.Player(frmSelPlayer.lstPlayers.SelectedIndex).CHA
+                Dim gender As String = IIf(LCase(cboGender.Text = "M"), "Male", "Female")
+
+                Dim myFont As New System.Drawing.Font("Comic Sans MS", 12)
+                Dim strCustomerLine As String = vbTab & vbTab & txtCName.Text & vbCrLf & _
+                                                vbTab & vbTab & "Level " & txtLevel.Text & vbCrLf & _
+                                                "   Base Stats" & vbTab & vbTab & "   Modifiers" & vbCrLf & _
+                                                "Strength:" & vbTab & str & vbTab & vbTab & strmod & vbCrLf & _
+                                                "Dexterity:" & vbTab & dex & vbTab & vbTab & dexmod & vbCrLf & _
+                                                "Constitution:" & vbTab & con & vbTab & vbTab & conmod & vbCrLf & _
+                                                "Intelligence:" & vbTab & int & vbTab & vbTab & intmod & vbCrLf & _
+                                                "Wisdom:" & vbTab & wis & vbTab & vbTab & wismod & vbCrLf & _
+                                                "Charisma:" & vbTab & cha & vbTab & vbTab & chamod & vbCrLf & _
+                                                vbCrLf & vbCrLf & _
+                                                "Class:" & vbTab & vbTab & cboClass.Text & vbCrLf & _
+                                                "Race:" & vbTab & vbTab & cboRace.Text & vbCrLf & _
+                                                "Gender:" & vbTab & vbTab & gender & vbCrLf & _
+                                                "Alignment:" & vbTab & cboAlignment.Text & vbCrLf & _
+                                                "Location:" & vbTab & txtLoc.Text & vbCrLf & _
+                                                "Experience:" & vbTab & txtExp.Text & vbCrLf & _
+                                                vbCrLf & _
+                                                vbTab & "Weapon:" & vbTab & txtWepName.Text & vbCrLf & vbCrLf & _
+                                                vbTab & "Helmet:" & vbTab & vbTab & txtHelm.Text & vbCrLf & _
+                                                vbTab & "Necklace:" & vbTab & txtNeck.Text & vbCrLf & _
+                                                vbTab & "Chestpiece:" & vbTab & txtChest.Text & vbCrLf & _
+                                                vbTab & "Arms: " & vbTab & vbTab & txtArms.Text & vbCrLf & _
+                                                vbTab & "Gloves:" & vbTab & vbTab & txtHands.Text & vbCrLf & _
+                                                vbTab & "Bracers:" & vbTab & txtWrists.Text & vbCrLf & _
+                                                vbTab & "Legs:" & vbTab & vbTab & txtLegs.Text & vbCrLf & _
+                                                vbTab & "Feet:" & vbTab & vbTab & txtFeet.Text & vbCrLf & _
+                                                vbCrLf & _
+                                                 "Health:" & vbTab & vbTab & txtHP.Text & vbCrLf & _
+                                                "Armor Class:" & vbTab & txtAC.Text & vbCrLf & _
+                                                "Action Points:" & vbTab & txtAP.Text & vbCrLf & _
+                                                "Money:" & vbTab & vbTab & txtMoney.Text & "gp" & vbCrLf & _
+                                                "Weight:" & vbTab & vbTab & txtCarryCap.Text & "lbs" & vbCrLf & _
+                                                "Check Mod:" & vbTab & chk
+
+                e.Graphics.DrawString(strCustomerLine, myFont, Brushes.Black, intX, intY)
+                intY += 16
+            Catch ex As Exception
+                MessageBox.Show("An error occurred during printing.")
+            End Try
+        End If
+    End Sub
 End Class
