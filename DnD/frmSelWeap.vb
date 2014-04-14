@@ -12,6 +12,12 @@
     Public dINT As Integer
     Public dCON As Integer
 
+    ''' <summary>
+    ''' load weapons on form load
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub frmSelWeap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgvWeapons.Rows.Clear() 'fresh datagrid every time
         With frmSelPlayer
@@ -22,6 +28,12 @@
         End With
     End Sub
 
+    ''' <summary>
+    ''' set corresponding variables on cell double click
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub dgvWeapons_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvWeapons.CellDoubleClick
         'change the weapon name and tag back in frmCharSheet
         dtag = dgvWeapons.Item(0, e.RowIndex).Value.ToString
@@ -42,11 +54,23 @@
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' close the form
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         'close the form
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' add new weapon
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         'add a new weapon to the datagrid
         frmAddWeap.ShowDialog()

@@ -75,9 +75,9 @@
                 Dim used As Boolean = powChk.chkPower(pid, dgvDailies.Rows(i).Cells("sID").Value)
                 Console.WriteLine("Used: " & used)
                 If used Then
-                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = Color.Red
+                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.badCol
                 Else
-                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = Color.Green
+                    dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.goodCol
                 End If
                 i += 1
             Next
@@ -176,5 +176,26 @@
     ''' <remarks></remarks>
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
+    End Sub
+
+    ''' <summary>
+    ''' use the daily on double click
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub dgvDailies_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailies.CellDoubleClick
+        'only append if it hasn't already been used today
+        If sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor <> mdlGlobal.badCol Then
+            Dim powerID As Integer = sender.item(0, e.RowIndex).value.ToString
+            Console.WriteLine("Power ID: " & vbTab & powerID)
+            Dim opts As New CharOptions.opts
+            opts.setPowers(pid, powerID)
+            sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.badCol
+        Else
+            'throw a message to the user concerning the spell's unavailability
+            Console.WriteLine("Spell already used today.")
+            MessageBox.Show("Spell '" & sender.item(2, e.RowIndex).value.ToString & "' already used today.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class

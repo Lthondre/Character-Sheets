@@ -71,11 +71,8 @@ Partial Class frmCharSheet
         Me.Label25 = New System.Windows.Forms.Label()
         Me.txtColor = New System.Windows.Forms.TextBox()
         Me.btnRandomize = New System.Windows.Forms.Button()
-        Me.btnSelWeap = New System.Windows.Forms.Button()
         Me.btnEdit = New System.Windows.Forms.Button()
-        Me.btnSelArmor = New System.Windows.Forms.Button()
         Me.pnlCharSheet = New System.Windows.Forms.Panel()
-        Me.btnPowers = New System.Windows.Forms.Button()
         Me.pbxColor = New System.Windows.Forms.PictureBox()
         Me.btnExp = New System.Windows.Forms.Button()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -105,9 +102,20 @@ Partial Class frmCharSheet
         Me.txtChest = New System.Windows.Forms.TextBox()
         Me.txtNeck = New System.Windows.Forms.TextBox()
         Me.txtHelm = New System.Windows.Forms.TextBox()
-        Me.btnRoll = New System.Windows.Forms.Button()
+        Me.mnuCharSheet = New System.Windows.Forms.MenuStrip()
+        Me.mnuChar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuWeapon = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuArmor = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuPowers = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuDice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuSave = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuClose = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.mnuCharSheet.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnCalc
@@ -543,15 +551,6 @@ Partial Class frmCharSheet
         Me.ttpHelp.SetToolTip(Me.btnRandomize, "Roll random numbers for your six ability scores")
         Me.btnRandomize.UseVisualStyleBackColor = True
         '
-        'btnSelWeap
-        '
-        Me.btnSelWeap.Location = New System.Drawing.Point(172, 538)
-        Me.btnSelWeap.Name = "btnSelWeap"
-        Me.btnSelWeap.Size = New System.Drawing.Size(75, 23)
-        Me.btnSelWeap.TabIndex = 52
-        Me.btnSelWeap.Text = "&Weapon"
-        Me.btnSelWeap.UseVisualStyleBackColor = True
-        '
         'btnEdit
         '
         Me.btnEdit.Location = New System.Drawing.Point(172, 567)
@@ -561,19 +560,8 @@ Partial Class frmCharSheet
         Me.btnEdit.Text = "&Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
-        'btnSelArmor
-        '
-        Me.btnSelArmor.Location = New System.Drawing.Point(311, 538)
-        Me.btnSelArmor.Name = "btnSelArmor"
-        Me.btnSelArmor.Size = New System.Drawing.Size(75, 23)
-        Me.btnSelArmor.TabIndex = 54
-        Me.btnSelArmor.Tag = "9"
-        Me.btnSelArmor.Text = "&Armor"
-        Me.btnSelArmor.UseVisualStyleBackColor = True
-        '
         'pnlCharSheet
         '
-        Me.pnlCharSheet.Controls.Add(Me.btnPowers)
         Me.pnlCharSheet.Controls.Add(Me.pbxColor)
         Me.pnlCharSheet.Controls.Add(Me.btnExp)
         Me.pnlCharSheet.Controls.Add(Me.Label31)
@@ -647,19 +635,10 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Controls.Add(Me.Label15)
         Me.pnlCharSheet.Controls.Add(Me.Label14)
         Me.pnlCharSheet.Controls.Add(Me.txtLevel)
-        Me.pnlCharSheet.Location = New System.Drawing.Point(15, 12)
+        Me.pnlCharSheet.Location = New System.Drawing.Point(16, 27)
         Me.pnlCharSheet.Name = "pnlCharSheet"
         Me.pnlCharSheet.Size = New System.Drawing.Size(552, 520)
         Me.pnlCharSheet.TabIndex = 55
-        '
-        'btnPowers
-        '
-        Me.btnPowers.Location = New System.Drawing.Point(6, 344)
-        Me.btnPowers.Name = "btnPowers"
-        Me.btnPowers.Size = New System.Drawing.Size(75, 23)
-        Me.btnPowers.TabIndex = 83
-        Me.btnPowers.Text = "Powers"
-        Me.btnPowers.UseVisualStyleBackColor = True
         '
         'pbxColor
         '
@@ -913,28 +892,90 @@ Partial Class frmCharSheet
         Me.txtHelm.Size = New System.Drawing.Size(131, 20)
         Me.txtHelm.TabIndex = 53
         '
-        'btnRoll
+        'mnuCharSheet
         '
-        Me.btnRoll.Location = New System.Drawing.Point(15, 538)
-        Me.btnRoll.Name = "btnRoll"
-        Me.btnRoll.Size = New System.Drawing.Size(75, 23)
-        Me.btnRoll.TabIndex = 80
-        Me.btnRoll.Text = "R&oll"
-        Me.btnRoll.UseVisualStyleBackColor = True
+        Me.mnuCharSheet.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.mnuCharSheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuChar, Me.mnuPrint, Me.mnuHelp})
+        Me.mnuCharSheet.Location = New System.Drawing.Point(0, 0)
+        Me.mnuCharSheet.Name = "mnuCharSheet"
+        Me.mnuCharSheet.Size = New System.Drawing.Size(580, 24)
+        Me.mnuCharSheet.TabIndex = 81
+        Me.mnuCharSheet.Text = "MenuStrip1"
+        '
+        'mnuChar
+        '
+        Me.mnuChar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuWeapon, Me.mnuArmor, Me.mnuPowers, Me.mnuDice, Me.ToolStripSeparator1, Me.mnuSave, Me.mnuClose})
+        Me.mnuChar.Name = "mnuChar"
+        Me.mnuChar.Size = New System.Drawing.Size(82, 20)
+        Me.mnuChar.Text = "&Information"
+        '
+        'mnuWeapon
+        '
+        Me.mnuWeapon.Name = "mnuWeapon"
+        Me.mnuWeapon.Size = New System.Drawing.Size(152, 22)
+        Me.mnuWeapon.Text = "&Weapons"
+        '
+        'mnuArmor
+        '
+        Me.mnuArmor.Name = "mnuArmor"
+        Me.mnuArmor.Size = New System.Drawing.Size(152, 22)
+        Me.mnuArmor.Text = "&Armor"
+        '
+        'mnuPowers
+        '
+        Me.mnuPowers.Name = "mnuPowers"
+        Me.mnuPowers.Size = New System.Drawing.Size(152, 22)
+        Me.mnuPowers.Text = "&Powers"
+        '
+        'mnuDice
+        '
+        Me.mnuDice.Name = "mnuDice"
+        Me.mnuDice.Size = New System.Drawing.Size(152, 22)
+        Me.mnuDice.Text = "Show &Dice"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+        '
+        'mnuSave
+        '
+        Me.mnuSave.Name = "mnuSave"
+        Me.mnuSave.Size = New System.Drawing.Size(152, 22)
+        Me.mnuSave.Text = "&Save"
+        '
+        'mnuClose
+        '
+        Me.mnuClose.Name = "mnuClose"
+        Me.mnuClose.Size = New System.Drawing.Size(152, 22)
+        Me.mnuClose.Text = "&Close"
+        '
+        'mnuPrint
+        '
+        Me.mnuPrint.Name = "mnuPrint"
+        Me.mnuPrint.Size = New System.Drawing.Size(44, 20)
+        Me.mnuPrint.Text = "&Print"
+        '
+        'mnuHelp
+        '
+        Me.mnuHelp.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.mnuHelp.Name = "mnuHelp"
+        Me.mnuHelp.Size = New System.Drawing.Size(44, 20)
+        Me.mnuHelp.Text = "&Help"
+        Me.mnuHelp.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
         '
         'frmCharSheet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(580, 602)
-        Me.Controls.Add(Me.btnRoll)
         Me.Controls.Add(Me.pnlCharSheet)
-        Me.Controls.Add(Me.btnSelArmor)
         Me.Controls.Add(Me.btnEdit)
-        Me.Controls.Add(Me.btnSelWeap)
         Me.Controls.Add(Me.btnRandomize)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnCalc)
+        Me.Controls.Add(Me.mnuCharSheet)
+        Me.MainMenuStrip = Me.mnuCharSheet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmCharSheet"
@@ -942,18 +983,18 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.ResumeLayout(False)
         Me.pnlCharSheet.PerformLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.mnuCharSheet.ResumeLayout(False)
+        Me.mnuCharSheet.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnCalc As System.Windows.Forms.Button
     Friend WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents ttpHelp As System.Windows.Forms.ToolTip
     Friend WithEvents btnRandomize As System.Windows.Forms.Button
-    Friend WithEvents btnSelWeap As System.Windows.Forms.Button
     Friend WithEvents btnEdit As System.Windows.Forms.Button
-    Friend WithEvents btnSelArmor As System.Windows.Forms.Button
     Friend WithEvents pnlCharSheet As System.Windows.Forms.Panel
-    Friend WithEvents btnRoll As System.Windows.Forms.Button
     Public WithEvents txtDex As System.Windows.Forms.TextBox
     Public WithEvents txtCon As System.Windows.Forms.TextBox
     Public WithEvents txtInt As System.Windows.Forms.TextBox
@@ -1027,6 +1068,16 @@ Partial Class frmCharSheet
     Friend WithEvents btnExp As System.Windows.Forms.Button
     Friend WithEvents pbxColor As System.Windows.Forms.PictureBox
     Public WithEvents cboClass As System.Windows.Forms.ComboBox
-    Public WithEvents btnPowers As System.Windows.Forms.Button
+    Friend WithEvents mnuCharSheet As System.Windows.Forms.MenuStrip
+    Friend WithEvents mnuChar As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuPowers As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuWeapon As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuArmor As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuPrint As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuHelp As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuSave As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuClose As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuDice As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
 
 End Class

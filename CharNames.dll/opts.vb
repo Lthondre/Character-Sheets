@@ -48,14 +48,9 @@ Public Class opts
             Loop
             'search array for spell id
             Dim fsID As Integer 'file spell id
-            Dim fsLeft As Integer   'file spells left
             For j As Integer = 0 To pwrs.Length - 1 Step 2
                 If pwrs(j) = sID Then
                     fsID = pwrs(j)
-                    fsLeft = pwrs(j + 1)
-                    Console.WriteLine("SID: " & vbTab & sID)
-                    Console.WriteLine("FSID:" & vbTab & fsID)
-                    Console.WriteLine("SLEFT: " & vbTab & fsLeft)
                     Return True
                 End If
             Next
@@ -63,7 +58,22 @@ Public Class opts
             sr.Close()
             Return False
         Else
-            Console.WriteLine("Powers file does not exist at: " & path)
+            If Not File.Exists(path) Then
+                'create directory if not exists
+                If (Not System.IO.Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")) Then
+                    Console.WriteLine("Creating 'Powers\' subdirectory")
+                    System.IO.Directory.CreateDirectory(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")
+                    'give any tinkerers a warning
+                    Dim readme As New StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & "Readme.txt")
+                    readme.WriteLine("Do not modify any files in this folder. They are sensitive to change and could mess up the whole program!")
+                    readme.Close()
+                End If
+                'create the file and store:
+                '   player id
+                '   spell id
+                Console.WriteLine("Powers file does not exist! Creating at: " & path)
+                File.Create(path).Dispose()
+            End If
             Return False
         End If
     End Function
@@ -83,15 +93,19 @@ Public Class opts
                 System.IO.Directory.CreateDirectory(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")
             End If
             'create the file and store:
-            '   player id
             '   spell id
-            '   spells left today
             Console.WriteLine("Powers file does not exist! Creating at: " & path)
             File.Create(path).Dispose()
             Dim sw As New StreamWriter(path)
             sw.WriteLine(sid)
-            sw.WriteLine(0)
             sw.Close()
+        Else
+            Dim sa As StreamWriter = File.AppendText(path)
+            'create the file and store:
+            '   spell id
+            Console.WriteLine("Appending spell#" & sid & " to: " & path)
+            sa.WriteLine(sid)
+            sa.Close()
         End If
     End Sub
 End Class

@@ -27,7 +27,8 @@ Public Class frmCharSheet
         AddHandler btnLegs.Click, AddressOf btnSelArmor_Click
         AddHandler btnFeet.Click, AddressOf btnSelArmor_Click
         AddHandler btnNeck.Click, AddressOf btnSelArmor_Click
-        AddHandler btnSelArmor.Click, AddressOf btnSelArmor_Click
+        'menu strip
+        AddHandler mnuArmor.Click, AddressOf btnSelArmor_Click
         'prime the variable
         mdlGlobal.check = Val(txtCheck.Text)
     End Sub
@@ -38,7 +39,7 @@ Public Class frmCharSheet
     ''' <param name="sender">cancel button click</param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, mnuClose.Click
         'Closes the form
         Me.Close()
     End Sub
@@ -49,7 +50,7 @@ Public Class frmCharSheet
     ''' <param name="sender">Save button click</param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCalc.Click
+    Private Sub btnCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCalc.Click, mnuSave.Click
         'validate input has been entered
         If txtStr.Text = "" Then
             MessageBox.Show("Please enter Strength", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -414,7 +415,6 @@ Public Class frmCharSheet
             cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
             cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
             txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
-            'txtColor.ReadOnly = IIf(txtColor.ReadOnly = False, True, False)
             'only newbies should have this power
             txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
             txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
@@ -429,9 +429,7 @@ Public Class frmCharSheet
         txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
         btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
         btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
-
         'equipment buttons
-        btnSelWeap.Enabled = IIf(btnSelWeap.Enabled = False, True, False)
         btnSWeap.Enabled = IIf(btnSWeap.Enabled = False, True, False)
         btnHead.Enabled = IIf(btnHead.Enabled = False, True, False)
         btnNeck.Enabled = IIf(btnNeck.Enabled = False, True, False)
@@ -441,7 +439,10 @@ Public Class frmCharSheet
         btnLegs.Enabled = IIf(btnLegs.Enabled = False, True, False)
         btnFeet.Enabled = IIf(btnFeet.Enabled = False, True, False)
         btnWrists.Enabled = IIf(btnWrists.Enabled = False, True, False)
-        btnSelArmor.Enabled = IIf(btnSelArmor.Enabled = False, True, False)
+        'menu strip
+        mnuWeapon.Enabled = IIf(mnuWeapon.Enabled = False, True, False)
+        mnuArmor.Enabled = IIf(mnuArmor.Enabled = False, True, False)
+        mnuSave.Enabled = IIf(mnuSave.Enabled = False, True, False)
         txtHP.Focus()
     End Sub
 
@@ -451,7 +452,7 @@ Public Class frmCharSheet
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnSelWeap_Click(sender As Object, e As EventArgs) Handles btnSelWeap.Click
+    Private Sub btnSelWeap_Click(sender As Object, e As EventArgs) Handles mnuWeapon.Click
         'open frmSelWeap for weapon selection
         With frmSelWeap
             Me.Hide()
@@ -504,7 +505,7 @@ Public Class frmCharSheet
                 mdlGlobal.theTag = 7
             Case "btnWrists"
                 mdlGlobal.theTag = 8
-            Case "btnSelArmor"
+            Case "btnSelArmor", "mnuArmor"
                 mdlGlobal.theTag = 9
         End Select
         With frmSelArmor
@@ -635,7 +636,7 @@ Public Class frmCharSheet
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks>does initiative/perception as well</remarks>
-    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles btnRoll.Click
+    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles mnuDice.Click
         'show the form that handles ability/skill checks
         Dim roll As New frmAbilSkillRoll
         With roll
@@ -671,52 +672,78 @@ Public Class frmCharSheet
             Case 1
                 'racials are applied
                 'can know 2 cantrips
-                cantrips = 2
-                encounters = 1
-                dailies = 1
                 '           1 encounter
                 '           1 daily
                 '           0 utility
+                cantrips = 2
+                encounters = 1
+                dailies = 1
             Case 2
                 'can know 2 cantrips
                 '           1 encounter
                 '           1 daily
                 '           1 utility
+                cantrips = 2
+                encounters = 1
+                dailies = 1
             Case 3
                 'can know 2 cantrips
                 '           2 encounter
                 '           1 daily
                 '           1 utility
+                cantrips = 2
+                encounters = 2
+                dailies = 1
             Case 4
                 '+1 to two abilities
+                cantrips = 2
+                encounters = 2
+                dailies = 1
             Case 5
                 'can know 2 cantrips
                 '           2 encounter
                 '           2 daily
                 '           1 utility
+                cantrips = 2
+                encounters = 2
+                dailies = 2
             Case 6
                 'can know 2 cantrips
                 '           2 encounter
                 '           2 daily
                 '           2 utility
+                cantrips = 2
+                encounters = 2
+                dailies = 2
             Case 7
                 'can know 2 cantrips
                 '           3 encounter
                 '           2 daily
                 '           2 utility
+                cantrips = 2
+                encounters = 3
+                dailies = 2
             Case 8
                 '+1 to two abilities
+                cantrips = 2
+                encounters = 3
+                dailies = 2
             Case 9
                 'can know 2 cantrips
                 '           3 encounter
                 '           3 daily
                 '           2 utility
+                cantrips = 2
+                encounters = 3
+                dailies = 3
             Case 10
                 'can know 2 cantrips
                 '           3 encounter
                 '           3 daily
                 '           3 utility
-
+                cantrips = 2
+                encounters = 3
+                dailies = 3
 
 
             Case 11
@@ -1192,32 +1219,12 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
-    ''' changes the text of btnPowers when cboClass changes
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboClass_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboClass.SelectedIndexChanged
-        'change text of powers button to something more user-relevant
-        Select Case LCase(cboClass.Text)
-            Case "cleric", "paladin"
-                btnPowers.Text = "Prayers"
-            Case "fighter", "ranger", "rogue", "warlord"
-                btnPowers.Text = "Exploits"
-            Case "warlock", "wizard"
-                btnPowers.Text = "Spells"
-            Case Else
-                btnPowers.Text = "Powers"
-        End Select
-    End Sub
-
-    ''' <summary>
     ''' opens frmSelPowers for power selection
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnPowers_Click(sender As Object, e As EventArgs) Handles btnPowers.Click
+    Private Sub btnPowers_Click(sender As Object, e As EventArgs) Handles mnuPowers.Click
         Dim pow As New frmSelPowers
         If cboClass.Text = "" Then
             MessageBox.Show("You must select a class to see its powers", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)

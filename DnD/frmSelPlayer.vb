@@ -455,7 +455,6 @@
                 .txtNeck.ReadOnly = True
                 .txtWrists.ReadOnly = True
                 'equipment buttons
-                .btnSelWeap.Enabled = False
                 .btnSWeap.Enabled = False
                 .btnHead.Enabled = False
                 .btnNeck.Enabled = False
@@ -465,7 +464,10 @@
                 .btnLegs.Enabled = False
                 .btnFeet.Enabled = False
                 .btnWrists.Enabled = False
-                .btnSelArmor.Enabled = False
+                'menu strip
+                .mnuSave.Enabled = False
+                .mnuWeapon.Enabled = False
+                .mnuArmor.Enabled = False
             End With
             Me.Hide()
             PlayerRecord.ShowDialog()

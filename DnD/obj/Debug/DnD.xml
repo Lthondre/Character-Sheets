@@ -20,6 +20,34 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmSelWeap.frmSelWeap_Load(System.Object,System.EventArgs)">
+	<summary>
+ load weapons on form load
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelWeap.dgvWeapons_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+	<summary>
+ set corresponding variables on cell double click
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelWeap.btnClose_Click(System.Object,System.EventArgs)">
+	<summary>
+ close the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelWeap.btnAdd_Click(System.Object,System.EventArgs)">
+	<summary>
+ add new weapon
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="F:DnD.clsData.conn">
 	<summary>
  Connection to database
@@ -160,6 +188,13 @@ DnD
 </member><member name="M:DnD.frmSelPowers.btnClose_Click(System.Object,System.EventArgs)">
 	<summary>
  closes the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelPowers.dgvDailies_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+	<summary>
+ use the daily on double click
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
@@ -308,13 +343,6 @@ DnD
 	<summary>
  takes all colors into an array only if their of type Color
  </summary>
-	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.cboClass_SelectedIndexChanged(System.Object,System.EventArgs)">
-	<summary>
- changes the text of btnPowers when cboClass changes
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnPowers_Click(System.Object,System.EventArgs)">
 	<summary>
