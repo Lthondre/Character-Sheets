@@ -283,13 +283,6 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.txtLevel_TextChanged(System.Object,System.EventArgs)">
-	<summary>
- tracks character progress (level)
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.cboRace_SelectedIndexChanged(System.Object,System.EventArgs)">
 	<summary>
  updates racial ability modifiers. 
@@ -297,6 +290,13 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
+</member><member name="M:DnD.frmCharSheet.txtLevel_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ tracks character progress (level)
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.txtExp_TextChanged(System.Object,System.EventArgs)">
 	<summary>
  updates character level based on experience
@@ -304,14 +304,11 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.levelUp(System.Object@,System.Object@,System.Object@,System.Object@)">
+</member><member name="M:DnD.frmCharSheet.levelUp(System.Int32@)">
 	<summary>
  sub that increments levels
  </summary>
 	<param name="xp">current exp</param>
-	<param name="lBound">lower bound of level (between X and Y: X)</param>
-	<param name="uBound">upper bound of level (between X and Y: Y)</param>
-	<param name="lvl">level to increment to</param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnExp_Click(System.Object,System.EventArgs)">
 	<summary>

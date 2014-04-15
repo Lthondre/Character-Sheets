@@ -914,43 +914,43 @@ Partial Class frmCharSheet
         'mnuWeapon
         '
         Me.mnuWeapon.Name = "mnuWeapon"
-        Me.mnuWeapon.Size = New System.Drawing.Size(152, 22)
+        Me.mnuWeapon.Size = New System.Drawing.Size(174, 22)
         Me.mnuWeapon.Text = "&Weapons"
         '
         'mnuArmor
         '
         Me.mnuArmor.Name = "mnuArmor"
-        Me.mnuArmor.Size = New System.Drawing.Size(152, 22)
+        Me.mnuArmor.Size = New System.Drawing.Size(174, 22)
         Me.mnuArmor.Text = "&Armor"
         '
         'mnuPowers
         '
         Me.mnuPowers.Name = "mnuPowers"
-        Me.mnuPowers.Size = New System.Drawing.Size(152, 22)
+        Me.mnuPowers.Size = New System.Drawing.Size(174, 22)
         Me.mnuPowers.Text = "&Powers"
         '
         'mnuDice
         '
         Me.mnuDice.Name = "mnuDice"
-        Me.mnuDice.Size = New System.Drawing.Size(152, 22)
+        Me.mnuDice.Size = New System.Drawing.Size(174, 22)
         Me.mnuDice.Text = "Show &Dice"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(171, 6)
         '
         'mnuSave
         '
         Me.mnuSave.Name = "mnuSave"
-        Me.mnuSave.Size = New System.Drawing.Size(152, 22)
+        Me.mnuSave.Size = New System.Drawing.Size(174, 22)
         Me.mnuSave.Text = "&Save"
         '
         'mnuClose
         '
         Me.mnuClose.Name = "mnuClose"
-        Me.mnuClose.Size = New System.Drawing.Size(152, 22)
-        Me.mnuClose.Text = "&Close"
+        Me.mnuClose.Size = New System.Drawing.Size(174, 22)
+        Me.mnuClose.Text = "&Change Characters"
         '
         'mnuPrint
         '

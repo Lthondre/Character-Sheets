@@ -5,6 +5,7 @@
     Public Armor(-1) As ArmorStats
     Event editPhone As EventHandler
 
+#Region "Structures"
     ''' <summary>
     ''' Structure to hold contact information
     ''' </summary>
@@ -87,6 +88,7 @@
         Public int As Integer
         Public con As Integer
     End Structure
+#End Region
 
     ''' <summary>
     ''' Load customer information to structure using clsData
@@ -299,8 +301,8 @@
                         loadStat(Weapon(j).con, "con", PlayerRecord)
                     End If
                 Next
-                .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
                 .txtExp.Text = Player(lstPlayers.SelectedIndex).Exp
+                .txtLevel.Text = Player(lstPlayers.SelectedIndex).Level
                 .txtLoc.Text = Player(lstPlayers.SelectedIndex).Loc
 
                 'mod ability scores

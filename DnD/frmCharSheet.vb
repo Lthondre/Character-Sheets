@@ -7,6 +7,7 @@ Public Class frmCharSheet
     Public cantrips = 0                   'holds number of cantrips available to current character
     Public encounters = 0
     Public dailies = 0
+    Public lvls(30) As Int64
     Event weapArmor As EventHandler
 
     ''' <summary>
@@ -31,6 +32,17 @@ Public Class frmCharSheet
         AddHandler mnuArmor.Click, AddressOf btnSelArmor_Click
         'prime the variable
         mdlGlobal.check = Val(txtCheck.Text)
+        'load level threshholds
+        Try
+            Dim sr As New System.IO.StreamReader("levels.txt")
+            For j As Integer = 2 To 30
+                lvls(j) = Convert.ToInt64(sr.ReadLine())
+            Next
+            sr.Close()
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+            MessageBox.Show("Could not open up levels file.")
+        End Try
     End Sub
 
     ''' <summary>
@@ -220,13 +232,13 @@ Public Class frmCharSheet
                     .Item("pCharLoc") = txtLoc.Text
                     .Item("pLevel") = txtLevel.Text
                     .Item("pExp") = txtExp.Text
-                    'new characters have no ability modifiers. They're new.
-                    .Item("modSTR") = 0
-                    .Item("modDEX") = 0
-                    .Item("modCON") = 0
-                    .Item("modINT") = 0
-                    .Item("modWIS") = 0
-                    .Item("modCHA") = 0
+                    'save ability modifiers
+                    .Item("modSTR") = txtStr.Tag
+                    .Item("modDEX") = txtDex.Tag
+                    .Item("modCON") = txtCon.Tag
+                    .Item("modINT") = txtInt.Tag
+                    .Item("modWIS") = txtWis.Tag
+                    .Item("modCHA") = txtCha.Tag
                     'armor
                     .Item("aHead") = txtHelm.Tag
                     .Item("aChest") = txtChest.Tag
@@ -661,6 +673,126 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
+    ''' updates racial ability modifiers. 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
+    Private Sub cboRace_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRace.SelectedIndexChanged
+        'should only fire on a new character
+        If txtCName.Tag = Nothing Then
+            Dim newEquip As String = "Unequipped"
+            Dim newTag As String = "1"
+            'remove existing racial bonus
+            txtDex.Tag = 0
+            txtCha.Tag = 0
+            txtInt.Tag = 0
+            txtStr.Tag = 0
+            txtCon.Tag = 0
+            txtWis.Tag = 0
+
+            'I have no idea how else to do this, armor must come off if you're going to change your race
+            txtHelm.Text = newEquip
+            txtHelm.Tag = newTag
+            txtArms.Text = newEquip
+            txtArms.Tag = newTag
+            txtWrists.Text = newEquip
+            txtWrists.Tag = newTag
+            txtHands.Text = newEquip
+            txtHands.Tag = newTag
+            txtNeck.Text = newEquip
+            txtNeck.Tag = newTag
+            txtChest.Text = newEquip
+            txtChest.Tag = newTag
+            txtLegs.Text = newEquip
+            txtLegs.Tag = newTag
+            txtFeet.Text = newEquip
+            txtFeet.Tag = newTag
+            txtWepName.Text = newEquip
+            txtWepName.Tag = newTag
+
+            'add new racials
+            If LCase(cboRace.Text) = "human" Then
+                '+2 to any one ability
+                Dim goodIn As Boolean
+                'could search string for first three letters at beginning of string to make this easier
+                Do
+                    Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier", 0)
+                    goodIn = True
+                    'increase stats and mods by their increment value, difference is the base ability
+                    Select Case LCase(res)
+                        Case "dex", "dexterity"
+                            txtDex.Tag = Val(txtDex.Tag) + 2
+                            txtDex.Text = Val(txtDex.Text) + 2
+                        Case "str", "strength"
+                            txtStr.Tag = Val(txtStr.Tag) + 2
+                            txtStr.Text = Val(txtStr.Text) + 2
+                        Case "cha", "charisma"
+                            txtCha.Tag = Val(txtCha.Tag) + 2
+                            txtCha.Text = Val(txtCha.Text) + 2
+                        Case "int", "intelligence", "intellect"
+                            txtInt.Tag = Val(txtInt.Tag) + 2
+                            txtInt.Text = Val(txtInt.Text) + 2
+                        Case "wis", "wisdom"
+                            txtWis.Tag = Val(txtWis.Tag) + 2
+                            txtWis.Text = Val(txtWis.Text) + 2
+                        Case "con", "constitution"
+                            txtCon.Tag = Val(txtCon.Tag) + 2
+                            txtCon.Text = Val(txtCon.Text) + 2
+                        Case 0
+                            'Default to Strength modifer
+                            txtStr.Tag = Val(txtStr.Tag) + 2
+                            txtStr.Text = Val(txtStr.Text) + 2
+                        Case Else
+                            'Nice output for user
+                            MessageBox.Show("That is not a valid ability to modify" & vbCrLf & "Choose DEX, STR, CHA, INT, WIS, or CON", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            goodIn = False
+                    End Select
+                Loop While goodIn = False
+            ElseIf LCase(cboRace.Text) = "halfling" Then
+                txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
+            ElseIf LCase(cboRace.Text) = "gnome" Then
+                'book two
+                txtInt.Tag = Val(txtInt.Tag) + 2
+                txtInt.Text = Val(txtInt.Text) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
+            ElseIf LCase(cboRace.Text) = "half orc" Then
+                txtStr.Tag = Val(txtStr.Tag) + 2
+                txtStr.Text = Val(txtStr.Text) + 2
+                txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
+            ElseIf LCase(cboRace.Text) = "dwarf" Then
+                txtCon.Tag = Val(txtCon.Tag) + 2
+                txtCon.Text = Val(txtCon.Text) + 2
+                txtWis.Tag = Val(txtWis.Tag) + 2
+                txtWis.Text = Val(txtWis.Text) + 2
+            ElseIf LCase(cboRace.Text) = "half elf" Then
+                txtCon.Tag = Val(txtCon.Tag) + 2
+                txtCon.Text = Val(txtCon.Text) + 2
+                txtCha.Tag = Val(txtCha.Tag) + 2
+                txtCha.Text = Val(txtCha.Text) + 2
+            ElseIf LCase(cboRace.Text) = "elf" Then
+                txtDex.Tag = Val(txtDex.Tag) + 2
+                txtDex.Text = Val(txtDex.Text) + 2
+                txtWis.Tag = Val(txtWis.Tag) + 2
+                txtWis.Text = Val(txtWis.Text) + 2
+            End If
+            Console.WriteLine(LCase(cboRace.Text))
+            Console.WriteLine("Dex: " & txtDex.Tag)
+            Console.WriteLine("Str: " & txtStr.Tag)
+            Console.WriteLine("Con: " & txtCon.Tag)
+            Console.WriteLine("Int: " & txtInt.Tag)
+            Console.WriteLine("Wis: " & txtWis.Tag)
+            Console.WriteLine("Cha: " & txtCha.Tag)
+        End If
+    End Sub
+
+#Region "Levels/Exp"
+    ''' <summary>
     ''' tracks character progress (level)
     ''' </summary>
     ''' <param name="sender"></param>
@@ -893,226 +1025,29 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
-    ''' updates racial ability modifiers. 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
-    Private Sub cboRace_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRace.SelectedIndexChanged
-        'should only fire on a new character
-        If txtCName.Tag = Nothing Then
-            Dim newEquip As String = "Unequipped"
-            Dim newTag As String = "1"
-            'remove existing racial bonus
-            txtDex.Tag = 0
-            txtCha.Tag = 0
-            txtInt.Tag = 0
-            txtStr.Tag = 0
-            txtCon.Tag = 0
-            txtWis.Tag = 0
-
-            'I have no idea how else to do this, armor must come off if you're going to change your race
-            txtHelm.Text = newEquip
-            txtHelm.Tag = newTag
-            txtArms.Text = newEquip
-            txtArms.Tag = newTag
-            txtWrists.Text = newEquip
-            txtWrists.Tag = newTag
-            txtHands.Text = newEquip
-            txtHands.Tag = newTag
-            txtNeck.Text = newEquip
-            txtNeck.Tag = newTag
-            txtChest.Text = newEquip
-            txtChest.Tag = newTag
-            txtLegs.Text = newEquip
-            txtLegs.Tag = newTag
-            txtFeet.Text = newEquip
-            txtFeet.Tag = newTag
-            txtWepName.Text = newEquip
-            txtWepName.Tag = newTag
-
-            'add new racials
-            If LCase(cboRace.Text) = "human" Then
-                '+2 to any one ability
-                Dim goodIn As Boolean
-                'could search string for first three letters at beginning of string to make this easier
-                Do
-                    Dim res = InputBox("Enter ability to modify: ", "Human Racial Modifier", 0)
-                    goodIn = True
-                    'increase stats and mods by their increment value, difference is the base ability
-                    Select Case LCase(res)
-                        Case "dex", "dexterity"
-                            txtDex.Tag = Val(txtDex.Tag) + 2
-                            txtDex.Text = Val(txtDex.Text) + 2
-                        Case "str", "strength"
-                            txtStr.Tag = Val(txtStr.Tag) + 2
-                            txtStr.Text = Val(txtStr.Text) + 2
-                        Case "cha", "charisma"
-                            txtCha.Tag = Val(txtCha.Tag) + 2
-                            txtCha.Text = Val(txtCha.Text) + 2
-                        Case "int", "intelligence", "intellect"
-                            txtInt.Tag = Val(txtInt.Tag) + 2
-                            txtInt.Text = Val(txtInt.Text) + 2
-                        Case "wis", "wisdom"
-                            txtWis.Tag = Val(txtWis.Tag) + 2
-                            txtWis.Text = Val(txtWis.Text) + 2
-                        Case "con", "constitution"
-                            txtCon.Tag = Val(txtCon.Tag) + 2
-                            txtCon.Text = Val(txtCon.Text) + 2
-                        Case 0
-                            'Default to Strength modifer
-                            txtStr.Tag = Val(txtStr.Tag) + 2
-                            txtStr.Text = Val(txtStr.Text) + 2
-                        Case Else
-                            'Nice output for user
-                            MessageBox.Show("That is not a valid ability to modify" & vbCrLf & "Choose DEX, STR, CHA, INT, WIS, or CON", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            goodIn = False
-                    End Select
-                Loop While goodIn = False
-            ElseIf LCase(cboRace.Text) = "halfling" Then
-                txtDex.Tag = Val(txtDex.Tag) + 2
-                txtDex.Text = Val(txtDex.Text) + 2
-                txtCha.Tag = Val(txtCha.Tag) + 2
-                txtCha.Text = Val(txtCha.Text) + 2
-            ElseIf LCase(cboRace.Text) = "gnome" Then
-                'book two
-                txtInt.Tag = Val(txtInt.Tag) + 2
-                txtInt.Text = Val(txtInt.Text) + 2
-                txtCha.Tag = Val(txtCha.Tag) + 2
-                txtCha.Text = Val(txtCha.Text) + 2
-            ElseIf LCase(cboRace.Text) = "half orc" Then
-                txtStr.Tag = Val(txtStr.Tag) + 2
-                txtStr.Text = Val(txtStr.Text) + 2
-                txtDex.Tag = Val(txtDex.Tag) + 2
-                txtDex.Text = Val(txtDex.Text) + 2
-            ElseIf LCase(cboRace.Text) = "dwarf" Then
-                txtCon.Tag = Val(txtCon.Tag) + 2
-                txtCon.Text = Val(txtCon.Text) + 2
-                txtWis.Tag = Val(txtWis.Tag) + 2
-                txtWis.Text = Val(txtWis.Text) + 2
-            ElseIf LCase(cboRace.Text) = "half elf" Then
-                txtCon.Tag = Val(txtCon.Tag) + 2
-                txtCon.Text = Val(txtCon.Text) + 2
-                txtCha.Tag = Val(txtCha.Tag) + 2
-                txtCha.Text = Val(txtCha.Text) + 2
-            ElseIf LCase(cboRace.Text) = "elf" Then
-                txtDex.Tag = Val(txtDex.Tag) + 2
-                txtDex.Text = Val(txtDex.Text) + 2
-                txtWis.Tag = Val(txtWis.Tag) + 2
-                txtWis.Text = Val(txtWis.Text) + 2
-            End If
-            Console.WriteLine(LCase(cboRace.Text))
-            Console.WriteLine("Dex: " & txtDex.Tag)
-            Console.WriteLine("Str: " & txtStr.Tag)
-            Console.WriteLine("Con: " & txtCon.Tag)
-            Console.WriteLine("Int: " & txtInt.Tag)
-            Console.WriteLine("Wis: " & txtWis.Tag)
-            Console.WriteLine("Cha: " & txtCha.Tag)
-        End If
-    End Sub
-
-    ''' <summary>
     ''' updates character level based on experience
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub txtExp_TextChanged(sender As Object, e As EventArgs) Handles txtExp.TextChanged
-        'constants for experience thresholds
-        Const lev02 As Integer = 1000
-        Const lev03 As Integer = 2250
-        Const lev04 As Integer = 3750
-        Const lev05 As Integer = 5500
-        Const lev06 As Integer = 7500
-        Const lev07 As Integer = 10000
-        Const lev08 As Integer = 13000
-        Const lev09 As Integer = 16500
-        Const lev10 As Integer = 20500
-        Const lev11 As Integer = 26000
-        Const lev12 As Integer = 32000
-        Const lev13 As Integer = 39000
-        Const lev14 As Integer = 47000
-        Const lev15 As Integer = 57000
-        Const lev16 As Integer = 69000
-        Const lev17 As Integer = 83000
-        Const lev18 As Integer = 99000
-        Const lev19 As Integer = 119000
-        Const lev20 As Integer = 143000
-        Const lev21 As Integer = 175000
-        Const lev22 As Integer = 210000
-        Const lev23 As Integer = 255000
-        Const lev24 As Integer = 310000
-        Const lev25 As Integer = 375000
-        Const lev26 As Integer = 450000
-        Const lev27 As Integer = 550000
-        Const lev28 As Integer = 675000
-        Const lev29 As Integer = 825000
-        Const lev30 As Integer = 1000000
-
         'no negative experience allowed
         If Val(txtExp.Text) < 0 Then txtExp.Text = 0
-
-        'check all levels possible, unfortunately (call statements)
-        If Val(txtExp.Text) > lev30 Then
-            'check last level manually (sub doesn't allow for it, currently)
-            For i As Integer = Val(txtLevel.Text) To 29
-                txtLevel.Text = Val(txtLevel.Text) + 1
-                'increase health accordingly
-                Select Case LCase(cboClass.Text)
-                    Case "cleric", "ranger", "rogue", "warlock", "warlord"
-                        txtHP.Text = Val(txtHP.Text) + 5
-                    Case "fighter", "paladin"
-                        txtHP.Text = Val(txtHP.Text) + 6
-                    Case "wizard"
-                        txtHP.Text = Val(txtHP.Text) + 4
-                End Select
-            Next
-        End If
-        Call levelUp(Val(txtExp.Text), lev29, lev30, 28)
-        Call levelUp(Val(txtExp.Text), lev28, lev29, 27)
-        Call levelUp(Val(txtExp.Text), lev27, lev28, 26)
-        Call levelUp(Val(txtExp.Text), lev26, lev27, 25)
-        Call levelUp(Val(txtExp.Text), lev25, lev26, 24)
-        Call levelUp(Val(txtExp.Text), lev24, lev25, 23)
-        Call levelUp(Val(txtExp.Text), lev23, lev24, 22)
-        Call levelUp(Val(txtExp.Text), lev22, lev23, 21)
-
-        Call levelUp(Val(txtExp.Text), lev21, lev22, 20)
-        Call levelUp(Val(txtExp.Text), lev20, lev21, 19)
-        Call levelUp(Val(txtExp.Text), lev19, lev20, 18)
-        Call levelUp(Val(txtExp.Text), lev18, lev19, 17)
-        Call levelUp(Val(txtExp.Text), lev17, lev18, 16)
-        Call levelUp(Val(txtExp.Text), lev16, lev17, 15)
-        Call levelUp(Val(txtExp.Text), lev15, lev16, 14)
-        Call levelUp(Val(txtExp.Text), lev14, lev15, 13)
-        Call levelUp(Val(txtExp.Text), lev13, lev14, 12)
-        Call levelUp(Val(txtExp.Text), lev12, lev13, 11)
-
-        Call levelUp(Val(txtExp.Text), lev11, lev12, 10)
-        Call levelUp(Val(txtExp.Text), lev10, lev11, 9)
-        Call levelUp(Val(txtExp.Text), lev09, lev10, 8)
-        Call levelUp(Val(txtExp.Text), lev08, lev09, 7)
-        Call levelUp(Val(txtExp.Text), lev07, lev08, 6)
-        Call levelUp(Val(txtExp.Text), lev06, lev07, 5)
-        Call levelUp(Val(txtExp.Text), lev05, lev06, 4)
-        Call levelUp(Val(txtExp.Text), lev04, lev05, 3)
-        Call levelUp(Val(txtExp.Text), lev03, lev04, 2)
-        Call levelUp(Val(txtExp.Text), lev02, lev03, 1)
+        'find out if you've leveled up
+        Call levelUp(Val(txtExp.Text))
     End Sub
 
     ''' <summary>
     ''' sub that increments levels
     ''' </summary>
     ''' <param name="xp">current exp</param>
-    ''' <param name="lBound">lower bound of level (between X and Y: X)</param>
-    ''' <param name="uBound">upper bound of level (between X and Y: Y)</param>
-    ''' <param name="lvl">level to increment to</param>
     ''' <remarks></remarks>
-    Private Sub levelUp(ByRef xp, ByRef lBound, ByRef uBound, ByRef lvl)
+    Private Sub levelUp(ByRef xp As Integer)
         'automates the checking procedure of experience versus level thresholds
-        Dim start As Integer = Val(txtLevel.Text)
-        If xp >= lBound And xp < uBound Then
-            For i As Integer = start To lvl
+        Dim start As Integer = IIf((txtLevel.Text IsNot Nothing And txtLevel.Text <> ""), Val(txtLevel.Text), 29)
+        Console.WriteLine("Start: " & vbTab & start)
+        For i As Integer = start To 29
+            If xp >= lvls(i + 1) Then
                 txtLevel.Text = Val(txtLevel.Text) + 1
                 'increase health accordingly
                 Select Case LCase(cboClass.Text)
@@ -1123,8 +1058,8 @@ Public Class frmCharSheet
                     Case "wizard"
                         txtHP.Text = Val(txtHP.Text) + 4
                 End Select
-            Next
-        End If
+            End If
+        Next
     End Sub
 
     ''' <summary>
@@ -1150,6 +1085,7 @@ Public Class frmCharSheet
             End If
         Loop Until goodInt = True
     End Sub
+#End Region
 
     ''' <summary>
     ''' updates tooltip to show the modifier of each ability score
@@ -1163,13 +1099,14 @@ Public Class frmCharSheet
         Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
     End Sub
 
+#Region "Colors"
     ''' <summary>
     ''' sets new random color on click of picturebox
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub pbxColor_Click(sender As Object, e As EventArgs) Handles pbxColor.Click
+    Private Sub pbxColor_Click(sender As Object, e As EventArgs) Handles pbxColor.MouseDown
         'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
         If allCols.Length <= 0 Then
             genColors()
@@ -1217,6 +1154,7 @@ Public Class frmCharSheet
         txtColor.Text = rCol.Name.ToString
         pbxColor.BackColor = rCol
     End Sub
+#End Region
 
     ''' <summary>
     ''' opens frmSelPowers for power selection
@@ -1243,6 +1181,7 @@ Public Class frmCharSheet
         End If
     End Sub
 
+#Region "Printing"
     ''' <summary>
     ''' show print dialog for user and allow them to print out their character sheet
     ''' </summary>
@@ -1335,4 +1274,5 @@ Public Class frmCharSheet
             End Try
         End If
     End Sub
+#End Region
 End Class
