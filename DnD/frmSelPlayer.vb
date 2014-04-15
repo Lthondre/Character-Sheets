@@ -90,6 +90,7 @@
     End Structure
 #End Region
 
+#Region "Stats"
     ''' <summary>
     ''' Load customer information to structure using clsData
     ''' </summary>
@@ -199,6 +200,58 @@
             End With
         Next
     End Sub
+
+    ''' <summary>
+    ''' sub that makes adding armor/weapon stats easier
+    ''' </summary>
+    ''' <param name="arr">a player stat property of an array</param>
+    ''' <param name="stat">the type of stat arr refers to</param>
+    ''' <remarks></remarks>
+    Private Sub loadStat(ByVal arr, ByVal stat, ByVal pRec, Optional ByVal type = "")
+        With pRec
+            Select Case stat
+                Case "weight"
+                    .txtCarryCap.Text = Val(.txtCarryCap.Text) + arr
+                Case "ac"
+                    'AC is 10+ 1/2level + weapon/armor AC bonuses
+                    '(10+ 1/2level) is taken care of outside of this subprocedure as it should only be called once
+                    .txtAC.Text = Val(.txtAC.Text) + arr
+                    If LCase(type) = "light" Or LCase(type) = "none" Then
+                        If Val(.txtDex.tag) > 0 Or Val(.txtint.tag) Then
+                            .txtAC.Text += IIf(Val(.txtDex.Tag) > Val(.txtInt.Tag), Val(.txtDex.Tag), Val(.txtInt.Tag))
+                        End If
+                    End If
+                Case "chk"
+                    'sum all check mods
+                    .txtCheck.text = Val(.txtCheck.text) + arr
+                Case "str"
+                    'add strength modifer
+                    .txtStr.tag = Val(.txtStr.tag) + arr
+                    .txtstr.text = Val(.txtstr.text) + arr
+                Case "dex"
+                    'add dex mod
+                    .txtDex.tag = Val(.txtDex.tag) + arr
+                    .txtDex.text = Val(.txtDex.text) + arr
+                Case "wis"
+                    'add wis mod
+                    .txtWis.tag = Val(.txtWis.tag) + arr
+                    .txtWis.text = Val(.txtWis.text) + arr
+                Case "cha"
+                    'add cha mod
+                    .txtCha.tag = Val(.txtCha.tag) + arr
+                    .txtCha.text = Val(.txtCha.text) + arr
+                Case "int"
+                    'add int mod
+                    .txtInt.tag = Val(.txtInt.tag) + arr
+                    .txtInt.text = Val(.txtInt.text) + arr
+                Case "con"
+                    'add con mod
+                    .txtCon.tag = Val(.txtCon.tag) + arr
+                    .txtCon.text = Val(.txtCon.text) + arr
+            End Select
+        End With
+    End Sub
+#End Region
 
     ''' <summary>
     ''' Load customer information to program and screen
@@ -312,7 +365,7 @@
                 .txtInt.Tag = Player(lstPlayers.SelectedIndex).moINT
                 .txtWis.Tag = Player(lstPlayers.SelectedIndex).moWIS
                 .txtCha.Tag = Player(lstPlayers.SelectedIndex).moCHA
-
+                
                 'load armor based on armor IDs
                 For j As Integer = 0 To (Armor.Length - 1)
                     'headpiece
@@ -438,7 +491,6 @@
                 .txtInitiative.ReadOnly = True
                 .txtCheck.ReadOnly = True
                 .txtAP.ReadOnly = True
-                '.txtColor.ReadOnly = True
                 .txtCarryCap.ReadOnly = True
                 .txtWepName.ReadOnly = True
                 .txtLevel.ReadOnly = True
@@ -514,56 +566,5 @@
         Me.Hide()
         frmDiceRoll.ShowDialog()
         Me.Show()
-    End Sub
-
-    ''' <summary>
-    ''' sub that makes adding armor/weapon stats easier
-    ''' </summary>
-    ''' <param name="arr">a player stat property of an array</param>
-    ''' <param name="stat">the type of stat arr refers to</param>
-    ''' <remarks></remarks>
-    Private Sub loadStat(ByVal arr, ByVal stat, ByVal pRec, Optional ByVal type = "")
-        With pRec
-            Select Case stat
-                Case "weight"
-                    .txtCarryCap.Text = Val(.txtCarryCap.Text) + arr
-                Case "ac"
-                    'AC is 10+ 1/2level + weapon/armor AC bonuses
-                    '(10+ 1/2level) is taken care of outside of this subprocedure as it should only be called once
-                    .txtAC.Text = Val(.txtAC.Text) + arr
-                    If LCase(type) = "light" Or LCase(type) = "none" Then
-                        If Val(.txtDex.tag) > 0 Or Val(.txtint.tag) Then
-                            .txtAC.Text += IIf(Val(.txtDex.Tag) > Val(.txtInt.Tag), Val(.txtDex.Tag), Val(.txtInt.Tag))
-                        End If
-                    End If
-                Case "chk"
-                    'sum all check mods
-                    .txtCheck.text = Val(.txtCheck.text) + arr
-                Case "str"
-                    'add strength modifer
-                    .txtStr.tag = Val(.txtStr.tag) + arr
-                    .txtstr.text = Val(.txtstr.text) + arr
-                Case "dex"
-                    'add dex mod
-                    .txtDex.tag = Val(.txtDex.tag) + arr
-                    .txtDex.text = Val(.txtDex.text) + arr
-                Case "wis"
-                    'add wis mod
-                    .txtWis.tag = Val(.txtWis.tag) + arr
-                    .txtWis.text = Val(.txtWis.text) + arr
-                Case "cha"
-                    'add cha mod
-                    .txtCha.tag = Val(.txtCha.tag) + arr
-                    .txtCha.text = Val(.txtCha.text) + arr
-                Case "int"
-                    'add int mod
-                    .txtInt.tag = Val(.txtInt.tag) + arr
-                    .txtInt.text = Val(.txtInt.text) + arr
-                Case "con"
-                    'add con mod
-                    .txtCon.tag = Val(.txtCon.tag) + arr
-                    .txtCon.text = Val(.txtCon.text) + arr
-            End Select
-        End With
     End Sub
 End Class

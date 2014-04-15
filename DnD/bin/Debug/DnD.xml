@@ -117,6 +117,13 @@ DnD
  Load customer information to structure using clsData
  </summary>
 	<remarks></remarks>
+</member><member name="M:DnD.frmSelPlayer.loadStat(System.Object,System.Object,System.Object,System.Object)">
+	<summary>
+ sub that makes adding armor/weapon stats easier
+ </summary>
+	<param name="arr">a player stat property of an array</param>
+	<param name="stat">the type of stat arr refers to</param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelPlayer.frmSelPlayer_Load(System.Object,System.EventArgs)">
 	<summary>
  Load customer information to program and screen
@@ -159,13 +166,6 @@ DnD
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmSelPlayer.loadStat(System.Object,System.Object,System.Object,System.Object)">
-	<summary>
- sub that makes adding armor/weapon stats easier
- </summary>
-	<param name="arr">a player stat property of an array</param>
-	<param name="stat">the type of stat arr refers to</param>
 	<remarks></remarks>
 </member><member name="T:DnD.frmSelPowers.powers">
 	<summary>

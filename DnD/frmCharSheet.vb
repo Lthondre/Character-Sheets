@@ -17,6 +17,14 @@ Public Class frmCharSheet
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmCharSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'add initial modifiers to ability scores
+        txtStr.Text = Val(txtStr.Text) + Val(txtStr.Tag)
+        txtDex.Text = Val(txtDex.Text) + Val(txtDex.Tag)
+        txtWis.Text = Val(txtWis.Text) + Val(txtWis.Tag)
+        txtCon.Text = Val(txtCon.Text) + Val(txtCon.Tag)
+        txtInt.Text = Val(txtInt.Text) + Val(txtInt.Tag)
+        txtCha.Text = Val(txtCha.Text) + Val(txtCha.Tag)
+
         'alots for the secod select weapon button
         AddHandler btnSWeap.Click, AddressOf btnSelWeap_Click
         'sends the button clicks of specific buttons to the select armor button
