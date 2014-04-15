@@ -1,13 +1,13 @@
 ﻿Module mdlGlobal
-    'Public source As String = "Data Source=Database\DnD.accdb;"    'Release Candidate
-    Public source As String = "Data Source=DnD.accdb;"              'Working directory
+    'Public ReadOnly source As String = "Data Source=Database\DnD.accdb;"    'Release Candidate
+    Public ReadOnly source As String = "Data Source=DnD.accdb;"              'Working directory
 
     ''' <summary>
     ''' Public string for database connection
     ''' </summary>
     ''' <remarks></remarks>
     ''' 
-    Public strConnection As String = "Provider=Microsoft.ACE.OLEDB.12.0;" & source & "Persist Security Info=False;"
+    Public ReadOnly strConnection As String = "Provider=Microsoft.ACE.OLEDB.12.0;" & source & "Persist Security Info=False;"
 
     'for some reason I couldn't seem to get these variables to be passed from parent to/from child forms
     'this is the only real workaround I could think of doing

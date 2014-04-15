@@ -1,19 +1,8 @@
 CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
 
-need to add class powers. try to do in access
-	keep small files per user on how many non-cantrip spells they've used
-		-check every day
-		-total allowed/day | total used today
-	appends two copies of spell/spell left on cellDoubleClick
-	
 frmCharSheet save statements can probably look better
 
 format string works fine in console, looks like shit in list box
-
-need to append used spells to [pid].pow	
-
-need following calculated fields on random roll:
-	Action Points
 
 release versions need proper connection string.
 	it is in comments in mdlGlobal

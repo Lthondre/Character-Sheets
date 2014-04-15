@@ -290,9 +290,9 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
-</member><member name="M:DnD.frmCharSheet.txtLevel_TextChanged(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmCharSheet.btnExp_Click(System.Object,System.EventArgs)">
 	<summary>
- tracks character progress (level)
+ update experience
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
@@ -310,9 +310,9 @@ DnD
  </summary>
 	<param name="xp">current exp</param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnExp_Click(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmCharSheet.txtLevel_TextChanged(System.Object,System.EventArgs)">
 	<summary>
- update experience
+ tracks character progress (level)
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>

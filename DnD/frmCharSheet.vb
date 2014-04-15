@@ -330,7 +330,6 @@ Public Class frmCharSheet
         If name = "" Or tag = "" Then
             Dim newName As New CharOptions.opts
             txtCName.Text = newName.selName
-
             'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
             If allCols.Length <= 0 Then
                 genColors()
@@ -801,6 +800,74 @@ Public Class frmCharSheet
 
 #Region "Levels/Exp"
     ''' <summary>
+    ''' update experience
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnExp_Click(sender As Object, e As EventArgs) Handles btnExp.Click
+        Dim res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
+        Dim goodInt As Boolean
+        Do
+            'assigns goodInt as true/false based on whether or not it's a number
+            Integer.TryParse(res, goodInt)
+            If goodInt Then
+                'parse to integer
+                'if it's a good integer, add it to your existing experience
+                txtExp.Text = Val(txtExp.Text) + res
+            Else
+                'tell the user what they did wrong
+                MessageBox.Show("Input must be a positive or negative number", "error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
+            End If
+        Loop Until goodInt = True
+    End Sub
+
+    ''' <summary>
+    ''' updates character level based on experience
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtExp_TextChanged(sender As Object, e As EventArgs) Handles txtExp.TextChanged
+        'no negative experience allowed
+        If Val(txtExp.Text) < 0 Then txtExp.Text = 0
+        'find out if you've leveled up
+        Call levelUp(Val(txtExp.Text))
+    End Sub
+
+    ''' <summary>
+    ''' sub that increments levels
+    ''' </summary>
+    ''' <param name="xp">current exp</param>
+    ''' <remarks></remarks>
+    Private Sub levelUp(ByRef xp As Integer)
+        'automates the checking procedure of experience versus level thresholds
+        Dim start As Integer = IIf((txtLevel.Text IsNot Nothing And txtLevel.Text <> ""), Val(txtLevel.Text), 29)
+        For i As Integer = start To 29
+            If xp >= lvls(i + 1) Then
+                'need this line so that leveling isn't calculated on formLoad.
+                'also counters the fact that lvls(0) and lvls(1) are both integer of 0, which can be obnoxious.
+                If txtLevel.Text <> "" Then
+                    txtLevel.Text = Val(txtLevel.Text) + 1
+                    'increase health accordingly
+                    Select Case LCase(cboClass.Text)
+                        Case "cleric", "ranger", "rogue", "warlock", "warlord"
+                            txtHP.Text = Val(txtHP.Text) + 5
+                        Case "fighter", "paladin"
+                            txtHP.Text = Val(txtHP.Text) + 6
+                        Case "wizard"
+                            txtHP.Text = Val(txtHP.Text) + 4
+                    End Select
+                End If
+            Else
+                'don't check for loop more than you have to
+                Exit For
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
     ''' tracks character progress (level)
     ''' </summary>
     ''' <param name="sender"></param>
@@ -1031,68 +1098,6 @@ Public Class frmCharSheet
                 txtLevel.Text = "1"
         End Select
     End Sub
-
-    ''' <summary>
-    ''' updates character level based on experience
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub txtExp_TextChanged(sender As Object, e As EventArgs) Handles txtExp.TextChanged
-        'no negative experience allowed
-        If Val(txtExp.Text) < 0 Then txtExp.Text = 0
-        'find out if you've leveled up
-        Call levelUp(Val(txtExp.Text))
-    End Sub
-
-    ''' <summary>
-    ''' sub that increments levels
-    ''' </summary>
-    ''' <param name="xp">current exp</param>
-    ''' <remarks></remarks>
-    Private Sub levelUp(ByRef xp As Integer)
-        'automates the checking procedure of experience versus level thresholds
-        Dim start As Integer = IIf((txtLevel.Text IsNot Nothing And txtLevel.Text <> ""), Val(txtLevel.Text), 29)
-        Console.WriteLine("Start: " & vbTab & start)
-        For i As Integer = start To 29
-            If xp >= lvls(i + 1) Then
-                txtLevel.Text = Val(txtLevel.Text) + 1
-                'increase health accordingly
-                Select Case LCase(cboClass.Text)
-                    Case "cleric", "ranger", "rogue", "warlock", "warlord"
-                        txtHP.Text = Val(txtHP.Text) + 5
-                    Case "fighter", "paladin"
-                        txtHP.Text = Val(txtHP.Text) + 6
-                    Case "wizard"
-                        txtHP.Text = Val(txtHP.Text) + 4
-                End Select
-            End If
-        Next
-    End Sub
-
-    ''' <summary>
-    ''' update experience
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnExp_Click(sender As Object, e As EventArgs) Handles btnExp.Click
-        Dim res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
-        Dim goodInt As Boolean
-        Do
-            'assigns goodInt as true/false based on whether or not it's a number
-            Integer.TryParse(res, goodInt)
-            If goodInt Then
-                'parse to integer
-                'if it's a good integer, add it to your existing experience
-                txtExp.Text = Val(txtExp.Text) + res
-            Else
-                'tell the user what they did wrong
-                MessageBox.Show("Input must be a positive or negative number", "error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                res = InputBox("Enter a number to change your experience by: ", "Experience Gain/Loss", 0)
-            End If
-        Loop Until goodInt = True
-    End Sub
 #End Region
 
     ''' <summary>
@@ -1104,7 +1109,7 @@ Public Class frmCharSheet
     Private Sub abilMod_TextChanged(sender As Object, e As EventArgs) Handles txtStr.TextChanged, txtDex.TextChanged, txtWis.TextChanged, txtCha.TextChanged, txtInt.TextChanged, txtCon.TextChanged
         'everytime the ability score changes, update the tooltip
         Me.ttpHelp.SetToolTip(sender, "Roll 4d6. Take sum minus lowest result" & vbCrLf & "Modifier: " & vbTab & Val(sender.tag))
-        Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
+        'Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
     End Sub
 
 #Region "Colors"
@@ -1130,7 +1135,6 @@ Public Class frmCharSheet
     ''' <remarks></remarks>
     Private Sub genColors()
         'credit to: andrepeters.co.uk/?p=142
-        Console.WriteLine("Gen")
         Dim colType As Type = GetType(Color)
         Dim colInfo() As System.Reflection.PropertyInfo = colType.GetProperties
         Dim conv As New ColorConverter
@@ -1154,7 +1158,6 @@ Public Class frmCharSheet
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub rColor()
-        Console.WriteLine("rand")
         'select random index of allcols and assign that to the textbox
         Randomize()
         Dim r As New Random
