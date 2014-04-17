@@ -30,6 +30,7 @@ Partial Class frmSelPowers
         Me.tabDay = New System.Windows.Forms.TabPage()
         Me.dgvDailies = New System.Windows.Forms.DataGridView()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.btnReset = New System.Windows.Forms.Button()
         Me.tabPowers.SuspendLayout()
         Me.tabCantrip.SuspendLayout()
         CType(Me.dgvCantrips, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +123,7 @@ Partial Class frmSelPowers
         '
         'btnClose
         '
+        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnClose.Location = New System.Drawing.Point(1161, 383)
         Me.btnClose.Name = "btnClose"
@@ -130,6 +132,16 @@ Partial Class frmSelPowers
         Me.btnClose.Text = "&Close"
         Me.btnClose.UseVisualStyleBackColor = True
         '
+        'btnReset
+        '
+        Me.btnReset.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnReset.Location = New System.Drawing.Point(12, 383)
+        Me.btnReset.Name = "btnReset"
+        Me.btnReset.Size = New System.Drawing.Size(75, 23)
+        Me.btnReset.TabIndex = 2
+        Me.btnReset.Text = "&Reset"
+        Me.btnReset.UseVisualStyleBackColor = True
+        '
         'frmSelPowers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -137,6 +149,7 @@ Partial Class frmSelPowers
         Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(1248, 413)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnReset)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.tabPowers)
         Me.Cursor = System.Windows.Forms.Cursors.Default
@@ -161,4 +174,5 @@ Partial Class frmSelPowers
     Friend WithEvents dgvEncounters As System.Windows.Forms.DataGridView
     Friend WithEvents dgvDailies As System.Windows.Forms.DataGridView
     Friend WithEvents btnClose As System.Windows.Forms.Button
+    Friend WithEvents btnReset As System.Windows.Forms.Button
 End Class

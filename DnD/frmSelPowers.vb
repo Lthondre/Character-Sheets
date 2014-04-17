@@ -39,6 +39,20 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPowers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'reflect form title for player class
+        Dim power As String
+        Select Case pcls
+            Case "fighter", "ranger", "rogue", "warlord"
+                power = "Exploits"
+            Case "cleric", "paladin"
+                power = "Prayers"
+            Case "warlock", "wizard"
+                power = "Spells"
+            Case Else
+                power = "Powers"
+        End Select
+        Me.Text = power & " [" & pcls & "]"
+
         'declare instance of class
         Dim Cantrips As New clsData
         Dim Encounters As New clsData
@@ -196,5 +210,23 @@
             'throw a message to the user concerning the spell's unavailability
             MessageBox.Show("Spell '" & sender.item(2, e.RowIndex).value.ToString & "' already used today.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+    End Sub
+
+    ''' <summary>
+    ''' resets the used powers for the user
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+        'call the file delete function from opts class
+        Console.WriteLine("Reset")
+        Dim del As New CharOptions.opts
+        del.resetPowers(pid)
+
+        'reset colors for the user
+        For i As Integer = 0 To dgvDailies.RowCount - 1
+            dgvDailies.Rows(i).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.goodCol
+        Next
     End Sub
 End Class

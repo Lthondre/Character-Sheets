@@ -199,6 +199,13 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmSelPowers.btnReset_Click(System.Object,System.EventArgs)">
+	<summary>
+ resets the used powers for the user
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.frmCharSheet_Load(System.Object,System.EventArgs)">
 	<summary>
  add event handlers on formload and set the value of check in mdlGlobal

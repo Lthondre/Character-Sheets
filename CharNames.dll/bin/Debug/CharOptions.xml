@@ -39,6 +39,12 @@ CharOptions
 	<param name="pid"></param>
 	<param name="sid"></param>
 	<remarks></remarks>
+</member><member name="M:CharOptions.opts.resetPowers(System.Int32)">
+	<summary>
+ resets the [pid].pow file per user
+ </summary>
+	<param name="pid"></param>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

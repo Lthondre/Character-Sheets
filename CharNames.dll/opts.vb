@@ -100,12 +100,36 @@ Public Class opts
             sw.WriteLine(sid)
             sw.Close()
         Else
-            Dim sa As StreamWriter = File.AppendText(path)
+            Dim sa As New StreamWriter(path, True)  '"true" appends to file
             'create the file and store:
             '   spell id
-            Console.WriteLine("Appending spell#" & sid & " to: " & path)
+            Console.WriteLine("Appending power #" & sid & " to: " & path)
             sa.WriteLine(sid)
             sa.Close()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' resets the [pid].pow file per user
+    ''' </summary>
+    ''' <param name="pid"></param>
+    ''' <remarks></remarks>
+    Public Sub resetPowers(ByVal pid As Integer)
+        Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & pid & ".pow"
+        If Not File.Exists(path) Then
+            'create directory if not exists
+            If (Not System.IO.Directory.Exists(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")) Then
+                Console.WriteLine("Creating 'Powers\' subdirectory")
+                System.IO.Directory.CreateDirectory(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")
+            End If
+            'create the file and store:
+            '   spell id
+            Console.WriteLine("Powers file does not exist! Creating at: " & path)
+            File.Create(path).Dispose()
+        Else
+            Console.WriteLine("Deleting file: " & path)
+            'if file exists, delete it. it can be created next time powers are loaded
+            File.Delete(path)
         End If
     End Sub
 End Class
