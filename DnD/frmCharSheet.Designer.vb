@@ -47,8 +47,6 @@ Partial Class frmCharSheet
         Me.txtInitiative = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txtCheck = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtAP = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtLevel = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -110,11 +108,12 @@ Partial Class frmCharSheet
         Me.mnuDice = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuSave = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuClose = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuChange = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
         Me.pdDialog = New System.Windows.Forms.PrintDialog()
         Me.pdCharSheet = New System.Drawing.Printing.PrintDocument()
+        Me.mnuEnd = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuCharSheet.SuspendLayout()
@@ -136,7 +135,7 @@ Partial Class frmCharSheet
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 24)
         Me.btnClose.TabIndex = 44
-        Me.btnClose.Text = "&Close"
+        Me.btnClose.Text = "&Back"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'txtStr
@@ -306,7 +305,7 @@ Partial Class frmCharSheet
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(3, 318)
+        Me.Label12.Location = New System.Drawing.Point(3, 292)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(46, 13)
         Me.Label12.TabIndex = 25
@@ -315,7 +314,7 @@ Partial Class frmCharSheet
         'txtInitiative
         '
         Me.txtInitiative.Enabled = False
-        Me.txtInitiative.Location = New System.Drawing.Point(84, 315)
+        Me.txtInitiative.Location = New System.Drawing.Point(84, 289)
         Me.txtInitiative.Name = "txtInitiative"
         Me.txtInitiative.Size = New System.Drawing.Size(100, 20)
         Me.txtInitiative.TabIndex = 24
@@ -337,23 +336,6 @@ Partial Class frmCharSheet
         Me.txtCheck.Size = New System.Drawing.Size(100, 20)
         Me.txtCheck.TabIndex = 26
         Me.txtCheck.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(3, 266)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(69, 13)
-        Me.Label14.TabIndex = 29
-        Me.Label14.Text = "Action Points"
-        '
-        'txtAP
-        '
-        Me.txtAP.Location = New System.Drawing.Point(84, 263)
-        Me.txtAP.Name = "txtAP"
-        Me.txtAP.Size = New System.Drawing.Size(100, 20)
-        Me.txtAP.TabIndex = 28
-        Me.txtAP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label15
         '
@@ -633,9 +615,7 @@ Partial Class frmCharSheet
         Me.pnlCharSheet.Controls.Add(Me.Label16)
         Me.pnlCharSheet.Controls.Add(Me.Label13)
         Me.pnlCharSheet.Controls.Add(Me.txtExp)
-        Me.pnlCharSheet.Controls.Add(Me.txtAP)
         Me.pnlCharSheet.Controls.Add(Me.Label15)
-        Me.pnlCharSheet.Controls.Add(Me.Label14)
         Me.pnlCharSheet.Controls.Add(Me.txtLevel)
         Me.pnlCharSheet.Location = New System.Drawing.Point(16, 27)
         Me.pnlCharSheet.Name = "pnlCharSheet"
@@ -663,7 +643,7 @@ Partial Class frmCharSheet
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(3, 292)
+        Me.Label31.Location = New System.Drawing.Point(3, 266)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(60, 13)
         Me.Label31.TabIndex = 79
@@ -671,7 +651,7 @@ Partial Class frmCharSheet
         '
         'txtCarryCap
         '
-        Me.txtCarryCap.Location = New System.Drawing.Point(84, 289)
+        Me.txtCarryCap.Location = New System.Drawing.Point(84, 263)
         Me.txtCarryCap.Name = "txtCarryCap"
         Me.txtCarryCap.Size = New System.Drawing.Size(100, 20)
         Me.txtCarryCap.TabIndex = 78
@@ -906,7 +886,7 @@ Partial Class frmCharSheet
         '
         'mnuChar
         '
-        Me.mnuChar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuWeapon, Me.mnuArmor, Me.mnuPowers, Me.mnuDice, Me.ToolStripSeparator1, Me.mnuSave, Me.mnuClose})
+        Me.mnuChar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuWeapon, Me.mnuArmor, Me.mnuPowers, Me.mnuDice, Me.ToolStripSeparator1, Me.mnuSave, Me.mnuChange, Me.mnuEnd})
         Me.mnuChar.Name = "mnuChar"
         Me.mnuChar.Size = New System.Drawing.Size(82, 20)
         Me.mnuChar.Text = "&Information"
@@ -946,11 +926,11 @@ Partial Class frmCharSheet
         Me.mnuSave.Size = New System.Drawing.Size(174, 22)
         Me.mnuSave.Text = "&Save"
         '
-        'mnuClose
+        'mnuChange
         '
-        Me.mnuClose.Name = "mnuClose"
-        Me.mnuClose.Size = New System.Drawing.Size(174, 22)
-        Me.mnuClose.Text = "&Change Characters"
+        Me.mnuChange.Name = "mnuChange"
+        Me.mnuChange.Size = New System.Drawing.Size(174, 22)
+        Me.mnuChange.Text = "C&hange Characters"
         '
         'mnuPrint
         '
@@ -972,6 +952,12 @@ Partial Class frmCharSheet
         '
         'pdCharSheet
         '
+        '
+        'mnuEnd
+        '
+        Me.mnuEnd.Name = "mnuEnd"
+        Me.mnuEnd.Size = New System.Drawing.Size(174, 22)
+        Me.mnuEnd.Text = "&Close"
         '
         'frmCharSheet
         '
@@ -1025,8 +1011,6 @@ Partial Class frmCharSheet
     Public WithEvents txtInitiative As System.Windows.Forms.TextBox
     Public WithEvents Label13 As System.Windows.Forms.Label
     Public WithEvents txtCheck As System.Windows.Forms.TextBox
-    Public WithEvents Label14 As System.Windows.Forms.Label
-    Public WithEvents txtAP As System.Windows.Forms.TextBox
     Public WithEvents Label15 As System.Windows.Forms.Label
     Public WithEvents txtLevel As System.Windows.Forms.TextBox
     Public WithEvents Label16 As System.Windows.Forms.Label
@@ -1085,10 +1069,11 @@ Partial Class frmCharSheet
     Friend WithEvents mnuPrint As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuHelp As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuSave As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents mnuClose As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuChange As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuDice As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents pdDialog As System.Windows.Forms.PrintDialog
     Friend WithEvents pdCharSheet As System.Drawing.Printing.PrintDocument
+    Friend WithEvents mnuEnd As System.Windows.Forms.ToolStripMenuItem
 
 End Class

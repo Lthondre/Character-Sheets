@@ -7,8 +7,6 @@ format string works fine in console, looks like shit in list box
 release versions need proper connection string.
 	it is in comments in mdlGlobal
 
-POWERS RESET BUTTON
-
 No skills
 No feats
 

@@ -96,6 +96,21 @@
                 i += 1
             Next
         End If
+
+        'set form width
+        Dim cw As Integer = dgvCantrips.Width
+        Dim dw As Integer = dgvDailies.Width
+        Dim ew As Integer = dgvEncounters.Width
+        Console.WriteLine("C  " & cw)
+        Console.WriteLine("D  " & dw)
+        Console.WriteLine("E  " & ew)
+        If cw > dw Then
+            Me.Width = IIf(ew > cw, ew, cw)
+        ElseIf dw > ew Then
+            Me.Width = IIf(cw > dw, cw, dw)
+        ElseIf ew > dw Then
+            Me.Width = IIf(cw > ew, cw, ew)
+        End If
     End Sub
 
     ''' <summary>

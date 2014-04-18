@@ -2,6 +2,7 @@
 Imports CharOptions.opts
 
 Public Class frmCharSheet
+#Region "Form Variables"
     Dim moneyWeight As Long             'holds the weight of all of your coin purse
     Dim allCols() As Color = New Color() {} 'array that holds all colors
     Public cantrips = 0                   'holds number of cantrips available to current character
@@ -9,6 +10,7 @@ Public Class frmCharSheet
     Public dailies = 0
     Public lvls(30) As Int64
     Event weapArmor As EventHandler
+#End Region
 
     ''' <summary>
     ''' add event handlers on formload and set the value of check in mdlGlobal
@@ -43,7 +45,7 @@ Public Class frmCharSheet
         'load level threshholds
         Try
             Dim sr As New System.IO.StreamReader("levels.txt")
-            For j As Integer = 2 To 30
+            For j As Integer = 2 To lvls(lvls.Length - 1)
                 lvls(j) = Convert.ToInt64(sr.ReadLine())
             Next
             sr.Close()
@@ -59,9 +61,19 @@ Public Class frmCharSheet
     ''' <param name="sender">cancel button click</param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, mnuClose.Click
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, mnuChange.Click
         'Closes the form
         Me.Close()
+    End Sub
+
+    ''' <summary>
+    ''' this sub ends the program entirely
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub mnuEnd_Click(sender As Object, e As EventArgs) Handles mnuEnd.Click
+        End
     End Sub
 
     ''' <summary>
@@ -96,9 +108,6 @@ Public Class frmCharSheet
         ElseIf txtMoney.Text = "" Then
             MessageBox.Show("Please enter Money", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtMoney.Focus()
-        ElseIf txtAP.Text = "" Then
-            MessageBox.Show("Please enter Action Points", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            txtAP.Focus()
         ElseIf cboClass.Text = "" Then
             MessageBox.Show("Please enter a Class", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             cboClass.Focus()
@@ -180,7 +189,6 @@ Public Class frmCharSheet
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
                     .Item("wID") = txtWepName.Tag
                     .Item("pClass") = cboClass.Text
@@ -229,7 +237,6 @@ Public Class frmCharSheet
                     .Item("pCHA") = txtCha.Text
                     .Item("pHealth") = txtHP.Text
                     .Item("pMoney") = Val(txtMoney.Text)
-                    .Item("pActionPoints") = txtAP.Text
                     .Item("pName") = txtCName.Text
                     .Item("wID") = txtWepName.Tag
                     .Item("pClass") = cboClass.Text
@@ -266,205 +273,25 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
-    ''' Rolls new stats for a new character
+    ''' Shows form used for rolling ability/skill rolls
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnRandomize_Click(sender As Object, e As EventArgs) Handles btnRandomize.Click
-        'only roll new stats if your character doesn't exist
-        If txtCName.Tag.ToString <> "" Then
-            'Question saved characters
-            Dim result As Integer = MessageBox.Show("I can't let you do that, Dave..." & vbCrLf & "Are you sure you want to randomize your existing character?", "error", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error)
-            If result = DialogResult.Yes Then
-                'randomize saved characters only if they give consent
-                MessageBox.Show("Very well...", "Randomize", MessageBoxButtons.OK, MessageBoxIcon.None)
-                Call rStats(txtCName.Text, txtCName.Tag)
+    ''' <remarks>does initiative/perception as well</remarks>
+    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles mnuDice.Click
+        'show the form that handles ability/skill checks
+        Dim roll As New frmAbilSkillRoll
+        With roll
+            Console.WriteLine("Level: " & Val(txtLevel.Text))
+            .Show()
+            'only change if the user actually rolled for initiative
+            If .initRoll <> -1 Then
+                txtInitiative.Text = .initRoll
             End If
-        Else
-            'randomize stats for new characters
-            Call rStats()
-        End If
+        End With
     End Sub
 
-    ''' <summary>
-    ''' Sub that randomizes stats for the user
-    ''' </summary>
-    ''' <param name="name">name of the character</param>
-    ''' <param name="tag">unique character ID</param>
-    ''' <remarks></remarks>
-    Private Sub rStats(Optional ByRef name = "", Optional ByRef tag = "")
-        'generate ability scores (STR, DEX, INT, WIS, CON, CHA)
-        'using the third method as described in the DnD 4e player handbook #1
-        Dim abilArray(5) As Integer 'roll 6*(4d6). Add highest three values. Assign to base ability
-        Dim num(3) As Integer       'random numbers, easier to find lowest number if in array
-        For i As Integer = 0 To 5 'one per ability
-            'four rolls, assign highest three to ability score
-            Randomize() 'generate new random seed
-            num(0) = CInt(Int((6 * Rnd()) + 1))
-            Randomize()
-            num(1) = CInt(Int((6 * Rnd()) + 1))
-            Randomize()
-            num(2) = CInt(Int((6 * Rnd()) + 1))
-            Randomize()
-            num(3) = CInt(Int((6 * Rnd()) + 1))
-            'determine lowest random number
-            Dim lowest = num(0)
-            For z As Integer = 0 To 3
-                If num(z) < lowest Then
-                    lowest = num(z)
-                End If
-            Next
-            'assign value less lowest to ability array
-            abilArray(i) = num(0) + num(1) + num(2) + num(3) - lowest
-        Next
-        'assign six ability scores
-        txtStr.Text = abilArray(0)
-        txtDex.Text = abilArray(1)
-        txtCon.Text = abilArray(2)
-        txtInt.Text = abilArray(3)
-        txtWis.Text = abilArray(4)
-        txtCha.Text = abilArray(5)
-
-        'new random name and color if it's a brand new character
-        If name = "" Or tag = "" Then
-            Dim newName As New CharOptions.opts
-            txtCName.Text = newName.selName
-            'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
-            If allCols.Length <= 0 Then
-                genColors()
-                rColor()
-            Else
-                rColor()
-            End If
-        End If
-
-        'new characters are always level 1, with 0 experience
-        txtLevel.Text = 1
-        txtExp.Text = 0
-
-        'starting money in units of gold
-        txtMoney.Text = "100.00"
-        '1silver is .1g
-        '1copper is .01g
-        '1platinum is 100g
-        '1astral diamond is 100,000g
-
-        'random class, race, alignment, and gender
-        Randomize()
-        cboClass.SelectedIndex = CInt(Int((8 * Rnd()) + 1)) - 1
-        Randomize()
-        cboRace.SelectedIndex = CInt(Int((7 * Rnd()) + 1)) - 1
-        Randomize()
-        cboAlignment.SelectedIndex = CInt(Int((9 * Rnd()) + 1)) - 1
-        Randomize()
-        cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
-
-        'testing Information
-        txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), Val(txtDex.Tag), Val(txtInt.Tag))
-        txtCheck.Text = "0"
-        txtAP.Text = "9"
-        txtLoc.Text = "0,0"
-        txtWepName.Text = "None/Unarmed"
-        txtWepName.Tag = "1"
-        txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gp is 1/50lbs. new characters start naked
-
-        'New Armor
-        Dim newArmor As String = "Not Yet Changed"
-        txtHelm.Text = newArmor
-        txtHelm.Tag = "1"
-        txtChest.Text = newArmor
-        txtChest.Tag = "1"
-        txtLegs.Text = newArmor
-        txtLegs.Tag = "1"
-        txtArms.Text = newArmor
-        txtArms.Tag = "1"
-        txtHands.Text = newArmor
-        txtHands.Tag = "1"
-        txtFeet.Text = newArmor
-        txtFeet.Tag = "1"
-        txtNeck.Text = newArmor
-        txtNeck.Tag = "1"
-        txtWrists.Text = newArmor
-        txtWrists.Tag = "1"
-
-        'Health points
-        If LCase(cboClass.Text) = "cleric" Then
-            'page 60
-            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "ranger" Then
-            'page 103
-            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "rogue" Then
-            'page 116
-            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "warlock" Then
-            'page 129
-            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "warlord" Then
-            'page 143
-            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "fighter" Then
-            'page 75
-            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "paladin" Then
-            'page 89
-            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
-        ElseIf LCase(cboClass.Text) = "wizard" Then
-            'page 156
-            txtHP.Text = Val(txtLevel.Text) * 4 - 4 + 10 + Val(txtCon.Text)
-        End If
-
-        'make easier to continue filling out sheets
-        txtHP.Focus()
-    End Sub
-
-    ''' <summary>
-    ''' toggles readonly/enabled mode for the form, allowing or disallowing the user to edit their character sheet
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        'toggle editing of character sheet
-        If txtCName.Tag = Nothing Then
-            'only toggle these if character has not finished creating
-            cboAlignment.Enabled = IIf(cboAlignment.Enabled = True, False, True)
-            cboClass.Enabled = IIf(cboClass.Enabled = True, False, True)
-            cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
-            cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
-            txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
-            'only newbies should have this power
-            txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
-            txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
-            txtCha.ReadOnly = IIf(txtCha.ReadOnly = False, True, False)
-            txtCon.ReadOnly = IIf(txtCon.ReadOnly = False, True, False)
-            txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
-            txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
-        End If
-        txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
-        txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
-        txtAP.ReadOnly = IIf(txtAP.ReadOnly = False, True, False)
-        txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
-        btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
-        btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
-        'equipment buttons
-        btnSWeap.Enabled = IIf(btnSWeap.Enabled = False, True, False)
-        btnHead.Enabled = IIf(btnHead.Enabled = False, True, False)
-        btnNeck.Enabled = IIf(btnNeck.Enabled = False, True, False)
-        btnChest.Enabled = IIf(btnChest.Enabled = False, True, False)
-        btnArms.Enabled = IIf(btnArms.Enabled = False, True, False)
-        btnHands.Enabled = IIf(btnHands.Enabled = False, True, False)
-        btnLegs.Enabled = IIf(btnLegs.Enabled = False, True, False)
-        btnFeet.Enabled = IIf(btnFeet.Enabled = False, True, False)
-        btnWrists.Enabled = IIf(btnWrists.Enabled = False, True, False)
-        'menu strip
-        mnuWeapon.Enabled = IIf(mnuWeapon.Enabled = False, True, False)
-        mnuArmor.Enabled = IIf(mnuArmor.Enabled = False, True, False)
-        mnuSave.Enabled = IIf(mnuSave.Enabled = False, True, False)
-        txtHP.Focus()
-    End Sub
-
+#Region "Equipment/Powers"
     ''' <summary>
     ''' sub for selecting/equipping new weapon. updates corresponding text control/tag
     ''' </summary>
@@ -594,80 +421,32 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
-    ''' Updates tooltip and weight for character
+    ''' opens frmSelPowers for power selection
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     ''' <remarks></remarks>
-    Private Sub txtCarryCap_TextChanged(sender As Object, e As EventArgs) Handles txtCarryCap.TextChanged
-        Const NORMAL As Integer = 10
-        Const HEAVY As Integer = 20
-        Const MAXIMUM As Integer = 50
-
-        'weight is never negative
-        If Val(txtCarryCap.Text) < 0 Then txtCarryCap.Text = 0
-
-        If Val(txtCarryCap.Text) <= NORMAL * Val(txtStr.Text) Then
-            'normal load
-            txtCarryCap.BackColor = Color.LightGreen
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Normal load" & vbCrLf & "Speed not hampered" & vbCrLf & "Can carry up to: " & NORMAL * Val(txtStr.Text) & "lbs before Heavy load")
-        ElseIf Val(txtCarryCap.Text) <= HEAVY * Val(txtStr.Text) Then
-            'heavy load
-            MsgBox("Your character is slowed due to their carrying load.")
-            txtCarryCap.BackColor = Color.Yellow
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered" & vbCrLf & "Can carry up to: " & HEAVY * (Val(txtStr.Text) & "lbs before maximum dragging load"))
-        ElseIf (Val(txtCarryCap.Text) > HEAVY * Val(txtStr.Text)) And (Val(txtCarryCap.Text) <= MAXIMUM * Val(txtStr.Text)) Then
-            'maximum dragging load
-            MsgBox("Your character's movement is severely hampered by their carrying load.")
-            txtCarryCap.BackColor = Color.Red
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Maximum dragging load" & vbCrLf & "Speed severely hampered")
-        ElseIf Val(txtCarryCap.Text) > MAXIMUM * Val(txtStr.Text) Then
-            'over capacity
-            If Me.Visible = True Then
-                'this messagebox can be triggered several times while loading a character into the character sheet
-                MsgBox("Your character is over encumbered.")
+    Private Sub btnPowers_Click(sender As Object, e As EventArgs) Handles mnuPowers.Click
+        Dim pow As New frmSelPowers
+        If cboClass.Text = "" Then
+            MessageBox.Show("You must select a class to see its powers", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            If txtLevel.Text = "" Then
+                txtLevel.Text = "1"
             End If
-            txtCarryCap.BackColor = Color.Black
-            txtCarryCap.ForeColor = Color.Yellow
-            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Over encumbered")
+            'set values for powers and show form
+            With pow
+                .lev = Val(txtLevel.Text)
+                .pcls = cboClass.Text
+                .pid = Val(txtCName.Tag)
+                .ShowDialog()
+                .Dispose()
+            End With
         End If
     End Sub
+#End Region
 
-    ''' <summary>
-    ''' Update weight of money when money changes
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub txtMoney_TextChanged(sender As Object, e As EventArgs) Handles txtMoney.TextChanged
-        Const GPWEIGHT As Decimal = 0.02
-        'remove previous moneyweight first
-        txtCarryCap.Text = Val(txtCarryCap.Text) - moneyWeight
-        'add new money weight
-        moneyWeight = Val(txtMoney.Text) * GPWEIGHT
-        Console.WriteLine("Money Wgt: " & moneyWeight)
-        txtCarryCap.Text = Val(txtCarryCap.Text) + moneyWeight
-    End Sub
-
-    ''' <summary>
-    ''' Shows form used for rolling ability/skill rolls
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks>does initiative/perception as well</remarks>
-    Private Sub btnRoll_Click(sender As Object, e As EventArgs) Handles mnuDice.Click
-        'show the form that handles ability/skill checks
-        Dim roll As New frmAbilSkillRoll
-        With roll
-            Console.WriteLine("Level: " & Val(txtLevel.Text))
-            .Show()
-            'only change if the user actually rolled for initiative
-            If .initRoll <> -1 Then
-                txtInitiative.Text = .initRoll
-            End If
-        End With
-    End Sub
-
+#Region "Stats"
     ''' <summary>
     ''' updates public variable for check modifier
     ''' </summary>
@@ -677,6 +456,216 @@ Public Class frmCharSheet
     Private Sub txtCheck_TextChanged(sender As Object, e As EventArgs) Handles txtCheck.TextChanged
         'update variable as soon as the check mod changes
         mdlGlobal.check = Val(txtCheck.Text)
+    End Sub
+
+    ''' <summary>
+    ''' Rolls new stats for a new character
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnRandomize_Click(sender As Object, e As EventArgs) Handles btnRandomize.Click
+        'only roll new stats if your character doesn't exist
+        If txtCName.Tag.ToString <> "" Then
+            'Question saved characters
+            Dim result As Integer = MessageBox.Show("I can't let you do that, Dave..." & vbCrLf & "Are you sure you want to randomize your existing character?", "error", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error)
+            If result = DialogResult.Yes Then
+                'randomize saved characters only if they give consent
+                MessageBox.Show("Very well...", "Randomize", MessageBoxButtons.OK, MessageBoxIcon.None)
+                Call rStats(txtCName.Text, txtCName.Tag)
+            End If
+        Else
+            'randomize stats for new characters
+            Call rStats()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Sub that randomizes stats for the user
+    ''' </summary>
+    ''' <param name="name">name of the character</param>
+    ''' <param name="tag">unique character ID</param>
+    ''' <remarks></remarks>
+    Private Sub rStats(Optional ByRef name = "", Optional ByRef tag = "")
+        'generate ability scores (STR, DEX, INT, WIS, CON, CHA)
+        'using the third method as described in the DnD 4e player handbook #1
+        Dim abilArray(5) As Integer 'roll 6*(4d6). Add highest three values. Assign to base ability
+        Dim num(3) As Integer       'random numbers, easier to find lowest number if in array
+        For i As Integer = 0 To 5 'one per ability
+            'four rolls, assign highest three to ability score
+            Randomize() 'generate new random seed
+            num(0) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(1) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(2) = CInt(Int((6 * Rnd()) + 1))
+            Randomize()
+            num(3) = CInt(Int((6 * Rnd()) + 1))
+            'determine lowest random number
+            Dim lowest = num(0)
+            For z As Integer = 0 To 3
+                If num(z) < lowest Then
+                    lowest = num(z)
+                End If
+            Next
+            'assign value less lowest to ability array
+            abilArray(i) = num(0) + num(1) + num(2) + num(3) - lowest
+        Next
+        'assign six ability scores
+        txtStr.Text = abilArray(0)
+        txtDex.Text = abilArray(1)
+        txtCon.Text = abilArray(2)
+        txtInt.Text = abilArray(3)
+        txtWis.Text = abilArray(4)
+        txtCha.Text = abilArray(5)
+
+        'new random name and color if it's a brand new character
+        If name = "" Or tag = "" Then
+            Dim newName As New CharOptions.opts
+            txtCName.Text = newName.selName
+            'if genColors has been ran, then just select a color from allCols at random, else generate the colors and then select a random color
+            If allCols.Length <= 0 Then
+                genColors()
+                rColor()
+            Else
+                rColor()
+            End If
+        End If
+
+        'new characters are always level 1, with 0 experience
+        txtLevel.Text = 1
+        txtExp.Text = 0
+
+        'starting money in units of gold
+        txtMoney.Text = "100.00"
+        '1silver is .1g
+        '1copper is .01g
+        '1platinum is 100g
+        '1astral diamond is 100,000g
+
+        'random class, race, alignment, and gender
+        Randomize()
+        cboClass.SelectedIndex = CInt(Int((8 * Rnd()) + 1)) - 1
+        Randomize()
+        cboRace.SelectedIndex = CInt(Int((7 * Rnd()) + 1)) - 1
+        Randomize()
+        cboAlignment.SelectedIndex = CInt(Int((9 * Rnd()) + 1)) - 1
+        Randomize()
+        cboGender.SelectedIndex = CInt(Int((2 * Rnd()) + 1)) - 1
+
+        'testing Information
+        txtAC.Text = 10 + Math.Floor(0.5 * Val(txtLevel.Text)) + IIf(Val(txtDex.Tag) > Val(txtInt.Tag), Val(txtDex.Tag), Val(txtInt.Tag))
+        txtCheck.Text = "0"
+        txtLoc.Text = "0,0"
+        txtWepName.Text = "None/Unarmed"
+        txtWepName.Tag = "1"
+        txtCarryCap.Text = Val(txtMoney.Text) * 0.02 'every gp is 1/50lbs. new characters start naked
+
+        'New Armor
+        Dim newArmor As String = "Not Yet Changed"
+        txtHelm.Text = newArmor
+        txtHelm.Tag = "1"
+        txtChest.Text = newArmor
+        txtChest.Tag = "1"
+        txtLegs.Text = newArmor
+        txtLegs.Tag = "1"
+        txtArms.Text = newArmor
+        txtArms.Tag = "1"
+        txtHands.Text = newArmor
+        txtHands.Tag = "1"
+        txtFeet.Text = newArmor
+        txtFeet.Tag = "1"
+        txtNeck.Text = newArmor
+        txtNeck.Tag = "1"
+        txtWrists.Text = newArmor
+        txtWrists.Tag = "1"
+
+        'Health points
+        If LCase(cboClass.Text) = "cleric" Then
+            'page 60
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "ranger" Then
+            'page 103
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "rogue" Then
+            'page 116
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "warlock" Then
+            'page 129
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "warlord" Then
+            'page 143
+            txtHP.Text = Val(txtLevel.Text) * 5 - 5 + 12 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "fighter" Then
+            'page 75
+            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "paladin" Then
+            'page 89
+            txtHP.Text = Val(txtLevel.Text) * 6 - 6 + 15 + Val(txtCon.Text)
+        ElseIf LCase(cboClass.Text) = "wizard" Then
+            'page 156
+            txtHP.Text = Val(txtLevel.Text) * 4 - 4 + 10 + Val(txtCon.Text)
+        End If
+
+        'make easier to continue filling out sheets
+        txtHP.Focus()
+    End Sub
+
+    ''' <summary>
+    ''' toggles readonly/enabled mode for the form, allowing or disallowing the user to edit their character sheet
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        'toggle editing of character sheet
+        If txtCName.Tag = Nothing Then
+            'only toggle these if character has not finished creating
+            cboAlignment.Enabled = IIf(cboAlignment.Enabled = True, False, True)
+            cboClass.Enabled = IIf(cboClass.Enabled = True, False, True)
+            cboGender.Enabled = IIf(cboGender.Enabled = True, False, True)
+            cboRace.Enabled = IIf(cboRace.Enabled = True, False, True)
+            txtCName.ReadOnly = IIf(txtCName.ReadOnly = False, True, False)
+            'only newbies should have this power
+            txtStr.ReadOnly = IIf(txtStr.ReadOnly = False, True, False)
+            txtDex.ReadOnly = IIf(txtDex.ReadOnly = False, True, False)
+            txtCha.ReadOnly = IIf(txtCha.ReadOnly = False, True, False)
+            txtCon.ReadOnly = IIf(txtCon.ReadOnly = False, True, False)
+            txtInt.ReadOnly = IIf(txtInt.ReadOnly = False, True, False)
+            txtWis.ReadOnly = IIf(txtWis.ReadOnly = False, True, False)
+        End If
+        txtHP.ReadOnly = IIf(txtHP.ReadOnly = False, True, False)
+        txtMoney.ReadOnly = IIf(txtMoney.ReadOnly = False, True, False)
+        txtLoc.ReadOnly = IIf(txtLoc.ReadOnly = False, True, False)
+        btnCalc.Enabled = IIf(btnCalc.Enabled = False, True, False)
+        btnRandomize.Enabled = IIf(btnRandomize.Enabled = False, True, False)
+        'equipment buttons
+        btnSWeap.Enabled = IIf(btnSWeap.Enabled = False, True, False)
+        btnHead.Enabled = IIf(btnHead.Enabled = False, True, False)
+        btnNeck.Enabled = IIf(btnNeck.Enabled = False, True, False)
+        btnChest.Enabled = IIf(btnChest.Enabled = False, True, False)
+        btnArms.Enabled = IIf(btnArms.Enabled = False, True, False)
+        btnHands.Enabled = IIf(btnHands.Enabled = False, True, False)
+        btnLegs.Enabled = IIf(btnLegs.Enabled = False, True, False)
+        btnFeet.Enabled = IIf(btnFeet.Enabled = False, True, False)
+        btnWrists.Enabled = IIf(btnWrists.Enabled = False, True, False)
+        'menu strip
+        mnuWeapon.Enabled = IIf(mnuWeapon.Enabled = False, True, False)
+        mnuArmor.Enabled = IIf(mnuArmor.Enabled = False, True, False)
+        mnuSave.Enabled = IIf(mnuSave.Enabled = False, True, False)
+        txtHP.Focus()
+    End Sub
+
+    ''' <summary>
+    ''' updates tooltip to show the modifier of each ability score
+    ''' </summary>
+    ''' <param name="sender">ability text control</param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub abilMod_TextChanged(sender As Object, e As EventArgs) Handles txtStr.TextChanged, txtDex.TextChanged, txtWis.TextChanged, txtCha.TextChanged, txtInt.TextChanged, txtCon.TextChanged
+        'everytime the ability score changes, update the tooltip
+        Me.ttpHelp.SetToolTip(sender, "Roll 4d6. Take sum minus lowest result" & vbCrLf & "Modifier: " & vbTab & Val(sender.tag))
+        'Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
     End Sub
 
     ''' <summary>
@@ -798,6 +787,63 @@ Public Class frmCharSheet
         End If
     End Sub
 
+    ''' <summary>
+    ''' Updates tooltip and weight for character
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtCarryCap_TextChanged(sender As Object, e As EventArgs) Handles txtCarryCap.TextChanged
+        Const NORMAL As Integer = 10
+        Const HEAVY As Integer = 20
+        Const MAXIMUM As Integer = 50
+
+        'weight is never negative
+        If Val(txtCarryCap.Text) < 0 Then txtCarryCap.Text = 0
+
+        If Val(txtCarryCap.Text) <= NORMAL * Val(txtStr.Text) Then
+            'normal load
+            txtCarryCap.BackColor = Color.LightGreen
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Normal load" & vbCrLf & "Speed not hampered" & vbCrLf & "Can carry up to: " & NORMAL * Val(txtStr.Text) & "lbs before Heavy load")
+        ElseIf Val(txtCarryCap.Text) <= HEAVY * Val(txtStr.Text) Then
+            'heavy load
+            MsgBox("Your character is slowed due to their carrying load.")
+            txtCarryCap.BackColor = Color.Yellow
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Heavy load" & vbCrLf & "Speed slightly hampered" & vbCrLf & "Can carry up to: " & HEAVY * (Val(txtStr.Text) & "lbs before maximum dragging load"))
+        ElseIf (Val(txtCarryCap.Text) > HEAVY * Val(txtStr.Text)) And (Val(txtCarryCap.Text) <= MAXIMUM * Val(txtStr.Text)) Then
+            'maximum dragging load
+            MsgBox("Your character's movement is severely hampered by their carrying load.")
+            txtCarryCap.BackColor = Color.Red
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Maximum dragging load" & vbCrLf & "Speed severely hampered")
+        ElseIf Val(txtCarryCap.Text) > MAXIMUM * Val(txtStr.Text) Then
+            'over capacity
+            If Me.Visible = True Then
+                'this messagebox can be triggered several times while loading a character into the character sheet
+                MsgBox("Your character is over encumbered.")
+            End If
+            txtCarryCap.BackColor = Color.Black
+            txtCarryCap.ForeColor = Color.Yellow
+            Me.ttpHelp.SetToolTip(Me.txtCarryCap, "Over encumbered")
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Update weight of money when money changes
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub txtMoney_TextChanged(sender As Object, e As EventArgs) Handles txtMoney.TextChanged
+        Const GPWEIGHT As Decimal = 0.02
+        'remove previous moneyweight first
+        txtCarryCap.Text = Val(txtCarryCap.Text) - moneyWeight
+        'add new money weight
+        moneyWeight = Val(txtMoney.Text) * GPWEIGHT
+        Console.WriteLine("Money Wgt: " & moneyWeight)
+        txtCarryCap.Text = Val(txtCarryCap.Text) + moneyWeight
+    End Sub
+#End Region
+
 #Region "Levels/Exp"
     ''' <summary>
     ''' update experience
@@ -844,7 +890,7 @@ Public Class frmCharSheet
     Private Sub levelUp(ByRef xp As Integer)
         'automates the checking procedure of experience versus level thresholds
         Dim start As Integer = IIf((txtLevel.Text IsNot Nothing And txtLevel.Text <> ""), Val(txtLevel.Text), 29)
-        For i As Integer = start To 29
+        For i As Integer = start To lvls(lvls.Length - 2)
             If xp >= lvls(i + 1) Then
                 'need this line so that leveling isn't calculated on formLoad.
                 'also counters the fact that lvls(0) and lvls(1) are both integer of 0, which can be obnoxious.
@@ -1100,18 +1146,6 @@ Public Class frmCharSheet
     End Sub
 #End Region
 
-    ''' <summary>
-    ''' updates tooltip to show the modifier of each ability score
-    ''' </summary>
-    ''' <param name="sender">ability text control</param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub abilMod_TextChanged(sender As Object, e As EventArgs) Handles txtStr.TextChanged, txtDex.TextChanged, txtWis.TextChanged, txtCha.TextChanged, txtInt.TextChanged, txtCon.TextChanged
-        'everytime the ability score changes, update the tooltip
-        Me.ttpHelp.SetToolTip(sender, "Roll 4d6. Take sum minus lowest result" & vbCrLf & "Modifier: " & vbTab & Val(sender.tag))
-        'Console.WriteLine(sender.name & vbTab & CInt(sender.tag))
-    End Sub
-
 #Region "Colors"
     ''' <summary>
     ''' sets new random color on click of picturebox
@@ -1167,32 +1201,7 @@ Public Class frmCharSheet
     End Sub
 #End Region
 
-    ''' <summary>
-    ''' opens frmSelPowers for power selection
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnPowers_Click(sender As Object, e As EventArgs) Handles mnuPowers.Click
-        Dim pow As New frmSelPowers
-        If cboClass.Text = "" Then
-            MessageBox.Show("You must select a class to see its powers", "error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            If txtLevel.Text = "" Then
-                txtLevel.Text = "1"
-            End If
-            'set values for powers and show form
-            With pow
-                .lev = Val(txtLevel.Text)
-                .pcls = cboClass.Text
-                .pid = Val(txtCName.Tag)
-                .ShowDialog()
-                .Dispose()
-            End With
-        End If
-    End Sub
-
-#Region "Printing"
+#Region "Reporting"
     ''' <summary>
     ''' show print dialog for user and allow them to print out their character sheet
     ''' </summary>
@@ -1273,7 +1282,6 @@ Public Class frmCharSheet
                                                 vbCrLf & _
                                                  "Health:" & vbTab & vbTab & txtHP.Text & vbCrLf & _
                                                 "Armor Class:" & vbTab & txtAC.Text & vbCrLf & _
-                                                "Action Points:" & vbTab & txtAP.Text & vbCrLf & _
                                                 "Money:" & vbTab & vbTab & txtMoney.Text & "gp" & vbCrLf & _
                                                 "Weight:" & vbTab & vbTab & txtCarryCap.Text & "lbs" & vbCrLf & _
                                                 "Check Mod:" & vbTab & chk

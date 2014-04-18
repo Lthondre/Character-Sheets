@@ -220,11 +220,53 @@ DnD
 	<param name="sender">cancel button click</param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.mnuEnd_Click(System.Object,System.EventArgs)">
+	<summary>
+ this sub ends the program entirely
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnCalc_Click(System.Object,System.EventArgs)">
 	<summary>
  Save player information to database based on tag property of txtCName.  The tag property refers to the player id If tag is empty, reference is to new record
  </summary>
 	<param name="sender">Save button click</param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnRoll_Click(System.Object,System.EventArgs)">
+	<summary>
+ Shows form used for rolling ability/skill rolls
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks>does initiative/perception as well</remarks>
+</member><member name="M:DnD.frmCharSheet.btnSelWeap_Click(System.Object,System.EventArgs)">
+	<summary>
+ sub for selecting/equipping new weapon. updates corresponding text control/tag
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnSelArmor_Click(System.Object,System.EventArgs)">
+	<summary>
+ sub for selecting/equipping new armor. updates corresponding text control and it's tag
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnPowers_Click(System.Object,System.EventArgs)">
+	<summary>
+ opens frmSelPowers for power selection
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.txtCheck_TextChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates public variable for check modifier
+ </summary>
+	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnRandomize_Click(System.Object,System.EventArgs)">
@@ -248,20 +290,20 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnSelWeap_Click(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmCharSheet.abilMod_TextChanged(System.Object,System.EventArgs)">
 	<summary>
- sub for selecting/equipping new weapon. updates corresponding text control/tag
+ updates tooltip to show the modifier of each ability score
+ </summary>
+	<param name="sender">ability text control</param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.cboRace_SelectedIndexChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates racial ability modifiers. 
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnSelArmor_Click(System.Object,System.EventArgs)">
-	<summary>
- sub for selecting/equipping new armor. updates corresponding text control and it's tag
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
+	<remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
 </member><member name="M:DnD.frmCharSheet.txtCarryCap_TextChanged(System.Object,System.EventArgs)">
 	<summary>
  Updates tooltip and weight for character
@@ -276,27 +318,6 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnRoll_Click(System.Object,System.EventArgs)">
-	<summary>
- Shows form used for rolling ability/skill rolls
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks>does initiative/perception as well</remarks>
-</member><member name="M:DnD.frmCharSheet.txtCheck_TextChanged(System.Object,System.EventArgs)">
-	<summary>
- updates public variable for check modifier
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.cboRace_SelectedIndexChanged(System.Object,System.EventArgs)">
-	<summary>
- updates racial ability modifiers. 
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks>should only ever fire on character creation (when stat mods are 0, minus equipment, anyways)</remarks>
 </member><member name="M:DnD.frmCharSheet.btnExp_Click(System.Object,System.EventArgs)">
 	<summary>
  update experience
@@ -324,13 +345,6 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.abilMod_TextChanged(System.Object,System.EventArgs)">
-	<summary>
- updates tooltip to show the modifier of each ability score
- </summary>
-	<param name="sender">ability text control</param>
-	<param name="e"></param>
-	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.pbxColor_Click(System.Object,System.EventArgs)">
 	<summary>
  sets new random color on click of picturebox
@@ -347,13 +361,6 @@ DnD
 	<summary>
  takes all colors into an array only if their of type Color
  </summary>
-	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnPowers_Click(System.Object,System.EventArgs)">
-	<summary>
- opens frmSelPowers for power selection
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.mnuPrint_Click(System.Object,System.EventArgs)">
 	<summary>

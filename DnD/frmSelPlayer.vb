@@ -20,7 +20,6 @@
         Public CHA As String
         Public Health As String
         Public Money As String
-        Public AP As String
         Public pClass As String
         Public Race As String
         Public Gender As String
@@ -130,7 +129,6 @@
                 .CHA = PlayerData.ds.Tables(0).Rows(i).Item("pCHA").ToString
                 .Health = PlayerData.ds.Tables(0).Rows(i).Item("pHealth").ToString
                 .Money = PlayerData.ds.Tables(0).Rows(i).Item("pMoney").ToString
-                .AP = PlayerData.ds.Tables(0).Rows(i).Item("pActionPoints").ToString
                 .pClass = PlayerData.ds.Tables(0).Rows(i).Item("pClass").ToString
                 .Race = PlayerData.ds.Tables(0).Rows(i).Item("pRace").ToString
                 .Gender = PlayerData.ds.Tables(0).Rows(i).Item("pGender").ToString
@@ -320,7 +318,6 @@
                 .txtCha.Text = Player(lstPlayers.SelectedIndex).CHA
                 .txtHP.Text = Player(lstPlayers.SelectedIndex).Health
                 .txtMoney.Text = Player(lstPlayers.SelectedIndex).Money
-                .txtAP.Text = Player(lstPlayers.SelectedIndex).AP
                 .cboClass.Text = Player(lstPlayers.SelectedIndex).pClass
                 .cboRace.Text = Player(lstPlayers.SelectedIndex).Race
                 .cboGender.Text = Player(lstPlayers.SelectedIndex).Gender
@@ -490,7 +487,6 @@
                 .txtMoney.ReadOnly = True
                 .txtInitiative.ReadOnly = True
                 .txtCheck.ReadOnly = True
-                .txtAP.ReadOnly = True
                 .txtCarryCap.ReadOnly = True
                 .txtWepName.ReadOnly = True
                 .txtLevel.ReadOnly = True

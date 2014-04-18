@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-
 Public Class opts
     ''' <summary>
     ''' public sub that selects a random name (for new characters) from the names.txt file
