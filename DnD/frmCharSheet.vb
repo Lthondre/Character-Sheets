@@ -56,27 +56,6 @@ Public Class frmCharSheet
     End Sub
 
     ''' <summary>
-    ''' Closes the form
-    ''' </summary>
-    ''' <param name="sender">cancel button click</param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, mnuChange.Click
-        'Closes the form
-        Me.Close()
-    End Sub
-
-    ''' <summary>
-    ''' this sub ends the program entirely
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub mnuEnd_Click(sender As Object, e As EventArgs) Handles mnuEnd.Click
-        End
-    End Sub
-
-    ''' <summary>
     ''' Save player information to database based on tag property of txtCName.  The tag property refers to the player id If tag is empty, reference is to new record
     ''' </summary>
     ''' <param name="sender">Save button click</param>
@@ -1305,6 +1284,30 @@ Public Class frmCharSheet
                 MessageBox.Show("An error occurred during printing.")
             End Try
         End If
+    End Sub
+#End Region
+
+#Region "Close"
+    ''' <summary>
+    ''' Closes the form
+    ''' </summary>
+    ''' <param name="sender">cancel button click</param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click, mnuChange.Click
+        'Closes the form
+        Me.Close()
+    End Sub
+
+    ''' <summary>
+    ''' this sub ends the program entirely
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub mnuEnd_Click(sender As Object, e As EventArgs) Handles mnuEnd.Click
+        'close entire program
+        End
     End Sub
 #End Region
 End Class

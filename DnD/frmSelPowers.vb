@@ -1,8 +1,10 @@
 ﻿Public Class frmSelPowers
+#Region "Form Variables"
     Dim pow(-1) As powers
     Public lev As Integer
     Public pcls As String
     Public pid As Integer
+#End Region
 
     ''' <summary>
     ''' structure for holding information of powers available to character

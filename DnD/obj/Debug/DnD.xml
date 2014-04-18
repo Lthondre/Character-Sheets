@@ -45,8 +45,8 @@ DnD
 	<summary>
  sub for calculating the random values and adding to the output box
  </summary>
-	<param name="val"></param>
-	<param name="num"></param>
+	<param name="val">value of the recieving numericUpDown control</param>
+	<param name="num">max number of the current die being thrown (e.g. 4, 20, 12)</param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmDiceRoll.btnClose_Click(System.Object,System.EventArgs)">
 	<summary>
@@ -209,6 +209,27 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmAddArmor.btnCancel_Click(System.Object,System.EventArgs)">
+	<summary>
+ Closes the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAddArmor.btnAdd_Click(System.Object,System.EventArgs)">
+	<summary>
+ adds the new armor piece
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAddArmor.frmAddArmor_Load(System.Object,System.EventArgs)">
+	<summary>
+ loads the form to a usable state for the user
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="T:DnD.frmSelPowers.powers">
 	<summary>
  structure for holding information of powers available to character
@@ -274,6 +295,13 @@ DnD
  Save player information to database based on tag property of txtCName.  The tag property refers to the player id If tag is empty, reference is to new record
  </summary>
 	<param name="sender">Save button click</param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.mnuRDice_Click(System.Object,System.EventArgs)">
+	<summary>
+ shows the random dice generator form
+ </summary>
+	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.btnRoll_Click(System.Object,System.EventArgs)">

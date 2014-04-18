@@ -1,9 +1,11 @@
 ﻿Public Class frmSelPlayer
+#Region "Form Variables"
     'declare empty array of customer info
     Public Player(-1) As PlayerStats
     Public Weapon(-1) As WeapStats
     Public Armor(-1) As ArmorStats
     Event editPhone As EventHandler
+#End Region
 
 #Region "Structures"
     ''' <summary>
@@ -362,7 +364,7 @@
                 .txtInt.Tag = Player(lstPlayers.SelectedIndex).moINT
                 .txtWis.Tag = Player(lstPlayers.SelectedIndex).moWIS
                 .txtCha.Tag = Player(lstPlayers.SelectedIndex).moCHA
-                
+
                 'load armor based on armor IDs
                 For j As Integer = 0 To (Armor.Length - 1)
                     'headpiece
