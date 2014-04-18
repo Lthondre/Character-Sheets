@@ -114,6 +114,7 @@ Partial Class frmCharSheet
         Me.pdDialog = New System.Windows.Forms.PrintDialog()
         Me.pdCharSheet = New System.Drawing.Printing.PrintDocument()
         Me.mnuEnd = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuRDice = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuCharSheet.SuspendLayout()
@@ -886,7 +887,7 @@ Partial Class frmCharSheet
         '
         'mnuChar
         '
-        Me.mnuChar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuWeapon, Me.mnuArmor, Me.mnuPowers, Me.mnuDice, Me.ToolStripSeparator1, Me.mnuSave, Me.mnuChange, Me.mnuEnd})
+        Me.mnuChar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuWeapon, Me.mnuArmor, Me.mnuPowers, Me.mnuDice, Me.mnuRDice, Me.ToolStripSeparator1, Me.mnuSave, Me.mnuChange, Me.mnuEnd})
         Me.mnuChar.Name = "mnuChar"
         Me.mnuChar.Size = New System.Drawing.Size(82, 20)
         Me.mnuChar.Text = "&Information"
@@ -894,42 +895,42 @@ Partial Class frmCharSheet
         'mnuWeapon
         '
         Me.mnuWeapon.Name = "mnuWeapon"
-        Me.mnuWeapon.Size = New System.Drawing.Size(174, 22)
+        Me.mnuWeapon.Size = New System.Drawing.Size(200, 22)
         Me.mnuWeapon.Text = "&Weapons"
         '
         'mnuArmor
         '
         Me.mnuArmor.Name = "mnuArmor"
-        Me.mnuArmor.Size = New System.Drawing.Size(174, 22)
+        Me.mnuArmor.Size = New System.Drawing.Size(200, 22)
         Me.mnuArmor.Text = "&Armor"
         '
         'mnuPowers
         '
         Me.mnuPowers.Name = "mnuPowers"
-        Me.mnuPowers.Size = New System.Drawing.Size(174, 22)
+        Me.mnuPowers.Size = New System.Drawing.Size(200, 22)
         Me.mnuPowers.Text = "&Powers"
         '
         'mnuDice
         '
         Me.mnuDice.Name = "mnuDice"
-        Me.mnuDice.Size = New System.Drawing.Size(174, 22)
-        Me.mnuDice.Text = "Show &Dice"
+        Me.mnuDice.Size = New System.Drawing.Size(200, 22)
+        Me.mnuDice.Text = "&Make a Check"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(171, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(197, 6)
         '
         'mnuSave
         '
         Me.mnuSave.Name = "mnuSave"
-        Me.mnuSave.Size = New System.Drawing.Size(174, 22)
+        Me.mnuSave.Size = New System.Drawing.Size(200, 22)
         Me.mnuSave.Text = "&Save"
         '
         'mnuChange
         '
         Me.mnuChange.Name = "mnuChange"
-        Me.mnuChange.Size = New System.Drawing.Size(174, 22)
+        Me.mnuChange.Size = New System.Drawing.Size(200, 22)
         Me.mnuChange.Text = "C&hange Characters"
         '
         'mnuPrint
@@ -956,8 +957,14 @@ Partial Class frmCharSheet
         'mnuEnd
         '
         Me.mnuEnd.Name = "mnuEnd"
-        Me.mnuEnd.Size = New System.Drawing.Size(174, 22)
+        Me.mnuEnd.Size = New System.Drawing.Size(200, 22)
         Me.mnuEnd.Text = "&Close"
+        '
+        'mnuRDice
+        '
+        Me.mnuRDice.Name = "mnuRDice"
+        Me.mnuRDice.Size = New System.Drawing.Size(200, 22)
+        Me.mnuRDice.Text = "Ra&ndom Dice Generator"
         '
         'frmCharSheet
         '
@@ -1075,5 +1082,6 @@ Partial Class frmCharSheet
     Friend WithEvents pdDialog As System.Windows.Forms.PrintDialog
     Friend WithEvents pdCharSheet As System.Drawing.Printing.PrintDocument
     Friend WithEvents mnuEnd As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents mnuRDice As System.Windows.Forms.ToolStripMenuItem
 
 End Class

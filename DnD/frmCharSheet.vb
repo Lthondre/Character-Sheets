@@ -272,6 +272,18 @@ Public Class frmCharSheet
         End If
     End Sub
 
+#Region "Dice"
+    ''' <summary>
+    ''' shows the random dice generator form
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub mnuRDice_Click(sender As Object, e As EventArgs) Handles mnuRDice.Click
+        frmDiceRoll.ShowDialog()
+        frmDiceRoll.Dispose()
+    End Sub
+
     ''' <summary>
     ''' Shows form used for rolling ability/skill rolls
     ''' </summary>
@@ -290,6 +302,7 @@ Public Class frmCharSheet
             End If
         End With
     End Sub
+#End Region
 
 #Region "Equipment/Powers"
     ''' <summary>

@@ -20,6 +20,48 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.numXd4_ValueChanged(System.Object,System.EventArgs)">
+	<summary>
+ toggles the status of the check mark next to the numericUpDown control being changed to on.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.btnClear_Click(System.Object,System.EventArgs)">
+	<summary>
+ clears the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.btnGo_Click(System.Object,System.EventArgs)">
+	<summary>
+ calculates values of all fields that have been tickmarked.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.calc(System.Int32,System.Int32)">
+	<summary>
+ sub for calculating the random values and adding to the output box
+ </summary>
+	<param name="val"></param>
+	<param name="num"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.btnClose_Click(System.Object,System.EventArgs)">
+	<summary>
+ closes the form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmDiceRoll.frmDiceRoll_Load(System.Object,System.EventArgs)">
+	<summary>
+ adds btnClear.click handler to sub btnClear_Click. This is for no other reason than an easy example of how to add event handlers.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelWeap.frmSelWeap_Load(System.Object,System.EventArgs)">
 	<summary>
  load weapons on form load
@@ -372,6 +414,13 @@ DnD
 </member><member name="M:DnD.frmCharSheet.pdCharSheet_PrintPage(System.Object,System.Drawing.Printing.PrintPageEventArgs)">
 	<summary>
  format of the output for the user when they print their character sheets
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmSelArmor.frmSelArmor_Load(System.Object,System.EventArgs)">
+	<summary>
+ load corresponding datagridview on form loadup
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>

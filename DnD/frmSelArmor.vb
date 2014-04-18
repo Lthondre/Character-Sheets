@@ -1,4 +1,5 @@
 ﻿Public Class frmSelArmor
+#Region "form variables"
     Public dtext As String = ""
     Public dtag As Long
     Public darmBonus As Integer
@@ -16,7 +17,14 @@
     Public dDEX As Integer
 
     Public tagVal As Integer = mdlGlobal.theTag
+#End Region
 
+    ''' <summary>
+    ''' load corresponding datagridview on form loadup
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub frmSelArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'I've tried just about every fucking thing to get this to work. tagVal MUST be taken from a module
         'form must also be disposed every time it's called or tagVal will not update to newest value from module

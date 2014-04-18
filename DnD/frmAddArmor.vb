@@ -1,11 +1,23 @@
 ﻿Public Class frmAddArmor
     Dim duplicate As Boolean = False
 
+    ''' <summary>
+    ''' Closes the form
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         'close form
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' adds the new armor piece
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         'only thing need to check on the form, since everything else is self-validating
         If txtName.Text = "" Then
@@ -126,6 +138,12 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' loads the form to a usable state for the user
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
     Private Sub frmAddArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'sets combo boxes. Helps with validation
         cboClass.SelectedIndex = 0

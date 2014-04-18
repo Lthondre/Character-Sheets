@@ -1,4 +1,5 @@
 ﻿Public Class frmSelWeap
+#Region "Form Variables"
     Public dtext As String = ""
     Public dtag As Integer
     Public darmBonus As Integer
@@ -11,6 +12,7 @@
     Public dCHA As Integer
     Public dINT As Integer
     Public dCON As Integer
+#End Region
 
     ''' <summary>
     ''' load weapons on form load

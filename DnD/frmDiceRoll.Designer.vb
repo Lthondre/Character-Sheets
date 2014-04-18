@@ -109,6 +109,7 @@ Partial Class frmDiceRoll
         '
         'btnGo
         '
+        Me.btnGo.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnGo.Location = New System.Drawing.Point(15, 227)
         Me.btnGo.Name = "btnGo"
         Me.btnGo.Size = New System.Drawing.Size(75, 23)
@@ -118,6 +119,7 @@ Partial Class frmDiceRoll
         '
         'btnClear
         '
+        Me.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnClear.Location = New System.Drawing.Point(96, 227)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(75, 23)
@@ -127,6 +129,7 @@ Partial Class frmDiceRoll
         '
         'btnClose
         '
+        Me.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnClose.Location = New System.Drawing.Point(177, 227)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
@@ -239,6 +242,8 @@ Partial Class frmDiceRoll
         'rtxtOutCome
         '
         Me.rtxtOutCome.AcceptsTab = True
+        Me.rtxtOutCome.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.rtxtOutCome.BackColor = System.Drawing.SystemColors.Control
         Me.rtxtOutCome.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.rtxtOutCome.Location = New System.Drawing.Point(131, 25)
@@ -251,6 +256,8 @@ Partial Class frmDiceRoll
         '
         'Label7
         '
+        Me.Label7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(132, 9)
         Me.Label7.Name = "Label7"
