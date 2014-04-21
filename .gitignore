@@ -151,3 +151,6 @@ $RECYCLE.BIN/
 .DS_Store
 / - Copy.gitattributes
 / - Copy.gitignore
+/DnD/bin/Debug/Powers
+/DnD/bin/Debug/levels - Copy.txt
+/DnD/bin/Debug/levels.bak
