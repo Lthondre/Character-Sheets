@@ -274,7 +274,14 @@ Public Class frmCharSheet
         'show the form that handles ability/skill checks
         Dim roll As New frmAbilSkillRoll
         With roll
-            Console.WriteLine("Level: " & Val(txtLevel.Text))
+            .mstr = txtStr.Tag
+            .mdex = txtDex.Tag
+            .mcon = txtCon.Tag
+            .mwis = txtWis.Tag
+            .mint = txtInt.Tag
+            .mcha = txtCha.Tag
+            .lev = txtLevel.Text
+            .ac = txtAC.Text
             .Show()
             'only change if the user actually rolled for initiative
             If .initRoll <> -1 Then

@@ -527,6 +527,34 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmAbilSkillRoll.btnPerception_Click(System.Object,System.EventArgs)">
+	<summary>
+ Roll active perception check
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAbilSkillRoll.btnStrChk_Click(System.Object,System.EventArgs)">
+	<summary>
+ Ability/Skill Check
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAbilSkillRoll.frmAbilSkillRoll_Load(System.Object,System.EventArgs)">
+	<summary>
+ sets minimum size on form load
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAbilSkillRoll.rbtnAC_CheckedChanged(System.Object,System.EventArgs)">
+	<summary>
+ updates the textbox with current defense score
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmAbilSkillRoll.btnClose_Click(System.Object,System.EventArgs)">
 	<summary>
  Closes the form
@@ -541,27 +569,6 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks>this button exists solely for the user, all calculations are done in the parent form</remarks>
-</member><member name="M:DnD.frmAbilSkillRoll.btnPerception_Click(System.Object,System.EventArgs)">
-	<summary>
- Roll active perception check
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmAbilSkillRoll.btnStrChk_Click(System.Object,System.EventArgs)">
-	<summary>
- Strength Check
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmAbilSkillRoll.frmAbilSkillRoll_Load(System.Object,System.EventArgs)">
-	<summary>
- sets minimum size on form load
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
 </member>
 </members>
 </doc>

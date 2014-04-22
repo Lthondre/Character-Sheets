@@ -44,10 +44,12 @@ Partial Class frmAbilSkillRoll
         Me.rbtnSkill = New System.Windows.Forms.RadioButton()
         Me.gbxChkType = New System.Windows.Forms.GroupBox()
         Me.gbxDef = New System.Windows.Forms.GroupBox()
-        Me.rbtnWill = New System.Windows.Forms.RadioButton()
-        Me.rbtnFort = New System.Windows.Forms.RadioButton()
-        Me.rbtnAC = New System.Windows.Forms.RadioButton()
         Me.rbtnRef = New System.Windows.Forms.RadioButton()
+        Me.rbtnAC = New System.Windows.Forms.RadioButton()
+        Me.rbtnFort = New System.Windows.Forms.RadioButton()
+        Me.rbtnWill = New System.Windows.Forms.RadioButton()
+        Me.txtDef = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.gbxChkType.SuspendLayout()
         Me.gbxDef.SuspendLayout()
         Me.SuspendLayout()
@@ -263,15 +265,25 @@ Partial Class frmAbilSkillRoll
         Me.gbxDef.TabStop = False
         Me.gbxDef.Text = "Type of Defense"
         '
-        'rbtnWill
+        'rbtnRef
         '
-        Me.rbtnWill.AutoSize = True
-        Me.rbtnWill.Location = New System.Drawing.Point(7, 19)
-        Me.rbtnWill.Name = "rbtnWill"
-        Me.rbtnWill.Size = New System.Drawing.Size(51, 17)
-        Me.rbtnWill.TabIndex = 0
-        Me.rbtnWill.Text = "WILL"
-        Me.rbtnWill.UseVisualStyleBackColor = True
+        Me.rbtnRef.AutoSize = True
+        Me.rbtnRef.Location = New System.Drawing.Point(169, 19)
+        Me.rbtnRef.Name = "rbtnRef"
+        Me.rbtnRef.Size = New System.Drawing.Size(66, 17)
+        Me.rbtnRef.TabIndex = 3
+        Me.rbtnRef.Text = "REFLEX"
+        Me.rbtnRef.UseVisualStyleBackColor = True
+        '
+        'rbtnAC
+        '
+        Me.rbtnAC.AutoSize = True
+        Me.rbtnAC.Location = New System.Drawing.Point(124, 19)
+        Me.rbtnAC.Name = "rbtnAC"
+        Me.rbtnAC.Size = New System.Drawing.Size(39, 17)
+        Me.rbtnAC.TabIndex = 2
+        Me.rbtnAC.Text = "AC"
+        Me.rbtnAC.UseVisualStyleBackColor = True
         '
         'rbtnFort
         '
@@ -283,27 +295,32 @@ Partial Class frmAbilSkillRoll
         Me.rbtnFort.Text = "FORT"
         Me.rbtnFort.UseVisualStyleBackColor = True
         '
-        'rbtnAC
+        'rbtnWill
         '
-        Me.rbtnAC.AutoSize = True
-        Me.rbtnAC.Checked = True
-        Me.rbtnAC.Location = New System.Drawing.Point(124, 19)
-        Me.rbtnAC.Name = "rbtnAC"
-        Me.rbtnAC.Size = New System.Drawing.Size(39, 17)
-        Me.rbtnAC.TabIndex = 2
-        Me.rbtnAC.TabStop = True
-        Me.rbtnAC.Text = "AC"
-        Me.rbtnAC.UseVisualStyleBackColor = True
+        Me.rbtnWill.AutoSize = True
+        Me.rbtnWill.Location = New System.Drawing.Point(7, 19)
+        Me.rbtnWill.Name = "rbtnWill"
+        Me.rbtnWill.Size = New System.Drawing.Size(51, 17)
+        Me.rbtnWill.TabIndex = 0
+        Me.rbtnWill.Text = "WILL"
+        Me.rbtnWill.UseVisualStyleBackColor = True
         '
-        'rbtnRef
+        'txtDef
         '
-        Me.rbtnRef.AutoSize = True
-        Me.rbtnRef.Location = New System.Drawing.Point(169, 19)
-        Me.rbtnRef.Name = "rbtnRef"
-        Me.rbtnRef.Size = New System.Drawing.Size(66, 17)
-        Me.rbtnRef.TabIndex = 3
-        Me.rbtnRef.Text = "REFLEX"
-        Me.rbtnRef.UseVisualStyleBackColor = True
+        Me.txtDef.Location = New System.Drawing.Point(245, 136)
+        Me.txtDef.Name = "txtDef"
+        Me.txtDef.Size = New System.Drawing.Size(100, 20)
+        Me.txtDef.TabIndex = 24
+        Me.txtDef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(267, 120)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(47, 13)
+        Me.Label1.TabIndex = 25
+        Me.Label1.Text = "Defense"
         '
         'frmAbilSkillRoll
         '
@@ -312,6 +329,8 @@ Partial Class frmAbilSkillRoll
         Me.CancelButton = Me.btnClose
         Me.ClientSize = New System.Drawing.Size(388, 339)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.txtDef)
         Me.Controls.Add(Me.gbxDef)
         Me.Controls.Add(Me.gbxChkType)
         Me.Controls.Add(Me.txtChaChk)
@@ -368,4 +387,6 @@ Partial Class frmAbilSkillRoll
     Friend WithEvents rbtnAC As System.Windows.Forms.RadioButton
     Friend WithEvents rbtnFort As System.Windows.Forms.RadioButton
     Friend WithEvents rbtnWill As System.Windows.Forms.RadioButton
+    Friend WithEvents txtDef As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class
