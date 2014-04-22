@@ -260,6 +260,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPlayer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         'load all players into list box on startup
         Call LoadPlayerStats()
         'select the listbox on loadup of form

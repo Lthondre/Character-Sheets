@@ -21,6 +21,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelWeap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         dgvWeapons.Rows.Clear() 'fresh datagrid every time
         With frmSelPlayer
             'adds all weapons in database to the datagrid view for user output

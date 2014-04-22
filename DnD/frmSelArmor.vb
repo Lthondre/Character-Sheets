@@ -26,6 +26,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         'I've tried just about every fucking thing to get this to work. tagVal MUST be taken from a module
         'form must also be disposed every time it's called or tagVal will not update to newest value from module
         If tagVal < 1 Or tagVal > 9 Then

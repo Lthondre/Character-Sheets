@@ -43,11 +43,19 @@ Partial Class frmAbilSkillRoll
         Me.rbtnAbil = New System.Windows.Forms.RadioButton()
         Me.rbtnSkill = New System.Windows.Forms.RadioButton()
         Me.gbxChkType = New System.Windows.Forms.GroupBox()
+        Me.gbxDef = New System.Windows.Forms.GroupBox()
+        Me.rbtnWill = New System.Windows.Forms.RadioButton()
+        Me.rbtnFort = New System.Windows.Forms.RadioButton()
+        Me.rbtnAC = New System.Windows.Forms.RadioButton()
+        Me.rbtnRef = New System.Windows.Forms.RadioButton()
         Me.gbxChkType.SuspendLayout()
+        Me.gbxDef.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClose
         '
+        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnClose.Location = New System.Drawing.Point(118, 304)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(75, 23)
@@ -74,6 +82,7 @@ Partial Class frmAbilSkillRoll
         '
         'btnOkay
         '
+        Me.btnOkay.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOkay.Location = New System.Drawing.Point(12, 304)
         Me.btnOkay.Name = "btnOkay"
         Me.btnOkay.Size = New System.Drawing.Size(75, 23)
@@ -241,13 +250,69 @@ Partial Class frmAbilSkillRoll
         Me.gbxChkType.TabStop = False
         Me.gbxChkType.Text = "Type of Check"
         '
+        'gbxDef
+        '
+        Me.gbxDef.Controls.Add(Me.rbtnRef)
+        Me.gbxDef.Controls.Add(Me.rbtnAC)
+        Me.gbxDef.Controls.Add(Me.rbtnFort)
+        Me.gbxDef.Controls.Add(Me.rbtnWill)
+        Me.gbxDef.Location = New System.Drawing.Point(133, 12)
+        Me.gbxDef.Name = "gbxDef"
+        Me.gbxDef.Size = New System.Drawing.Size(238, 47)
+        Me.gbxDef.TabIndex = 23
+        Me.gbxDef.TabStop = False
+        Me.gbxDef.Text = "Type of Defense"
+        '
+        'rbtnWill
+        '
+        Me.rbtnWill.AutoSize = True
+        Me.rbtnWill.Location = New System.Drawing.Point(7, 19)
+        Me.rbtnWill.Name = "rbtnWill"
+        Me.rbtnWill.Size = New System.Drawing.Size(51, 17)
+        Me.rbtnWill.TabIndex = 0
+        Me.rbtnWill.Text = "WILL"
+        Me.rbtnWill.UseVisualStyleBackColor = True
+        '
+        'rbtnFort
+        '
+        Me.rbtnFort.AutoSize = True
+        Me.rbtnFort.Location = New System.Drawing.Point(64, 19)
+        Me.rbtnFort.Name = "rbtnFort"
+        Me.rbtnFort.Size = New System.Drawing.Size(54, 17)
+        Me.rbtnFort.TabIndex = 1
+        Me.rbtnFort.Text = "FORT"
+        Me.rbtnFort.UseVisualStyleBackColor = True
+        '
+        'rbtnAC
+        '
+        Me.rbtnAC.AutoSize = True
+        Me.rbtnAC.Checked = True
+        Me.rbtnAC.Location = New System.Drawing.Point(124, 19)
+        Me.rbtnAC.Name = "rbtnAC"
+        Me.rbtnAC.Size = New System.Drawing.Size(39, 17)
+        Me.rbtnAC.TabIndex = 2
+        Me.rbtnAC.TabStop = True
+        Me.rbtnAC.Text = "AC"
+        Me.rbtnAC.UseVisualStyleBackColor = True
+        '
+        'rbtnRef
+        '
+        Me.rbtnRef.AutoSize = True
+        Me.rbtnRef.Location = New System.Drawing.Point(169, 19)
+        Me.rbtnRef.Name = "rbtnRef"
+        Me.rbtnRef.Size = New System.Drawing.Size(66, 17)
+        Me.rbtnRef.TabIndex = 3
+        Me.rbtnRef.Text = "REFLEX"
+        Me.rbtnRef.UseVisualStyleBackColor = True
+        '
         'frmAbilSkillRoll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(213, 339)
+        Me.ClientSize = New System.Drawing.Size(388, 339)
         Me.ControlBox = False
+        Me.Controls.Add(Me.gbxDef)
         Me.Controls.Add(Me.gbxChkType)
         Me.Controls.Add(Me.txtChaChk)
         Me.Controls.Add(Me.txtIntChk)
@@ -271,6 +336,8 @@ Partial Class frmAbilSkillRoll
         Me.Text = "Ability Check"
         Me.gbxChkType.ResumeLayout(False)
         Me.gbxChkType.PerformLayout()
+        Me.gbxDef.ResumeLayout(False)
+        Me.gbxDef.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -296,4 +363,9 @@ Partial Class frmAbilSkillRoll
     Friend WithEvents rbtnAbil As System.Windows.Forms.RadioButton
     Friend WithEvents rbtnSkill As System.Windows.Forms.RadioButton
     Friend WithEvents gbxChkType As System.Windows.Forms.GroupBox
+    Friend WithEvents gbxDef As System.Windows.Forms.GroupBox
+    Friend WithEvents rbtnRef As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtnAC As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtnFort As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtnWill As System.Windows.Forms.RadioButton
 End Class

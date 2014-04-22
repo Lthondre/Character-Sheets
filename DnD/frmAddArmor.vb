@@ -145,6 +145,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmAddArmor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         'sets combo boxes. Helps with validation
         cboClass.SelectedIndex = 0
         cboType.SelectedIndex = 0

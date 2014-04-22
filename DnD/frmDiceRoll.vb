@@ -126,5 +126,6 @@
     Private Sub frmDiceRoll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'on the off chance that I may actually use this, leaving it here
         AddHandler btnClear.Click, AddressOf btnClear_Click
+        Me.MinimumSize = Me.Size
     End Sub
 End Class

@@ -41,6 +41,8 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmSelPowers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         'reflect form title for player class
         Dim power As String
         Select Case pcls

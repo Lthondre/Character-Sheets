@@ -19,6 +19,8 @@ Public Class frmCharSheet
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub frmCharSheet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
         'add initial modifiers to ability scores
         txtStr.Text = Val(txtStr.Text) + Val(txtStr.Tag)
         txtDex.Text = Val(txtDex.Text) + Val(txtDex.Tag)

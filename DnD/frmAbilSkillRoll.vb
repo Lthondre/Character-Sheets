@@ -110,4 +110,14 @@
             End If
         End With
     End Sub
+
+    ''' <summary>
+    ''' sets minimum size on form load
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub frmAbilSkillRoll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.MinimumSize = Me.Size
+    End Sub
 End Class

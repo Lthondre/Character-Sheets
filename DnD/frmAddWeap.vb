@@ -110,4 +110,15 @@
             End With
         End If
     End Sub
+
+    ''' <summary>
+    ''' sets minimum size on form load
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub frmAddWeap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set minimum size
+        Me.MinimumSize = Me.Size
+    End Sub
 End Class

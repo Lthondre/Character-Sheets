@@ -20,6 +20,13 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmAddWeap.frmAddWeap_Load(System.Object,System.EventArgs)">
+	<summary>
+ sets minimum size on form load
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmDiceRoll.numXd4_ValueChanged(System.Object,System.EventArgs)">
 	<summary>
  toggles the status of the check mark next to the numericUpDown control being changed to on.
@@ -269,13 +276,6 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.frmCharSheet_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
-	<summary>
- close all other forms on form close
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-	<remarks></remarks>
 </member><member name="M:DnD.frmCharSheet.frmCharSheet_Load(System.Object,System.EventArgs)">
 	<summary>
  add event handlers on formload and set the value of check in mdlGlobal
@@ -453,6 +453,13 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.frmCharSheet_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+	<summary>
+ close all other forms on form close
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:DnD.frmSelArmor.frmSelArmor_Load(System.Object,System.EventArgs)">
 	<summary>
  load corresponding datagridview on form loadup
@@ -544,6 +551,13 @@ DnD
 </member><member name="M:DnD.frmAbilSkillRoll.btnStrChk_Click(System.Object,System.EventArgs)">
 	<summary>
  Strength Check
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmAbilSkillRoll.frmAbilSkillRoll_Load(System.Object,System.EventArgs)">
+	<summary>
+ sets minimum size on form load
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
