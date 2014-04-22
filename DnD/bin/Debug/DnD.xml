@@ -269,23 +269,16 @@ DnD
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.frmCharSheet_Load(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmCharSheet.frmCharSheet_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
 	<summary>
- add event handlers on formload and set the value of check in mdlGlobal
+ close all other forms on form close
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.btnClose_Click(System.Object,System.EventArgs)">
+</member><member name="M:DnD.frmCharSheet.frmCharSheet_Load(System.Object,System.EventArgs)">
 	<summary>
- Closes the form
- </summary>
-	<param name="sender">cancel button click</param>
-	<param name="e"></param>
-	<remarks></remarks>
-</member><member name="M:DnD.frmCharSheet.mnuEnd_Click(System.Object,System.EventArgs)">
-	<summary>
- this sub ends the program entirely
+ add event handlers on formload and set the value of check in mdlGlobal
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>
@@ -442,6 +435,20 @@ DnD
 </member><member name="M:DnD.frmCharSheet.pdCharSheet_PrintPage(System.Object,System.Drawing.Printing.PrintPageEventArgs)">
 	<summary>
  format of the output for the user when they print their character sheets
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.btnClose_Click(System.Object,System.EventArgs)">
+	<summary>
+ Closes the form
+ </summary>
+	<param name="sender">cancel button click</param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:DnD.frmCharSheet.mnuEnd_Click(System.Object,System.EventArgs)">
+	<summary>
+ this sub ends the program entirely
  </summary>
 	<param name="sender"></param>
 	<param name="e"></param>

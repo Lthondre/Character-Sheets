@@ -259,8 +259,7 @@ Public Class frmCharSheet
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub mnuRDice_Click(sender As Object, e As EventArgs) Handles mnuRDice.Click
-        frmDiceRoll.ShowDialog()
-        frmDiceRoll.Dispose()
+        frmDiceRoll.Show()
     End Sub
 
     ''' <summary>
@@ -1225,7 +1224,7 @@ Public Class frmCharSheet
         'must print a saved character
         If Val(txtCName.Tag) >= 0 Then
             Try
-                'code for creating the invoice for the customer
+                'code for creating the character sheet
                 Dim intX As Integer = 10
                 Dim intY As Integer = 10
                 Dim chk As String = IIf(Val(txtCheck.Text) > 0, "+" & txtCheck.Text, txtCheck.Text)
@@ -1308,6 +1307,38 @@ Public Class frmCharSheet
     Private Sub mnuEnd_Click(sender As Object, e As EventArgs) Handles mnuEnd.Click
         'close entire program
         End
+    End Sub
+
+    ''' <summary>
+    ''' close all other forms on form close
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub frmCharSheet_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        'this tries to keep things nice and neat in memory by clearing out old forms that are not going to be used, until another character is selected
+        Try
+            Dim frms(-1) As Form
+            For Each f As Form In My.Application.OpenForms
+                If f.Name <> "frmSelPlayer" And f.Name <> Me.Name Then
+                    'f.Close()
+                    ReDim Preserve frms(frms.Length)
+                    frms(frms.Length - 1) = f
+                    Console.WriteLine("Adding " & vbTab & f.Name)
+                End If
+            Next
+            'this must be another for loop as doing this in the above for each loop results in an error
+            '   the error comes from trying to dispose of a form in the systemList of OpenForms
+            For i As Integer = 0 To frms.Length - 1
+                Console.WriteLine("closing " & vbTab & frms(i).Name)
+                frms(i).Close()
+            Next
+        Catch ex As Exception
+            Console.WriteLine("Error occurred closing forms")
+            Console.WriteLine("Error code:" & vbTab & ex.ToString)
+        End Try
+        'dispose of me, while we're at it.
+        Me.Dispose()
     End Sub
 #End Region
 End Class
