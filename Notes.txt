@@ -1,8 +1,4 @@
-CONSIDER WORKING WITH SQL INSTEAD OF SHIT-TIER ACCESS
-
 frmCharSheet save statements can probably look better
-
-format string works fine in console, looks like shit in list box
 
 release versions need proper connection string.
 	it is in comments in mdlGlobal

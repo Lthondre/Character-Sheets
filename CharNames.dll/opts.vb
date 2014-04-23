@@ -6,20 +6,10 @@ Public Class opts
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function selName() As String
-        Dim randInt As Integer
-        Dim nameList(-1) As String
-        Dim sr As New StreamReader("names.txt")
-        Dim i As Integer = 0
-
-        'reads all names until end of file into array
-        Do While sr.Peek() >= 0
-            ReDim Preserve nameList(nameList.Length)
-            nameList(i) = sr.ReadLine()
-            i += 1
-        Loop
+        Dim nameList() As String = IO.File.ReadAllLines("names.txt")
         'random integer from 0 to end of array
         Randomize()
-        randInt = CInt(Int((nameList.Length - 1) * Rnd()))
+        Dim randInt As Integer = CInt(Int((nameList.Length - 1) * Rnd()))
         Return nameList(randInt)
     End Function
 
@@ -31,20 +21,11 @@ Public Class opts
     ''' <remarks></remarks>
     Public Function chkPower(ByVal pID As Integer, Optional ByVal sID As Integer = 0) As Boolean
         Dim path As String = System.AppDomain.CurrentDomain.BaseDirectory & "Powers\" & pID & ".pow"
-        Dim i As Integer = 0
-        Dim pwrs(-1) As String
-
         'check to see if file exists, else create one and store into it the correct information
         If File.Exists(path) Then
-            Console.WriteLine("Powers' cache exists for this character!")
-            Dim sr As New StreamReader(path)
             'read whole file into pwrs array
-            Do While sr.Peek() >= 0
-                ReDim Preserve pwrs(pwrs.Length)
-                pwrs(i) = sr.ReadLine()
-                Console.WriteLine("pwrs: " & pwrs(i))
-                i += 1
-            Loop
+            Dim pwrs() As String = IO.File.ReadAllLines(path)
+            Console.WriteLine("Powers' cache exists for this character!")
             'search array for spell id
             Dim fsID As Integer 'file spell id
             For j As Integer = 0 To pwrs.Length - 1 Step 2
@@ -53,8 +34,6 @@ Public Class opts
                     Return True
                 End If
             Next
-            'close the file
-            sr.Close()
             Return False
         Else
             If Not File.Exists(path) Then
@@ -67,9 +46,7 @@ Public Class opts
                     readme.WriteLine("Do not modify any files in this folder. They are sensitive to change and could mess up the whole program!")
                     readme.Close()
                 End If
-                'create the file and store:
-                '   player id
-                '   spell id
+                'create the file and store spell id
                 Console.WriteLine("Powers file does not exist! Creating at: " & path)
                 File.Create(path).Dispose()
             End If
@@ -100,8 +77,7 @@ Public Class opts
             sw.Close()
         Else
             Dim sa As New StreamWriter(path, True)  '"true" appends to file
-            'create the file and store:
-            '   spell id
+            'create the file and store spell id
             Console.WriteLine("Appending power #" & sid & " to: " & path)
             sa.WriteLine(sid)
             sa.Close()
@@ -121,8 +97,7 @@ Public Class opts
                 Console.WriteLine("Creating 'Powers\' subdirectory")
                 System.IO.Directory.CreateDirectory(System.AppDomain.CurrentDomain.BaseDirectory & "Powers\")
             End If
-            'create the file and store:
-            '   spell id
+            'create the file and store spell id
             Console.WriteLine("Powers file does not exist! Creating at: " & path)
             File.Create(path).Dispose()
         Else

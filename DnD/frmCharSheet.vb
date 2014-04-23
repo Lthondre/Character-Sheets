@@ -8,7 +8,8 @@ Public Class frmCharSheet
     Public cantrips = 0                   'holds number of cantrips available to current character
     Public encounters = 0
     Public dailies = 0
-    Public lvls(30) As Int64
+    Public lvls(31) As UInt32           'for some reason I could only get this to work being two elements greater than levels
+    'the rest is coded with this thought in mind.
     Event weapArmor As EventHandler
 #End Region
 
@@ -28,7 +29,6 @@ Public Class frmCharSheet
         txtCon.Text = Val(txtCon.Text) + Val(txtCon.Tag)
         txtInt.Text = Val(txtInt.Text) + Val(txtInt.Tag)
         txtCha.Text = Val(txtCha.Text) + Val(txtCha.Tag)
-
         'alots for the secod select weapon button
         AddHandler btnSWeap.Click, AddressOf btnSelWeap_Click
         'sends the button clicks of specific buttons to the select armor button
@@ -45,16 +45,12 @@ Public Class frmCharSheet
         'prime the variable
         mdlGlobal.check = Val(txtCheck.Text)
         'load level threshholds
-        Try
-            Dim sr As New System.IO.StreamReader("levels.txt")
-            For j As Integer = 2 To lvls(lvls.Length - 1)
-                lvls(j) = Convert.ToInt64(sr.ReadLine())
-            Next
-            sr.Close()
-        Catch ex As Exception
-            Console.WriteLine(ex.ToString)
-            MessageBox.Show("Could not open up levels file.")
-        End Try
+        Dim sr As New System.IO.StreamReader("lvls")
+        For q As Integer = 2 To lvls.Length - 1
+            lvls(q) = Convert.ToUInt32(sr.ReadLine())
+            Console.WriteLine(lvls(q))
+        Next
+        sr.Close()
     End Sub
 
     ''' <summary>
@@ -890,8 +886,8 @@ Public Class frmCharSheet
     Private Sub levelUp(ByRef xp As Integer)
         'automates the checking procedure of experience versus level thresholds
         Dim start As Integer = IIf((txtLevel.Text IsNot Nothing And txtLevel.Text <> ""), Val(txtLevel.Text), 29)
-        For i As Integer = start To lvls(lvls.Length - 2)
-            If xp >= lvls(i + 1) Then
+        For i As Integer = start To lvls(lvls.Length - 3)
+            If xp >= lvls(i + 1) And i <= lvls.Length - 3 Then
                 'need this line so that leveling isn't calculated on formLoad.
                 'also counters the fact that lvls(0) and lvls(1) are both integer of 0, which can be obnoxious.
                 If txtLevel.Text <> "" Then
