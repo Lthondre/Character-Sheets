@@ -106,15 +106,16 @@ Partial Class frmCharSheet
         Me.mnuArmor = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPowers = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuDice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuRDice = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuSave = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuChange = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuEnd = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
         Me.pdDialog = New System.Windows.Forms.PrintDialog()
         Me.pdCharSheet = New System.Drawing.Printing.PrintDocument()
-        Me.mnuEnd = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuRDice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewTheSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuCharSheet.SuspendLayout()
@@ -878,7 +879,7 @@ Partial Class frmCharSheet
         'mnuCharSheet
         '
         Me.mnuCharSheet.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.mnuCharSheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuChar, Me.mnuPrint, Me.mnuHelp})
+        Me.mnuCharSheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuChar, Me.mnuPrint, Me.mnuHelp, Me.ViewTheSourceToolStripMenuItem})
         Me.mnuCharSheet.Location = New System.Drawing.Point(0, 0)
         Me.mnuCharSheet.Name = "mnuCharSheet"
         Me.mnuCharSheet.Size = New System.Drawing.Size(580, 24)
@@ -916,6 +917,12 @@ Partial Class frmCharSheet
         Me.mnuDice.Size = New System.Drawing.Size(200, 22)
         Me.mnuDice.Text = "&Make a Check"
         '
+        'mnuRDice
+        '
+        Me.mnuRDice.Name = "mnuRDice"
+        Me.mnuRDice.Size = New System.Drawing.Size(200, 22)
+        Me.mnuRDice.Text = "Ra&ndom Dice Generator"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
@@ -932,6 +939,12 @@ Partial Class frmCharSheet
         Me.mnuChange.Name = "mnuChange"
         Me.mnuChange.Size = New System.Drawing.Size(200, 22)
         Me.mnuChange.Text = "C&hange Characters"
+        '
+        'mnuEnd
+        '
+        Me.mnuEnd.Name = "mnuEnd"
+        Me.mnuEnd.Size = New System.Drawing.Size(200, 22)
+        Me.mnuEnd.Text = "&Close"
         '
         'mnuPrint
         '
@@ -954,17 +967,12 @@ Partial Class frmCharSheet
         'pdCharSheet
         '
         '
-        'mnuEnd
+        'ViewTheSourceToolStripMenuItem
         '
-        Me.mnuEnd.Name = "mnuEnd"
-        Me.mnuEnd.Size = New System.Drawing.Size(200, 22)
-        Me.mnuEnd.Text = "&Close"
-        '
-        'mnuRDice
-        '
-        Me.mnuRDice.Name = "mnuRDice"
-        Me.mnuRDice.Size = New System.Drawing.Size(200, 22)
-        Me.mnuRDice.Text = "Ra&ndom Dice Generator"
+        Me.ViewTheSourceToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ViewTheSourceToolStripMenuItem.Name = "ViewTheSourceToolStripMenuItem"
+        Me.ViewTheSourceToolStripMenuItem.Size = New System.Drawing.Size(106, 20)
+        Me.ViewTheSourceToolStripMenuItem.Text = "&View The Source"
         '
         'frmCharSheet
         '
@@ -1083,5 +1091,6 @@ Partial Class frmCharSheet
     Friend WithEvents pdCharSheet As System.Drawing.Printing.PrintDocument
     Friend WithEvents mnuEnd As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuRDice As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ViewTheSourceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

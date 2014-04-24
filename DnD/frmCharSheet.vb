@@ -1346,4 +1346,15 @@ Public Class frmCharSheet
         Me.Dispose()
     End Sub
 #End Region
+
+    ''' <summary>
+    ''' this shamelessly plugs the github repo for this program
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ViewTheSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewTheSourceToolStripMenuItem.Click
+        Dim webAddress As String = "www.github.com/Lthondre/DnD"
+        Process.Start(webAddress)
+    End Sub
 End Class
