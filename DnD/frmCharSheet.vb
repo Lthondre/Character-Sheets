@@ -249,6 +249,29 @@ Public Class frmCharSheet
         End If
     End Sub
 
+    ''' <summary>
+    ''' this shamelessly plugs the github repo for this program
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ViewTheSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewTheSourceToolStripMenuItem.Click
+        Dim webAddress As String = "www.github.com/Lthondre/DnD"
+        Process.Start(webAddress)
+    End Sub
+
+    ''' <summary>
+    ''' shows the help documentation
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub mnuHelp_Click(sender As Object, e As EventArgs) Handles mnuHelp.Click
+        'Open the HTML help files
+        hlpProvider.HelpNamespace = System.Windows.Forms.Application.StartupPath & "/help.chm"
+        Help.ShowHelp(Me, hlpProvider.HelpNamespace)
+    End Sub
+
 #Region "Dice"
     ''' <summary>
     ''' shows the random dice generator form
@@ -1346,15 +1369,4 @@ Public Class frmCharSheet
         Me.Dispose()
     End Sub
 #End Region
-
-    ''' <summary>
-    ''' this shamelessly plugs the github repo for this program
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub ViewTheSourceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewTheSourceToolStripMenuItem.Click
-        Dim webAddress As String = "www.github.com/Lthondre/DnD"
-        Process.Start(webAddress)
-    End Sub
 End Class

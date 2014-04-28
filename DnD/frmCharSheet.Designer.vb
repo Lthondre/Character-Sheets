@@ -113,9 +113,10 @@ Partial Class frmCharSheet
         Me.mnuEnd = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewTheSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pdDialog = New System.Windows.Forms.PrintDialog()
         Me.pdCharSheet = New System.Drawing.Printing.PrintDocument()
-        Me.ViewTheSourceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.hlpProvider = New System.Windows.Forms.HelpProvider()
         Me.pnlCharSheet.SuspendLayout()
         CType(Me.pbxColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuCharSheet.SuspendLayout()
@@ -960,19 +961,19 @@ Partial Class frmCharSheet
         Me.mnuHelp.Text = "&Help"
         Me.mnuHelp.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal
         '
-        'pdDialog
-        '
-        Me.pdDialog.UseEXDialog = True
-        '
-        'pdCharSheet
-        '
-        '
         'ViewTheSourceToolStripMenuItem
         '
         Me.ViewTheSourceToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ViewTheSourceToolStripMenuItem.Name = "ViewTheSourceToolStripMenuItem"
         Me.ViewTheSourceToolStripMenuItem.Size = New System.Drawing.Size(106, 20)
         Me.ViewTheSourceToolStripMenuItem.Text = "&View The Source"
+        '
+        'pdDialog
+        '
+        Me.pdDialog.UseEXDialog = True
+        '
+        'pdCharSheet
+        '
         '
         'frmCharSheet
         '
@@ -1092,5 +1093,6 @@ Partial Class frmCharSheet
     Friend WithEvents mnuEnd As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnuRDice As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewTheSourceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents hlpProvider As System.Windows.Forms.HelpProvider
 
 End Class
