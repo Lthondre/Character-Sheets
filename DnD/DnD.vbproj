@@ -232,6 +232,30 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\headArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\neckArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chestArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\armsArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\handArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\legArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\feetArmor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

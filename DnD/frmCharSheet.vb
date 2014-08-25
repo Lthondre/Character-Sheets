@@ -899,6 +899,8 @@ Public Class frmCharSheet
         If Val(txtExp.Text) < 0 Then txtExp.Text = 0
         'find out if you've leveled up
         Call levelUp(Val(txtExp.Text))
+        'experience tool tip
+        ttpHelp.SetToolTip(txtExp, (lvls(Val(txtLevel.Text) + 1) - Val(txtExp.Text)) & " exp til level.")
     End Sub
 
     ''' <summary>
@@ -1369,4 +1371,8 @@ Public Class frmCharSheet
         Me.Dispose()
     End Sub
 #End Region
+
+    Private Sub pbxColor_Click(sender As Object, e As MouseEventArgs) Handles pbxColor.MouseDown
+
+    End Sub
 End Class
