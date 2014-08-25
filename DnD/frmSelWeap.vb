@@ -39,23 +39,31 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub dgvWeapons_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvWeapons.CellDoubleClick
-        'change the weapon name and tag back in frmCharSheet
-        dtag = dgvWeapons.Item(0, e.RowIndex).Value.ToString
-        dtext = dgvWeapons.Item(1, e.RowIndex).Value.ToString
-        dweight = dgvWeapons.Item(2, e.RowIndex).Value.ToString
-        darmBonus = dgvWeapons.Item(3, e.RowIndex).Value.ToString
-        dcheckMod = dgvWeapons.Item(4, e.RowIndex).Value.ToString
-        dprice = dgvWeapons.Item(5, e.RowIndex).Value.ToString
-        'armor abil mods
-        dSTR = sender.item(6, e.RowIndex).value.ToString
-        dDEX = sender.item(7, e.RowIndex).value.ToString
-        dWIS = sender.item(8, e.RowIndex).value.ToString
-        dCHA = sender.item(9, e.RowIndex).value.ToString
-        dINT = sender.item(10, e.RowIndex).value.ToString
-        dCON = sender.item(11, e.RowIndex).value.ToString
+        'counters a double click on the datagridview titlebar items
+        Try
+            'change the weapon name and tag back in frmCharSheet
+            dtag = dgvWeapons.Item(0, e.RowIndex).Value.ToString
+            dtext = dgvWeapons.Item(1, e.RowIndex).Value.ToString
+            dweight = dgvWeapons.Item(2, e.RowIndex).Value.ToString
+            darmBonus = dgvWeapons.Item(3, e.RowIndex).Value.ToString
+            dcheckMod = dgvWeapons.Item(4, e.RowIndex).Value.ToString
+            dprice = dgvWeapons.Item(5, e.RowIndex).Value.ToString
+            'armor abil mods
+            dSTR = sender.item(6, e.RowIndex).value.ToString
+            dDEX = sender.item(7, e.RowIndex).value.ToString
+            dWIS = sender.item(8, e.RowIndex).value.ToString
+            dCHA = sender.item(9, e.RowIndex).value.ToString
+            dINT = sender.item(10, e.RowIndex).value.ToString
+            dCON = sender.item(11, e.RowIndex).value.ToString
 
-        'close the form
-        Me.Close()
+            'close the form
+            Me.Close()
+        Catch ex As Exception
+            'do nothing
+            'do not pass go
+            'do not collect $200
+            'don't even go to jail
+        End Try
     End Sub
 
     ''' <summary>

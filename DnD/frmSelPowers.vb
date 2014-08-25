@@ -218,17 +218,23 @@
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub dgvDailies_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailies.CellDoubleClick
-        'only append if it hasn't already been used today
-        If sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor <> mdlGlobal.badCol Then
-            Dim powerID As Integer = sender.item(0, e.RowIndex).value.ToString
-            Console.WriteLine("Power ID: " & vbTab & powerID)
-            Dim opts As New CharOptions.opts
-            opts.setPowers(pid, powerID)
-            sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.badCol
-        Else
-            'throw a message to the user concerning the spell's unavailability
-            MessageBox.Show("Spell '" & sender.item(2, e.RowIndex).value.ToString & "' already used today.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        'catch a cell double click outside of inteded usage
+        Try
+            'only append if it hasn't already been used today
+            If sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor <> mdlGlobal.badCol Then
+                Dim powerID As Integer = sender.item(0, e.RowIndex).value.ToString
+                Console.WriteLine("Power ID: " & vbTab & powerID)
+                Dim opts As New CharOptions.opts
+                opts.setPowers(pid, powerID)
+                sender.rows(e.RowIndex).DataGridView.RowsDefaultCellStyle.BackColor = mdlGlobal.badCol
+            Else
+                'throw a message to the user concerning the spell's unavailability
+                MessageBox.Show("Spell '" & sender.item(2, e.RowIndex).value.ToString & "' already used today.", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        Catch ex As Exception
+            'leave blank
+            'don't want anything to happen if any exception is thrown
+        End Try
     End Sub
 
     ''' <summary>

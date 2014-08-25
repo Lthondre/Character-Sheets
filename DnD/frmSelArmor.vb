@@ -81,32 +81,35 @@
                                                                                                     dgvWrists.CellDoubleClick, dgvHands.CellDoubleClick, _
                                                                                                     dgvLegs.CellDoubleClick, dgvFeet.CellDoubleClick, _
                                                                                                     dgvNeck.CellDoubleClick
+        Try
+            'change the weapon name and tag back in frmCharSheet
+            dtag = sender.Item(0, e.RowIndex).Value.ToString
+            dtext = sender.Item(1, e.RowIndex).Value.ToString
+            dweight = sender.item(2, e.RowIndex).value.ToString
+            darmBonus = sender.item(3, e.RowIndex).value.ToString
+            dcheckMod = sender.item(4, e.RowIndex).value.ToString
+            dprice = sender.item(5, e.RowIndex).value.ToString
+            dClass = sender.item(6, e.RowIndex).value.ToString
+            dtype = sender.Item(7, e.RowIndex).Value.ToString
+            'armor abil mods
+            dSTR = sender.item(8, e.RowIndex).value.ToString
+            dDEX = sender.item(9, e.RowIndex).value.ToString
+            dWIS = sender.item(10, e.RowIndex).value.ToString
+            dCHA = sender.item(11, e.RowIndex).value.ToString
+            dINT = sender.item(12, e.RowIndex).value.ToString
+            dCON = sender.item(13, e.RowIndex).value.ToString
 
-        'change the weapon name and tag back in frmCharSheet
-        dtag = sender.Item(0, e.RowIndex).Value.ToString
-        dtext = sender.Item(1, e.RowIndex).Value.ToString
-        dweight = sender.item(2, e.RowIndex).value.ToString
-        darmBonus = sender.item(3, e.RowIndex).value.ToString
-        dcheckMod = sender.item(4, e.RowIndex).value.ToString
-        dprice = sender.item(5, e.RowIndex).value.ToString
-        dClass = sender.item(6, e.RowIndex).value.ToString
-        dtype = sender.Item(7, e.RowIndex).Value.ToString
-        'armor abil mods
-        dSTR = sender.item(8, e.RowIndex).value.ToString
-        dDEX = sender.item(9, e.RowIndex).value.ToString
-        dWIS = sender.item(10, e.RowIndex).value.ToString
-        dCHA = sender.item(11, e.RowIndex).value.ToString
-        dINT = sender.item(12, e.RowIndex).value.ToString
-        dCON = sender.item(13, e.RowIndex).value.ToString
-
-        Console.WriteLine("Str:" & dSTR)
-        Console.WriteLine("dex:" & dDEX)
-        Console.WriteLine("wis:" & dWIS)
-        Console.WriteLine("cha:" & dCHA)
-        Console.WriteLine("int:" & dINT)
-        Console.WriteLine("con:" & dCON)
-        'close the form
-        Me.Close()
+            Console.WriteLine("Str:" & dSTR)
+            Console.WriteLine("dex:" & dDEX)
+            Console.WriteLine("wis:" & dWIS)
+            Console.WriteLine("cha:" & dCHA)
+            Console.WriteLine("int:" & dINT)
+            Console.WriteLine("con:" & dCON)
+            'close the form
+            Me.Close()
+        Catch ex As Exception
+            'see fromSelWeap::dgvWeapons.cellDoubleClick
+        End Try
     End Sub
 
     ''' <summary>
